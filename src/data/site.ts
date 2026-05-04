@@ -3,7 +3,7 @@ export const site = {
   url: 'https://www.leviduncan.com',
   description:
     'Levi Duncan is a Huntsville, Alabama mortgage loan originator at Princeton Mortgage, helping entry-level and mid-market homebuyers with first-time buyer guidance, FHA loans, USDA loans, down payment assistance, and investment property financing across the Tennessee Valley.',
-  tagline: 'Clarity. Access. Next steps.',
+  tagline: 'Clarity. Trust. Results.',
   title: 'Mortgage Loan Originator',
   phone: '+1 (256) 550-8099',
   phoneDisplay: '(256) 550-8099',
