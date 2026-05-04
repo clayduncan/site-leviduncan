@@ -1,6 +1,6 @@
-# clayduncan.com
+# leviduncan.com
 
-Astro rebuild for `clayduncan.com`, deployed from the `main` branch of `clayduncan/site-clayduncan` to Netlify.
+Astro rebuild for `leviduncan.com`, deployed from the `main` branch of `clayduncan/site-leviduncan` to Netlify.
 
 ## Local Development
 
@@ -11,6 +11,6 @@ Astro rebuild for `clayduncan.com`, deployed from the `main` branch of `claydunc
 
 This project is intentionally static, fast, and content-first.
 
-MDX and sitemap were installed during scaffold work and are accepted as early Phase Three groundwork. They become active as blog and structured content pages ship.
+The site shares Clay Duncan's Astro architecture, layouts, component patterns, schema helpers, styles, and brand tokens. Levi-specific work should change person data and page content only unless a later approved phase changes architecture.
 
-See `SETUP.md` for local setup and `docs/phase-3-architecture.md` for Phase Three architecture decisions.
+See `AGENTS.md` and `docs/phase-3-architecture.md` for current build rules and architecture notes.

@@ -3,13 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   createBreadcrumbJsonLd,
   organizationJsonLd,
-  professionalServiceJsonLd,
   personJsonLd,
+  professionalServiceJsonLd,
 } from '../data/schema';
-import { aggregateRating } from '../data/reviews';
 import { site } from '../data/site';
 
-const formattedAverage = aggregateRating.ratingValue.toFixed(1);
+const pageUrl = new URL('/about/', site.url).href;
 
 const schema = [
   personJsonLd,
@@ -17,21 +16,14 @@ const schema = [
   professionalServiceJsonLd,
   {
     '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    '@id': `${site.url}/about/#webpage`,
-    url: `${site.url}/about/`,
-    name: 'About Clay Duncan',
+    '@type': 'ProfilePage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: 'About Levi Duncan',
     description:
-      'Learn about Clay Duncan, a Huntsville mortgage loan originator known for VA guidance, complex mortgage strategy, REALTOR AI education, and leadership.',
+      'Profile page for Levi Duncan, Huntsville Mortgage Loan Originator with Princeton Mortgage.',
     mainEntity: { '@id': `${site.url}/#person` },
     isPartOf: { '@id': `${site.url}/#website` },
-    about: [
-      { '@type': 'Person', '@id': `${site.url}/#person`, name: site.name },
-      { '@type': 'Thing', name: 'Huntsville mortgage guidance' },
-      { '@type': 'Thing', name: 'VA loan guidance' },
-      { '@type': 'Thing', name: 'REALTOR AI education' },
-      { '@type': 'Thing', name: 'loan officer growth leadership' },
-    ],
   },
   createBreadcrumbJsonLd([
     { name: 'Home', path: '/' },
@@ -41,256 +33,64 @@ const schema = [
 ---
 
 <BaseLayout
-  title="About Clay Duncan | Huntsville Mortgage Loan Originator"
-  description="Learn about Clay Duncan, a Huntsville mortgage loan originator known for VA guidance, complex mortgage strategy, REALTOR AI education, and leadership."
+  title="About Levi Duncan | Huntsville Mortgage"
+  description="Learn about Levi Duncan, a Huntsville Mortgage Loan Originator focused on first-time buyers, FHA, USDA, DPA, and buyer readiness."
   schema={schema}
 >
   <section class="hero-section landing-hero va-landing-hero" aria-labelledby="about-heading">
     <div class="hero-copy">
-      <p class="eyebrow">About Clay Duncan</p>
-      <h1 id="about-heading">A mortgage guide built around clarity, trust, and results.</h1>
+      <p class="eyebrow">About Levi Duncan</p>
+      <h1 id="about-heading">Levi Duncan is a Huntsville Mortgage Loan Originator.</h1>
       <p class="hero-lede">
-        Clay Duncan is a Huntsville, Alabama mortgage loan originator at
-        Princeton Mortgage. He helps homebuyers, REALTORS®, and loan officers
-        make better decisions when the next step needs to be clear.
+        Levi Duncan helps homebuyers in Huntsville, Madison, Decatur, Athens,
+        Madison County, Morgan County, and the broader Tennessee Valley
+        understand mortgage options early, including first-time buyer guidance,
+        FHA loans, USDA loans, down payment assistance, and investment property
+        financing.
       </p>
-      <div class="hero-actions" aria-label="About page actions">
-        <a class="button button-primary" href={site.schedulingUrl}>Chat with Clay</a>
-        <a class="button button-secondary" href={site.phoneHref}>Call Clay</a>
-        <a class="button button-secondary" href="/reviews/">Read reviews</a>
+      <div class="hero-actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Book a call with Levi</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
       </div>
-      <dl class="proof-strip" aria-label="Clay Duncan credibility highlights">
-        <div>
-          <dt>{formattedAverage} <span class="rating-stars">★★★★★</span></dt>
-          <dd>{aggregateRating.reviewCount} Google reviews</dd>
-        </div>
-        <div>
-          <dt>Leader</dt>
-          <dd>Sales Director with Princeton Mortgage</dd>
-        </div>
-        <div>
-          <dt>AI</dt>
-          <dd>Practical training for REALTORS® and teams</dd>
-        </div>
-      </dl>
     </div>
     <div class="hero-media va-hero-media">
       <img
-        src="/images/clay-duncan-wbackground-1400.jpg"
-        width="1400"
-        height="787"
-        alt="Clay Duncan, Huntsville mortgage loan originator at Princeton Mortgage"
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator in Huntsville, Alabama"
       />
-      <div class="va-visual-card va-visual-card-top">
-        <span>Clarity. Trust. Results.</span>
-        <strong>Mortgage guidance, AI education, and leadership conversations</strong>
-      </div>
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="identity-heading">
+  <section class="section-band section-band-light" aria-labelledby="bio-heading">
     <div class="section-inner">
       <div class="answer-panel">
         <div>
-          <p class="eyebrow">Direct Answer</p>
-          <h2 id="identity-heading">Who is Clay Duncan?</h2>
+          <p class="eyebrow">Bio</p>
+          <h2 id="bio-heading">Who is Levi Duncan?</h2>
         </div>
         <p>
-          In practice, Clay works at the intersection of mortgage strategy,
-          education, and leadership. He helps buyers think clearly about
-          serious purchase decisions, teaches REALTORS® practical AI workflows,
-          and supports loan officers who want stronger systems, referral
-          strategy, and a better professional chapter.
+          Bio coming soon - full About content launches with the bio update.
+          <!-- TODO: Replace placeholder bio when Levi's final bio paragraphs are approved. -->
         </p>
       </div>
       <div class="feature-grid">
         <article class="feature-card">
           <span>01</span>
-          <h3>Mortgage strategy</h3>
-          <p>
-            Clay focuses on serious purchase conversations, including VA loans,
-            higher-priced homes, complex files, timing, documentation, and offer
-            readiness.
-          </p>
-          <a href="/huntsville/complex-mortgage-guidance/">Complex guidance</a>
+          <h3>NMLS identity</h3>
+          <p>Levi Duncan, Mortgage Loan Originator, NMLS {site.nmlsId}.</p>
         </article>
         <article class="feature-card">
           <span>02</span>
-          <h3>REALTOR® AI education</h3>
-          <p>
-            Clay teaches practical AI workflows for real estate professionals
-            who want useful systems for content, client communication, and
-            better daily execution.
-          </p>
-          <a href="/realtor-ai-training/">AI training</a>
+          <h3>Princeton Mortgage</h3>
+          <p>Levi works with Princeton Mortgage, NMLS {site.company.nmlsId}.</p>
         </article>
         <article class="feature-card">
           <span>03</span>
-          <h3>Loan officer growth</h3>
-          <p>
-            Clay also has why-join and growth conversations with mortgage
-            professionals evaluating leadership fit, referral strategy, and a
-            better professional chapter.
-          </p>
-          <a href="/join-us/">Why join Clay</a>
+          <h3>Five specializations</h3>
+          <p>First-time buyers, FHA, USDA, down payment assistance, and investment property.</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="split-section" aria-labelledby="known-for-heading">
-    <div>
-      <p class="eyebrow">What Clay Is Known For</p>
-      <h2 id="known-for-heading">Clear guidance when the decision matters.</h2>
-      <p>
-        Clay’s strongest work sits where trust, communication, and practical
-        education meet. That may be a military buyer comparing VA options near
-        Redstone Arsenal, a higher-priced buyer needing a stronger loan plan, a
-        REALTOR® office learning AI, or a loan officer considering what to build
-        next.
-      </p>
-      <div class="signal-list" aria-label="Clay Duncan focus areas">
-        <a href="/huntsville/va-loans/">VA loans near Redstone Arsenal</a>
-        <a href="/huntsville/jumbo-loans/">Jumbo loan strategy</a>
-        <a href="/realtor-ai-training/">AI for REALTORS®</a>
-        <a href="/reviews/">Google review proof</a>
-      </div>
-    </div>
-    <div class="local-context-panel" aria-label="Clarity trust results">
-      <article>
-        <span>Clarity</span>
-        <strong>Make the next step understandable</strong>
-        <p>People should know what matters, what comes next, and what questions to ask.</p>
-      </article>
-      <article>
-        <span>Trust</span>
-        <strong>Earned through follow-through</strong>
-        <p>Reviews, partner confidence, and steady communication are central to the brand.</p>
-      </article>
-      <article>
-        <span>Results</span>
-        <strong>Practical outcomes, not empty noise</strong>
-        <p>Mortgage guidance and AI education should both translate into real progress.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section-band section-band-dark" aria-labelledby="princeton-heading">
-    <div class="section-inner">
-      <div class="section-heading section-heading-row">
-        <div>
-          <p class="eyebrow">Princeton Mortgage</p>
-          <h2 id="princeton-heading">Clay’s role at Princeton connects leadership, training, and lending.</h2>
-        </div>
-        <p>
-          As Sales Director with Princeton Mortgage, Clay works across the parts
-          of the business that matter most to the people he serves: leading
-          originators, teaching practical AI, strengthening partner
-          relationships, and helping clients move through the mortgage process
-          with clarity.
-        </p>
-      </div>
-      <div class="princeton-role-grid">
-        <article>
-          <span>Sales Director</span>
-          <h3>Leads originators</h3>
-          <p>
-            Clay supports mortgage professionals who want stronger systems,
-            better partner strategy, and clearer leadership.
-          </p>
-        </article>
-        <article>
-          <span>AI Education</span>
-          <h3>Facilitates training</h3>
-          <p>
-            Clay teaches practical AI workflows for REALTORS®, offices, teams,
-            and mortgage professionals.
-          </p>
-        </article>
-        <article>
-          <span>Mortgage Guidance</span>
-          <h3>Originates through Princeton</h3>
-          <p>
-            Mortgage loans are originated through Princeton Mortgage with
-            Clay’s personal guidance and communication.
-          </p>
-        </article>
-      </div>
-      <div class="section-cta-row">
-        <p class="eyebrow">Princeton Mortgage</p>
-        <a class="button button-on-dark" href={site.company.url} rel="noopener noreferrer" target="_blank">
-          Visit Princeton Mortgage
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-band section-band-light" aria-labelledby="values-heading">
-    <div class="section-inner">
-      <div class="section-heading section-heading-stacked">
-        <p class="eyebrow">Values</p>
-        <h2 id="values-heading">The work is professional. The reason is personal.</h2>
-        <p>
-          These values shape how Clay shows up for clients, partners, and people
-          he leads.
-        </p>
-      </div>
-      <div class="feature-grid feature-grid-six" aria-label="Clay Duncan core values">
-        <article class="feature-card">
-          <span>01</span>
-          <h3>Family</h3>
-          <p>The standard for what matters most.</p>
-        </article>
-        <article class="feature-card">
-          <span>02</span>
-          <h3>Growth</h3>
-          <p>Intentional, practical, and ongoing.</p>
-        </article>
-        <article class="feature-card">
-          <span>03</span>
-          <h3>Loyalty</h3>
-          <p>Relationships, consistency, and follow-through.</p>
-        </article>
-        <article class="feature-card">
-          <span>04</span>
-          <h3>Authenticity</h3>
-          <p>Showing up plainly, honestly, and without performance.</p>
-        </article>
-        <article class="feature-card">
-          <span>05</span>
-          <h3>Faith</h3>
-          <p>Perspective, steadiness, and responsibility.</p>
-        </article>
-        <article class="feature-card">
-          <span>06</span>
-          <h3>Impact</h3>
-          <p>Useful work that helps people move forward.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="split-section split-section-reverse" aria-labelledby="next-heading">
-    <div class="source-panel">
-      <p class="eyebrow">Verification</p>
-      <ul>
-        <li>Clay Duncan, Mortgage Loan Originator</li>
-        <li>Mortgage loans originated through Princeton Mortgage</li>
-        <li>{formattedAverage} ★ from {aggregateRating.reviewCount} Google reviews</li>
-        <li>Service area: Huntsville, Madison, Madison County, and North Alabama</li>
-      </ul>
-    </div>
-    <div>
-      <p class="eyebrow">Next Step</p>
-      <h2 id="next-heading">Start with the path that fits your question.</h2>
-      <p>
-        Whether you are buying, partnering, learning AI, or evaluating a better
-        professional chapter, the right next step is the one that gives you more
-        clarity.
-      </p>
-      <div class="hero-actions" aria-label="About page next steps">
-        <a class="button button-primary" href={site.schedulingUrl}>Chat with Clay</a>
-        <a class="button button-secondary" href="/reviews/">Read reviews</a>
       </div>
     </div>
   </section>

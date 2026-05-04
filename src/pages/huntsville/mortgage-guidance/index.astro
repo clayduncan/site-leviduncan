@@ -4,6 +4,7 @@ import {
   createBreadcrumbJsonLd,
   createFaqJsonLd,
   createMortgageServiceJsonLd,
+  mortgageServices,
   organizationJsonLd,
   professionalServiceJsonLd,
   personJsonLd,
@@ -15,24 +16,14 @@ const pageUrl = new URL(pagePath, site.url).href;
 
 const faqs = [
   {
-    question: 'What mortgage guidance does Clay Duncan provide in Huntsville?',
+    question: 'What mortgage guidance does Levi Duncan provide in Huntsville?',
     answer:
-      'Clay Duncan provides mortgage guidance for VA loans near Redstone Arsenal, jumbo and higher-priced home purchases, medical professional mortgage options, and complex mortgage scenarios for buyers across Huntsville, Madison, and North Alabama.',
+      'Levi Duncan provides mortgage guidance for first-time buyers, FHA loans, USDA loans, down payment assistance, buyer readiness, and investment property financing in Huntsville, Madison, Decatur, Athens, Madison County, Morgan County, and the Tennessee Valley.',
   },
   {
-    question: 'Where should I start if I am a military buyer near Redstone Arsenal?',
+    question: 'When should a first-time homebuyer talk with Levi?',
     answer:
-      'Start with Clay Duncan’s VA loan guidance for Huntsville and Redstone Arsenal-area military buyers. That page explains VA eligibility, COE questions, zero-down financing, funding fees, and local planning considerations.',
-  },
-  {
-    question: 'When should I use complex mortgage guidance?',
-    answer:
-      'Complex mortgage guidance is useful when the file involves self-employment, variable income, relocation timing, multiple properties, large assets, jumbo financing, VA eligibility, appraisal risk, or a tight contract timeline.',
-  },
-  {
-    question: 'Does Clay Duncan help medical professionals buying in Huntsville?',
-    answer:
-      'Yes. Clay Duncan helps eligible medical professionals, including doctors, dentists, pharmacists, veterinarians, residents, fellows, and other qualified healthcare professionals, evaluate specialty mortgage options for Huntsville, Madison, and North Alabama home purchases.',
+      'A first-time homebuyer should talk with Levi before touring homes or guessing at a budget, because early review can clarify credit, cash to close, loan program fit, and the next practical step.',
   },
 ];
 
@@ -42,11 +33,11 @@ const schema = [
   professionalServiceJsonLd,
   createMortgageServiceJsonLd({
     pageUrl,
-    name: 'Mortgage Guidance in Huntsville and North Alabama',
+    name: 'Mortgage Guidance in Huntsville',
     description:
-      'Mortgage guidance for VA loans, jumbo loans, medical professional mortgages, and complex mortgage planning in Huntsville, Madison, Redstone Arsenal, and North Alabama.',
+      'Mortgage guidance from Levi Duncan for first-time buyers, FHA loans, USDA loans, down payment assistance, and investment property financing in Huntsville and North Alabama.',
     serviceType: 'Mortgage loan origination',
-    audience: ['homebuyers', 'VA-eligible borrowers', 'jumbo buyers', 'medical professionals'],
+    audience: ['first-time homebuyers', 'homebuyers', 'real estate investors'],
   }),
   createFaqJsonLd(faqs),
   {
@@ -54,44 +45,19 @@ const schema = [
     '@type': 'CollectionPage',
     '@id': `${pageUrl}#webpage`,
     url: pageUrl,
-    name: 'Mortgage Guidance in Huntsville, Alabama',
+    name: 'Mortgage Guidance in Huntsville',
     description:
-      'Start here for Clay Duncan mortgage guidance in Huntsville, including VA loans near Redstone Arsenal, jumbo loan strategy, medical professional mortgage options, and complex mortgage planning.',
-    about: [
-      { '@type': 'Thing', name: 'Huntsville mortgage guidance' },
-      { '@type': 'Thing', name: 'VA loans near Redstone Arsenal' },
-      { '@type': 'Thing', name: 'jumbo loan strategy' },
-      { '@type': 'Thing', name: 'medical professional mortgage' },
-      { '@type': 'Thing', name: 'complex mortgage guidance' },
-      { '@type': 'Place', name: 'Huntsville, Alabama' },
-      { '@type': 'Place', name: 'Madison, Alabama' },
-      { '@type': 'Place', name: 'North Alabama' },
-    ],
-    hasPart: [
-      {
-        '@type': 'WebPage',
-        name: 'VA Loans in Huntsville',
-        url: `${site.url}/huntsville/va-loans/`,
-      },
-      {
-        '@type': 'WebPage',
-        name: 'Jumbo Loans in Huntsville',
-        url: `${site.url}/huntsville/jumbo-loans/`,
-      },
-      {
-        '@type': 'WebPage',
-        name: 'Medical Professional Mortgage in Huntsville',
-        url: `${site.url}/huntsville/medical-professional-mortgage/`,
-      },
-      {
-        '@type': 'WebPage',
-        name: 'Complex Mortgage Guidance in Huntsville',
-        url: `${site.url}/huntsville/complex-mortgage-guidance/`,
-      },
-    ],
-    primaryImageOfPage: new URL('/images/clay-duncan-wbackground-1400.jpg', site.url).href,
+      'Start here for Levi Duncan mortgage guidance in Huntsville, Madison, Decatur, Athens, and the Tennessee Valley.',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: mortgageServices.map((service, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: service.name,
+        url: new URL(service.path, site.url).href,
+      })),
+    },
     isPartOf: { '@id': `${site.url}/#website` },
-    mainEntity: { '@id': `${site.url}/#person` },
   },
   createBreadcrumbJsonLd([
     { name: 'Home', path: '/' },
@@ -101,130 +67,75 @@ const schema = [
 ---
 
 <BaseLayout
-  title="Mortgage Guidance in Huntsville, AL | VA, Jumbo, Medical, Complex"
-  description="Start here for Clay Duncan mortgage guidance in Huntsville, including VA loans near Redstone Arsenal, jumbo loans, medical professional mortgages, and complex planning."
+  title="Mortgage Guidance | Huntsville | Levi Duncan"
+  description="Start with Levi Duncan for Huntsville first-time buyer, FHA, USDA, DPA, and investment property mortgage guidance."
   schema={schema}
 >
-  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="mortgage-hub-heading">
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="hub-heading">
     <div class="hero-copy">
-      <p class="eyebrow">Mortgage Hub</p>
-      <h1 id="mortgage-hub-heading">Start with the mortgage path that matches the decision in front of you.</h1>
+      <p class="eyebrow">Mortgage Guidance in Huntsville</p>
+      <h1 id="hub-heading">Mortgage guidance for Huntsville buyers starting smart.</h1>
       <p class="hero-lede">
-        Clay Duncan helps Huntsville, Madison, Redstone Arsenal, and North
-        Alabama buyers clarify the right next step for VA loans, jumbo
-        purchases, medical professional mortgage options, and complex mortgage
-        questions before the pressure of an offer or closing timeline.
+        Levi Duncan helps homebuyers in Huntsville, Madison, Decatur, Athens,
+        Madison County, Morgan County, and the broader Tennessee Valley compare
+        practical mortgage paths before the home search creates pressure.
       </p>
-      <div class="hero-actions" aria-label="Mortgage guidance actions">
-        <a class="button button-primary" href={site.schedulingUrl}>Talk through your scenario</a>
-        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
-      </div>
-      <div class="hero-path-grid" aria-label="Mortgage guidance paths">
-        <a href="/huntsville/va-loans/">
-          <strong>VA</strong>
-          <span>Redstone Arsenal-area military buyers</span>
-        </a>
-        <a href="/huntsville/jumbo-loans/">
-          <strong>Jumbo</strong>
-          <span>Higher-priced home strategy</span>
-        </a>
-        <a href="/huntsville/medical-professional-mortgage/">
-          <strong>Medical</strong>
-          <span>Specialty guidance for eligible professionals</span>
-        </a>
-        <a href="/huntsville/complex-mortgage-guidance/">
-          <strong>Complex</strong>
-          <span>Income, assets, timing, and offer planning</span>
-        </a>
+      <div class="hero-actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Book a call with Levi</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
       </div>
     </div>
     <div class="hero-media va-hero-media">
       <img
-        src="/images/clay-duncan-wbackground-1400.jpg"
-        width="1400"
-        height="787"
-        alt="Clay Duncan, Huntsville mortgage loan originator for VA, jumbo, and complex mortgage guidance"
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Huntsville Mortgage Loan Originator for buyer guidance"
       />
-      <div class="va-visual-card va-visual-card-top">
-        <span>{site.tagline}</span>
-        <strong>VA loans, jumbo strategy, medical professionals, and complex guidance</strong>
-      </div>
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="answer-heading">
-    <div class="section-inner">
-      <div class="answer-panel">
-        <div>
-          <p class="eyebrow">Direct Answer</p>
-          <h2 id="answer-heading">What mortgage guidance does Clay Duncan provide?</h2>
-        </div>
-        <div>
-          <p>
-            Clay Duncan provides Huntsville mortgage guidance for VA loans near
-            Redstone Arsenal, jumbo and higher-priced home purchases, medical
-            professional mortgage options, and complex mortgage scenarios where
-            income, assets, timing, documentation, or offer strategy need to be
-            clarified early.
-          </p>
-          <div class="signal-list" aria-label="Mortgage guidance topics">
-            <a href="/huntsville/va-loans/">VA loan guidance</a>
-            <a href="/huntsville/jumbo-loans/">Jumbo loan strategy</a>
-            <a href="/huntsville/medical-professional-mortgage/">Medical professional mortgage</a>
-            <a href="/huntsville/complex-mortgage-guidance/">Complex mortgage planning</a>
-          </div>
-        </div>
-      </div>
-      <div class="local-context-panel local-context-panel-row" aria-label="Mortgage guidance fit signals">
-        <article>
-          <span>VA loans</span>
-          <strong>VA loans near Redstone Arsenal</strong>
-          <p>Understand eligibility, zero-down options, funding fees, closing costs, and timing.</p>
-        </article>
-        <article>
-          <span>Jumbo loans</span>
-          <strong>Jumbo loans for higher-priced homes</strong>
-          <p>Plan around reserves, documentation, appraisal expectations, and cash to close.</p>
-        </article>
-        <article>
-          <span>Medical professional loans</span>
-          <strong>Medical professional loans</strong>
-          <p>Relocation, offer letters, student loans, residency, fellowship, and contract income matter.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-band section-band-dark" aria-labelledby="local-heading">
+  <section class="section-band section-band-light" aria-labelledby="programs-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-row">
         <div>
-          <p class="eyebrow">Local Signal</p>
-          <h2 id="local-heading">Built for Huntsville, Madison, Redstone Arsenal, and North Alabama.</h2>
+          <p class="eyebrow">Program Pages</p>
+          <h2 id="programs-heading">Five Huntsville mortgage paths Levi will cover.</h2>
         </div>
         <p>
-          The mortgage hub gives people and search systems one clear place to
-          understand Clay’s mortgage focus before choosing the VA, jumbo,
-          medical professional, or complex guidance page that matches their
-          situation.
+          These program pages are queued for Phase 2 and will be built one at a
+          time with full AEO/SEO structure, FAQs, schema, and review gates.
         </p>
       </div>
-      <div class="dark-signal-grid" aria-label="Mortgage guidance local signals">
-        <article>
-          <span>Huntsville + Madison</span>
-          <h3>Local mortgage planning</h3>
-          <p>Guidance for buyers across the core North Alabama market.</p>
-        </article>
-        <article>
-          <span>Redstone Arsenal</span>
-          <h3>Military buyer context</h3>
-          <p>VA-focused guidance for borrowers relocating, buying, or planning near Huntsville.</p>
-        </article>
-        <article>
-          <span>North Alabama</span>
-          <h3>Offer-ready strategy</h3>
-          <p>Support for documentation, timing, loan structure, and clear next steps.</p>
-        </article>
+      <div class="feature-grid">
+        {
+          mortgageServices.map((service, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{service.name}</h3>
+              <p>{service.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">Mortgage guidance questions in Huntsville.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>

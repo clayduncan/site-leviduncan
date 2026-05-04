@@ -1,134 +1,147 @@
-export type EventStatus = 'upcoming' | 'past';
-
 export interface EventItem {
-  title: string;
+  id: string;
+  name: string;
   date: string;
-  location: string;
-  format: 'in-person' | 'online';
+  venue: string;
+  city: string;
+  state: string;
   audience: string;
-  status: EventStatus;
-  summary: string;
-  registrationUrl?: string;
+  description: string;
+  speakers: Array<{
+    name: string;
+    company: string;
+    topic: string;
+  }>;
 }
-
-const realtor101Summary =
-  'A practical, no-jargon session on using AI without losing your voice, relationships, or humanity.';
 
 export const events: EventItem[] = [
   {
-    title: 'Online REALTOR® AI Webinar',
-    date: '2026-05-14',
-    location: 'Online',
-    format: 'online',
-    audience: 'REALTORS®',
-    status: 'upcoming',
-    summary:
-      'An online AI training session for REALTORS®. Registration details and final topic information are coming soon.',
+    id: 'homebuyer-masterclass-2026-05-14',
+    name: 'Homebuyer Master Class',
+    date: '2026-05-14T18:30:00-05:00',
+    venue: 'Keller Williams Huntsville',
+    city: 'Huntsville',
+    state: 'AL',
+    audience: 'First-time and experienced homebuyers',
+    description:
+      'Monthly homebuyer education session covering property strategy, title and legal, home inspection, homeowners insurance, and financing strategy.',
+    speakers: [
+      {
+        name: 'Robby Wasinius',
+        company: 'Keller Williams Huntsville',
+        topic: 'Property strategy',
+      },
+      { name: 'Todd Howard', company: 'VIB Title', topic: 'Title and legal' },
+      {
+        name: 'Christian Daschle',
+        company: 'England Home Inspection',
+        topic: 'Home inspection',
+      },
+      {
+        name: 'David Farris',
+        company: 'Southeastern Assurance Group',
+        topic: 'Homeowners insurance',
+      },
+      {
+        name: 'Clay Duncan',
+        company: 'Princeton Mortgage',
+        topic: 'Financing strategy',
+      },
+      {
+        name: 'Levi Duncan',
+        company: 'Princeton Mortgage',
+        topic: 'Financing strategy',
+      },
+    ],
   },
   {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-03-25',
-    location: 'Leading Edge Real Estate Group - Decatur',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
+    id: 'homebuyer-masterclass-2026-04-16',
+    name: 'Homebuyer Master Class',
+    date: '2026-04-16T18:30:00-05:00',
+    venue: 'ADM Title',
+    city: 'Huntsville',
+    state: 'AL',
+    audience: 'First-time and experienced homebuyers',
+    description:
+      'Monthly homebuyer education session covering property strategy, title and legal, home inspection, homeowners insurance, and financing strategy.',
+    speakers: [
+      {
+        name: 'Karen Morris',
+        company: 'The Morris Team',
+        topic: 'Property strategy',
+      },
+      {
+        name: 'Nancy Smith',
+        company: 'The Morris Team',
+        topic: 'Property strategy',
+      },
+      { name: 'Cathy Myrick', company: 'ADM Title', topic: 'Title and legal' },
+      {
+        name: 'David Farris',
+        company: 'Southeastern Assurance Group',
+        topic: 'Homeowners insurance',
+      },
+      {
+        name: 'Christian Daschle',
+        company: 'England Home Inspection',
+        topic: 'Home inspection',
+      },
+      {
+        name: 'Levi Duncan',
+        company: 'Princeton Mortgage',
+        topic: 'Financing strategy',
+      },
+      {
+        name: 'Clay Duncan',
+        company: 'Princeton Mortgage',
+        topic: 'Financing strategy',
+      },
+    ],
   },
   {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-03-12',
-    location: 'Green Mountain Realty',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
-  },
-  {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-03-10',
-    location: 'RE/MAX Unlimited',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
-  },
-  {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-03-06',
-    location: 'Better Homes and Gardens',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
-  },
-  {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-03-03',
-    location: 'RE/MAX Platinum',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
-  },
-  {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-02-26',
-    location: 'Five Star Real Estate Agency',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
-  },
-  {
-    title: 'AI for Homebuyers - Free Intro Course 101',
-    date: '2026-02-21',
-    location: 'Alley Suite at Stovehouse Event Center',
-    format: 'in-person',
-    audience: 'Homebuyers',
-    status: 'past',
-    summary:
-      'A beginner-friendly workshop on how AI can help buyers and sellers move through the home search with more confidence.',
-  },
-  {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-02-16',
-    location: 'RE/MAX Unlimited - Blackwell',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
-  },
-  {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-02-12',
-    location: 'Stovehouse Event Center - Alley Suite',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
-  },
-  {
-    title: 'AI for REALTORS® 102 - From Instructions to Infrastructure',
-    date: '2026-02-10',
-    location: 'RE/MAX Alliance',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary:
-      'A practical session on setting voice, building an AI project, and giving clearer instructions so AI works the way professionals expect.',
-  },
-  {
-    title: 'AI for REALTORS® 101 - Introductory Course',
-    date: '2026-01-15',
-    location: 'TwinsREALTY',
-    format: 'in-person',
-    audience: 'REALTORS®',
-    status: 'past',
-    summary: realtor101Summary,
+    id: 'homebuyer-masterclass-2026-02-21',
+    name: 'Homebuyer Master Class',
+    date: '2026-02-21T08:30:00-06:00',
+    venue: 'Stove House Event Center',
+    city: 'Huntsville',
+    state: 'AL',
+    audience: 'First-time and experienced homebuyers',
+    description:
+      'Monthly homebuyer education session covering property strategy, title and legal, homeowners insurance, and financing strategy.',
+    speakers: [
+      {
+        name: 'Lynnae Hall',
+        company: 'Leading Edge Realty',
+        topic: 'Property strategy',
+      },
+      {
+        name: 'Collie Foster',
+        company: 'Leading Edge Realty',
+        topic: 'Property strategy',
+      },
+      {
+        name: 'David Farris',
+        company: 'Southeastern Assurance Group',
+        topic: 'Homeowners insurance',
+      },
+      { name: 'Todd Howard', company: 'VIB Title', topic: 'Title and legal' },
+      {
+        name: 'Clay Duncan',
+        company: 'Princeton Mortgage',
+        topic: 'Financing strategy',
+      },
+      {
+        name: 'Levi Duncan',
+        company: 'Princeton Mortgage',
+        topic: 'Financing strategy',
+      },
+    ],
   },
 ];
 
+const now = new Date();
+
 export const upcomingEvents = events.filter(
-  (event) => event.status === 'upcoming',
+  (event) => new Date(event.date) >= now,
 );
-export const pastEvents = events.filter((event) => event.status === 'past');
+export const pastEvents = events.filter((event) => new Date(event.date) < now);
