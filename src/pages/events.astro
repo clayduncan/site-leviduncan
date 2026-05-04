@@ -28,6 +28,39 @@ const eventAddress = (event: (typeof events)[number]) =>
 const getRegistrationUrl = (event: (typeof events)[number]) =>
   event.registrationUrl ?? site.calendlyUrl;
 
+const classTopics = [
+  {
+    label: 'Property Strategy',
+    title: 'How to shop with a plan',
+    description:
+      'Buyers learn how representation, offer terms, contingencies, timing, and local market context shape a stronger home search.',
+  },
+  {
+    label: 'Financing',
+    title: 'How approval really works',
+    description:
+      'The class explains credit, income, assets, loan options, payment comfort, cash to close, and common mistakes that can delay closing.',
+  },
+  {
+    label: 'Inspection',
+    title: 'How to understand the home',
+    description:
+      'A home inspection helps buyers understand roof, HVAC, plumbing, electrical, safety, and repair considerations before final decisions.',
+  },
+  {
+    label: 'Insurance',
+    title: 'How to protect the property',
+    description:
+      'Buyers hear how homeowners insurance, coverage quality, deductibles, special property risks, and lender timing fit into closing.',
+  },
+  {
+    label: 'Title & Legal',
+    title: 'How ownership becomes clear',
+    description:
+      'Title and closing topics include ownership rights, title search, title insurance, closing documents, and what happens before keys transfer.',
+  },
+];
+
 const schema = [
   personJsonLd,
   organizationJsonLd,
@@ -81,6 +114,34 @@ const schema = [
       <div class="va-visual-card va-visual-card-top">
         <span>{site.tagline}</span>
         <strong>Homebuyer Master Class and buyer education events</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="class-topics-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-row">
+        <div>
+          <p class="eyebrow">What It Covers</p>
+          <h2 id="class-topics-heading">A full view of the homebuying process.</h2>
+        </div>
+        <p>
+          The Homebuyer Master Class is built to help buyers understand the
+          major decisions before they are under contract. It gives first-time
+          and experienced buyers a high-level framework without trying to turn
+          the website into the full class.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-five">
+        {
+          classTopics.map((topic) => (
+            <article class="feature-card">
+              <span>{topic.label}</span>
+              <h3>{topic.title}</h3>
+              <p>{topic.description}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
