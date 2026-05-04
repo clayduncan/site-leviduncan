@@ -43,6 +43,8 @@ This file records durable project decisions so future chats can quickly understa
 - Added Homebuyer Master Class as Levi's unique events signal and retained past events as local authority proof.
 - Kept reviews as an empty placeholder until Levi's Google Business Profile and verified review source are available.
 - Resolved Levi's short CTA links for reference: `https://bit.ly/BookLevi` points to `https://calendly.com/lduncan-princetonmortgage/30min`, and `https://bit.ly/AppWithLevi` points to `https://princeton.tidalwave.ai/signup/levi.duncan/D2OUK3FT86H9KK708470`.
+- Foundation/data PRs may make minimal page-template edits required to keep `main` deployable after data shape changes and page deletions. Scope: "make it compile," not "build the final page." Full page builds happen in their dedicated PRs.
+- Phase 2 page PRs fully replace the Phase 1 lightweight scaffolds rather than building on them incrementally. Each Phase 2 page is built clean against its own AEO/SEO checklist. Scaffolds existed only to keep `main` deployable through Phase 1.
 
 ## Future Decisions
 
