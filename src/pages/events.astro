@@ -147,59 +147,57 @@ const schema = [
   </section>
 
   <section class="section-band section-band-light" aria-labelledby="upcoming-heading">
-    <div class="event-host-panel">
-      <div>
-        <p class="eyebrow">Upcoming</p>
-        <h2 id="upcoming-heading">The next Homebuyer Master Class is May 14.</h2>
-        <p>
-          The next listed session is an in-person Huntsville class for first-time
-          and experienced buyers. Buyers can hear from local subject matter
-          experts on the pieces that matter before writing an offer.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href={upcomingEvents[0] ? getRegistrationUrl(upcomingEvents[0]) : site.calendlyUrl}>
-            Register for the class
-          </a>
-          <a class="button button-secondary" href={site.calendlyUrl}>Ask Levi about attending</a>
+    <div class="section-inner">
+      <div class="section-heading section-heading-row">
+        <div>
+          <p class="eyebrow">Upcoming</p>
+          <h2 id="upcoming-heading">Upcoming Homebuyer Master Class sessions.</h2>
         </div>
+        <p>
+          Upcoming sessions are listed here as they are scheduled. Each
+          Homebuyer Master Class gives first-time and experienced buyers access
+          to local subject matter experts before the pressure of an offer.
+        </p>
       </div>
-      {
-        upcomingEvents.length ? (
-          upcomingEvents.map((event) => (
-            <article class="event-card event-card-featured" id={event.id}>
-              <p>{event.audience}</p>
-              <h3>{event.name}</h3>
-              <dl>
-                <div>
-                  <dt>Date</dt>
-                  <dd>{formatEventDate(event.date)}</dd>
-                </div>
-                <div>
-                  <dt>Location</dt>
-                  <dd>{eventAddress(event)}</dd>
-                </div>
-              </dl>
-              <p>{event.description}</p>
-              <div class="expert-list" aria-label={`${event.name} subject matter experts`}>
-                <p>Subject Matter Experts</p>
-                {event.speakers.map((speaker) => (
+      <div class="event-grid">
+        {
+          upcomingEvents.length ? (
+            upcomingEvents.map((event) => (
+              <article class="event-card event-card-featured" id={event.id}>
+                <p>{event.audience}</p>
+                <h3>{event.name}</h3>
+                <dl>
                   <div>
-                    <strong>{speaker.topic}</strong>
-                    <span>{speaker.name} · {speaker.company}</span>
+                    <dt>Date</dt>
+                    <dd>{formatEventDate(event.date)}</dd>
                   </div>
-                ))}
-              </div>
-              <a href={getRegistrationUrl(event)}>Register for this class</a>
+                  <div>
+                    <dt>Location</dt>
+                    <dd>{eventAddress(event)}</dd>
+                  </div>
+                </dl>
+                <p>{event.description}</p>
+                <div class="expert-list" aria-label={`${event.name} subject matter experts`}>
+                  <p>Subject Matter Experts</p>
+                  {event.speakers.map((speaker) => (
+                    <div>
+                      <strong>{speaker.topic}</strong>
+                      <span>{speaker.name} · {speaker.company}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href={getRegistrationUrl(event)}>Register for this class</a>
+              </article>
+            ))
+          ) : (
+            <article class="event-card">
+              <p>Next date</p>
+              <h3>Upcoming events will be posted here.</h3>
+              <p>Past Homebuyer Master Class sessions remain visible as local credibility signals.</p>
             </article>
-          ))
-        ) : (
-          <article class="event-card">
-            <p>Next date</p>
-            <h3>Upcoming events will be posted here.</h3>
-            <p>Past Homebuyer Master Class sessions remain visible as local credibility signals.</p>
-          </article>
-        )
-      }
+          )
+        }
+      </div>
     </div>
   </section>
 
