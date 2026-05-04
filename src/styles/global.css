@@ -1,0 +1,97 @@
+:root {
+  --color-navy: #2b398c;
+  --color-blue: #2c6ef6;
+  --color-lime: #c4da65;
+  --color-off-white: #f0efea;
+  --color-black: #000000;
+  --font-body: Georgia, "Times New Roman", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--color-off-white);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: var(--color-blue);
+}
+
+main {
+  flex: 1;
+}
+
+.site-header,
+.site-footer {
+  padding: 1rem clamp(1rem, 5vw, 3rem);
+}
+
+.site-logo {
+  color: var(--color-navy);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-footer {
+  color: var(--color-navy);
+  font-size: 0.875rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-shell {
+  display: grid;
+  min-height: calc(100vh - 8rem);
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.site-shell h1 {
+  margin: 0 0 1rem;
+  color: var(--color-black);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.site-shell p {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--color-navy);
+  font-size: clamp(2rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 0.95;
+}

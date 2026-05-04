@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clayDuncanPersonJsonLd } from '../data/personJsonLd';
+---
+
+<BaseLayout
+  title="Clay Duncan"
+  description="Clay Duncan website rebuild in progress."
+  schema={clayDuncanPersonJsonLd}
+>
+  <section class="site-shell" aria-labelledby="home-heading">
+    <h1 id="home-heading">Clay Duncan</h1>
+    <p>Clay Duncan website rebuild in progress.</p>
+  </section>
+</BaseLayout>
