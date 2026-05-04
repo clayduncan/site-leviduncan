@@ -1142,11 +1142,68 @@ main {
   text-decoration: none;
 }
 
+.expert-list {
+  display: grid;
+  gap: 0.65rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 82%);
+  padding-top: 1rem;
+}
+
+.expert-list > p {
+  margin: 0;
+  color: var(--color-cognac-dark);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.expert-list div {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.42fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  border-left: 3px solid
+    color-mix(in srgb, var(--color-cognac), transparent 35%);
+  padding-left: 0.75rem;
+}
+
+.expert-list strong,
+.expert-list span {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.expert-list strong {
+  color: var(--color-navy);
+  font-weight: 850;
+}
+
+.expert-list span {
+  color: var(--color-muted);
+}
+
+.expert-list-compact {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.expert-list-compact > p {
+  grid-column: 1 / -1;
+}
+
+.expert-list-compact div {
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+}
+
 .event-host-panel {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(20rem, 0.72fr);
   gap: clamp(2rem, 6vw, 5rem);
   align-items: center;
+  max-width: var(--site-max);
+  margin: 0 auto;
 }
 
 .event-host-panel h2 {

@@ -5,6 +5,11 @@ export interface EventItem {
   venue: string;
   city: string;
   state: string;
+  address?: {
+    streetAddress: string;
+    postalCode: string;
+  };
+  registrationUrl?: string;
   audience: string;
   description: string;
   speakers: Array<{
@@ -22,6 +27,11 @@ export const events: EventItem[] = [
     venue: 'Keller Williams Huntsville',
     city: 'Huntsville',
     state: 'AL',
+    address: {
+      streetAddress: '809 Shoney Dr. Ste 108',
+      postalCode: '35801',
+    },
+    registrationUrl: 'https://bit.ly/BookLevi',
     audience: 'First-time and experienced homebuyers',
     description:
       'Monthly homebuyer education session covering property strategy, title and legal, home inspection, homeowners insurance, and financing strategy.',

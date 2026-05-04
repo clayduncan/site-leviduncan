@@ -303,8 +303,10 @@ export function createEventJsonLd(event: EventItem): SchemaObject {
       name: event.venue,
       address: {
         '@type': 'PostalAddress',
+        streetAddress: event.address?.streetAddress,
         addressLocality: event.city,
         addressRegion: event.state,
+        postalCode: event.address?.postalCode,
         addressCountry: 'US',
       },
     },
@@ -330,7 +332,7 @@ export function createEventJsonLd(event: EventItem): SchemaObject {
       '@type': 'Audience',
       audienceType: event.audience,
     },
-    url: `${site.url}/events/#${event.id}`,
+    url: event.registrationUrl ?? `${site.url}/events/#${event.id}`,
     isAccessibleForFree: true,
   };
 }
