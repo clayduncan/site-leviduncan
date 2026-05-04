@@ -513,7 +513,8 @@ main {
   margin: 2.5rem 0 0;
 }
 
-.hero-path-grid a {
+.hero-path-grid a,
+.hero-path-grid div {
   display: grid;
   gap: 0.45rem;
   min-height: 6.75rem;

@@ -14,6 +14,25 @@ import { site } from '../../../data/site';
 const pagePath = '/huntsville/mortgage-guidance/';
 const pageUrl = new URL(pagePath, site.url).href;
 
+const heroPaths = [
+  {
+    title: 'FHA Loans',
+    subtitle: 'Flexible credit and down payment options',
+  },
+  {
+    title: 'USDA Loans',
+    subtitle: 'Eligible rural and suburban homebuyers',
+  },
+  {
+    title: 'Down Payment Assistance',
+    subtitle: 'DPA options for Alabama homebuyers',
+  },
+  {
+    title: 'Investment Property',
+    subtitle: 'DSCR and rental-property financing',
+  },
+];
+
 const faqs = [
   {
     question: 'What mortgage guidance does Levi Duncan provide in Huntsville?',
@@ -80,9 +99,19 @@ const schema = [
         Madison County, Morgan County, and the broader Tennessee Valley compare
         practical mortgage paths before the home search creates pressure.
       </p>
-      <div class="hero-actions">
-        <a class="button button-primary" href={site.calendlyUrl}>Book a call with Levi</a>
-        <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+      <div class="hero-actions" aria-label="Mortgage guidance actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
+      </div>
+      <div class="hero-path-grid" aria-label="Levi Duncan mortgage specialties">
+        {
+          heroPaths.map((path) => (
+            <div>
+              <strong>{path.title}</strong>
+              <span>{path.subtitle}</span>
+            </div>
+          ))
+        }
       </div>
     </div>
     <div class="hero-media va-hero-media">
@@ -92,32 +121,6 @@ const schema = [
         height="800"
         alt="Levi Duncan, Huntsville Mortgage Loan Originator for buyer guidance"
       />
-    </div>
-  </section>
-
-  <section class="section-band section-band-light" aria-labelledby="programs-heading">
-    <div class="section-inner">
-      <div class="section-heading section-heading-row">
-        <div>
-          <p class="eyebrow">Program Pages</p>
-          <h2 id="programs-heading">Five Huntsville mortgage paths Levi will cover.</h2>
-        </div>
-        <p>
-          These program pages are queued for Phase 2 and will be built one at a
-          time with full AEO/SEO structure, FAQs, schema, and review gates.
-        </p>
-      </div>
-      <div class="feature-grid">
-        {
-          mortgageServices.map((service, index) => (
-            <article class="feature-card">
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <h3>{service.name}</h3>
-              <p>{service.description}</p>
-            </article>
-          ))
-        }
-      </div>
     </div>
   </section>
 
