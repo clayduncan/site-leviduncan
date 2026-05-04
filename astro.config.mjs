@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://clayduncan.com',
+  site: 'https://www.leviduncan.com',
   integrations: [
     mdx(),
     sitemap({

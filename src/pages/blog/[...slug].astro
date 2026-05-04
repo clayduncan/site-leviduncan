@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  defaultSchemaImage,
+  organizationJsonLd,
+  professionalServiceJsonLd,
+  personJsonLd,
+} from '../../data/schema';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+  return posts.map((post) => ({
+    params: {
+      slug: post.id.replace(/\.mdx?$/, '').replace(/\/index$/, ''),
+    },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const slug = post.id.replace(/\.mdx?$/, '').replace(/\/index$/, '');
+const pagePath = `/blog/${slug}/`;
+const pageUrl = new URL(pagePath, site.url).href;
+
+const categoryLabels = {
+  'ai-for-realtors': 'AI for REALTORS®',
+  'events-recaps': 'Events & Recaps',
+  'mortgage-strategy': 'Mortgage Strategy',
+  'loan-officer-growth': 'Loan Officer Growth',
+} as const;
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+const articleAbout = [
+  categoryLabels[post.data.category],
+  ...post.data.tags,
+].filter((item, index, items) => items.indexOf(item) === index);
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  professionalServiceJsonLd,
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    url: pageUrl,
+    headline: post.data.title,
+    description: post.data.description,
+    image: defaultSchemaImage,
+    datePublished: post.data.publishDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.publishDate).toISOString(),
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#person` },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+    },
+    about: [
+      ...articleAbout.map((tag) => ({ '@type': 'Thing', name: tag })),
+    ],
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog/' },
+    { name: post.data.title, path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout title={`${post.data.title} | Clay Duncan`} description={post.data.description} schema={schema}>
+  <article class="article-page">
+    <header class="article-header">
+      <p class="eyebrow">{categoryLabels[post.data.category]}</p>
+      <h1>{post.data.title}</h1>
+      <p>{post.data.description}</p>
+      <div class="article-meta">
+        <span>{post.data.author}</span>
+        <span>{dateFormatter.format(post.data.publishDate)}</span>
+      </div>
+    </header>
+    <div class="article-body">
+      <Content />
+    </div>
+    <footer class="article-footer">
+      <a class="button button-primary" href={site.schedulingUrl}>Chat with Clay</a>
+      <a class="button button-secondary" href="/blog/">Back to blog</a>
+    </footer>
+  </article>
+</BaseLayout>

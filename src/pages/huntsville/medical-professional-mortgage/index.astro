@@ -1,0 +1,372 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  professionalServiceJsonLd,
+  personJsonLd,
+} from '../../../data/schema';
+import { site } from '../../../data/site';
+
+const pagePath = '/huntsville/medical-professional-mortgage/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const eligibleProfessionals = [
+  'Physicians: MD or DO',
+  'Dentists and oral surgeons: DDS or DMD',
+  'Pharmacists: PharmD',
+  'Veterinarians: DVM or VMD',
+  'Podiatrists: DPM',
+  'CRNAs with DNAP or DNP credentials',
+  'Medical residents and fellows',
+];
+
+const faqs = [
+  {
+    question: 'What is a medical professional mortgage?',
+    answer:
+      'A medical professional mortgage is a specialty home loan program designed for eligible medical professionals, including certain doctors, dentists, pharmacists, veterinarians, podiatrists, CRNAs, residents, and fellows. Program features can include high financing options, no PMI, offer-letter review before a start date, and student loan flexibility depending on borrower eligibility and program guidelines.',
+  },
+  {
+    question: 'Can medical professionals buy a home in Huntsville before starting a new job?',
+    answer:
+      'In some eligible medical professional mortgage scenarios, a fully executed employment offer letter can be reviewed before the borrower starts the new role. This can help relocating medical professionals plan housing before the first day of employment.',
+  },
+  {
+    question: 'Who may be eligible for a medical professional mortgage?',
+    answer:
+      'Eligible professionals may include physicians, dentists, oral surgeons, pharmacists, veterinarians, podiatrists, certain CRNAs, medical residents, and fellows. Eligibility depends on the borrower, credential, property, occupancy, and current program guidelines.',
+  },
+  {
+    question: 'Can residents and fellows use a medical professional mortgage?',
+    answer:
+      'Medical residents and fellows may be eligible, and some program guidelines are built to account for residency income and student loan obligations. A review is needed to determine whether the borrower and scenario fit the program.',
+  },
+  {
+    question: 'Can student loans affect medical professional mortgage eligibility?',
+    answer:
+      'Student loans can affect mortgage planning, but they do not automatically disqualify every medical professional borrower. Some program guidelines may treat income-based repayment or deferred student loans differently depending on the file.',
+  },
+  {
+    question: 'Is the medical professional mortgage for vacation homes or rentals?',
+    answer:
+      'No. The medical professional mortgage discussed here is intended for primary residences. Investment properties and vacation homes are not the focus of this program.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  professionalServiceJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'Medical Professional Mortgage Guidance in Huntsville',
+    description:
+      'Medical professional mortgage guidance for eligible doctors, dentists, pharmacists, veterinarians, residents, fellows, and relocating healthcare professionals in Huntsville and North Alabama.',
+    serviceType: 'Medical professional mortgage loan origination',
+    audience: ['doctors', 'dentists', 'pharmacists', 'veterinarians', 'residents', 'fellows'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: 'Medical Professional Mortgage in Huntsville, Alabama',
+    description:
+      'Medical professional mortgage guidance for Huntsville doctors, dentists, pharmacists, veterinarians, residents, fellows, and eligible healthcare professionals.',
+    about: [
+      { '@type': 'Thing', name: 'medical professional mortgage' },
+      { '@type': 'Thing', name: 'physician mortgage' },
+      { '@type': 'Thing', name: 'doctor mortgage loan' },
+      { '@type': 'Thing', name: 'resident and fellow home loan planning' },
+      { '@type': 'Place', name: 'Huntsville, Alabama' },
+      { '@type': 'Place', name: 'Madison, Alabama' },
+      { '@type': 'Place', name: 'North Alabama' },
+    ],
+    primaryImageOfPage: new URL('/images/clay-duncan-wbackground-1400.jpg', site.url).href,
+    isPartOf: { '@id': `${site.url}/#website` },
+    mainEntity: { '@id': `${site.url}/#person` },
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'Medical Professional Mortgage in Huntsville', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Medical Professional Mortgage in Huntsville, AL | Clay Duncan"
+  description="Medical professional mortgage guidance for Huntsville doctors, dentists, pharmacists, veterinarians, residents, fellows, and eligible healthcare professionals."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="medical-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">Medical Professional Mortgage</p>
+      <h1 id="medical-heading">A mortgage path built around medical careers in Huntsville.</h1>
+      <p class="hero-lede">
+        Clay Duncan helps doctors, dentists, pharmacists, veterinarians,
+        residents, fellows, and eligible medical professionals evaluate specialty
+        mortgage options for Huntsville, Madison, and North Alabama home
+        purchases.
+      </p>
+      <div class="hero-actions" aria-label="Medical professional mortgage actions">
+        <a class="button button-primary" href={site.schedulingUrl}>Talk through your options</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
+      </div>
+      <dl class="proof-strip" aria-label="Medical professional mortgage highlights">
+        <div>
+          <dt>100%</dt>
+          <dd>Financing may be available for eligible borrowers</dd>
+        </div>
+        <div>
+          <dt>No PMI</dt>
+          <dd>May be available under program guidelines</dd>
+        </div>
+        <div>
+          <dt>Offer letter</dt>
+          <dd>Future employment may be reviewed before start date</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src="/images/clay-duncan-wbackground-1400.jpg"
+        width="1400"
+        height="787"
+        alt="Clay Duncan, Huntsville mortgage loan originator for medical professional mortgage guidance"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>Medical professional mortgage</span>
+        <strong>Doctors, dentists, pharmacists, veterinarians, residents, fellows</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">What is a medical professional mortgage?</h2>
+        </div>
+        <p>
+          A medical professional mortgage is a specialty home loan program for
+          eligible healthcare professionals. Depending on the borrower and
+          current guidelines, the program may allow high financing options, no
+          PMI, offer-letter review before a start date, and student loan
+          flexibility for residents, fellows, and other eligible medical
+          borrowers.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four feature-grid-compact">
+        <article class="feature-card">
+          <span>01</span>
+          <h3>High financing options</h3>
+          <p>
+            Eligible medical professionals may be able to preserve cash for
+            relocation, furniture, practice needs, or the early transition into
+            a new role.
+          </p>
+        </article>
+        <article class="feature-card">
+          <span>02</span>
+          <h3>No PMI may be available</h3>
+          <p>
+            Some medical professional mortgage programs do not require private
+            mortgage insurance, even when the financing structure is different
+            from a standard conventional loan.
+          </p>
+        </article>
+        <article class="feature-card">
+          <span>03</span>
+          <h3>Future employment review</h3>
+          <p>
+            A fully executed offer letter may help relocating professionals plan
+            housing before their first day in a new Huntsville-area role.
+          </p>
+        </article>
+        <article class="feature-card">
+          <span>04</span>
+          <h3>Student loan flexibility</h3>
+          <p>
+            Residents and fellows may have planning options when student loans
+            are income-based, deferred, or structured around the realities of
+            medical training.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="split-section" aria-labelledby="who-heading">
+    <div>
+      <p class="eyebrow">Who It Helps</p>
+      <h2 id="who-heading">Built for medical professionals, including those still in training.</h2>
+      <p>
+        Medical careers do not always fit a standard mortgage script. Residency,
+        fellowship, future employment, contract income, relocation timing, and
+        student loans can all require a more specific conversation before a home
+        search begins.
+      </p>
+      <div class="signal-list" aria-label="Eligible medical professional examples">
+        {
+          eligibleProfessionals.map((professional) => (
+            <span>{professional}</span>
+          ))
+        }
+      </div>
+    </div>
+    <div class="local-context-panel" aria-label="Medical professional mortgage planning factors">
+      <article>
+        <span>Training path</span>
+        <strong>Residents and fellows</strong>
+        <p>Medical professionals may not need to wait until attending income begins.</p>
+      </article>
+      <article>
+        <span>Relocation</span>
+        <strong>Offer-letter timing</strong>
+        <p>Future employment can matter when the move needs to happen before the job starts.</p>
+      </article>
+      <article>
+        <span>Income profile</span>
+        <strong>Medical careers vary</strong>
+        <p>Contract physician, W-2, 1099, and future income scenarios deserve early review.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-band section-band-dark" aria-labelledby="huntsville-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-row">
+        <div>
+          <p class="eyebrow">Why Huntsville</p>
+          <h2 id="huntsville-heading">Huntsville’s medical and biotech growth creates a real housing need.</h2>
+        </div>
+        <p>
+          Medical professionals are relocating to North Alabama for hospital,
+          biotech, federal, and private-practice opportunities. The financing
+          conversation should account for the move, the start date, the offer
+          letter, and the home search timeline.
+        </p>
+      </div>
+      <div class="dark-signal-grid" aria-label="Huntsville medical professional local signals">
+        <article>
+          <span>Hospital systems</span>
+          <h3>Huntsville, Madison, and Crestwood</h3>
+          <p>Local hospital roles can bring new physicians and clinical professionals into the market.</p>
+        </article>
+        <article>
+          <span>Biotech corridor</span>
+          <h3>HudsonAlpha and medical innovation</h3>
+          <p>Huntsville’s medical, research, and biotech activity supports specialized relocation demand.</p>
+        </article>
+        <article>
+          <span>Private practice</span>
+          <h3>Madison and Limestone counties</h3>
+          <p>Dental, veterinary, pharmacy, specialty, and private-practice moves need practical planning.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="process-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">Process</p>
+        <h2 id="process-heading">A clearer path for medical professionals buying in North Alabama.</h2>
+      </div>
+      <div class="timeline-grid">
+        <article>
+          <span>Step 1</span>
+          <h3>Confirm the credential</h3>
+          <p>
+            Review whether your degree, role, training status, and employment
+            path match the current medical professional mortgage guidelines.
+          </p>
+        </article>
+        <article>
+          <span>Step 2</span>
+          <h3>Review the start date</h3>
+          <p>
+            If you are relocating for a new role, the offer letter, contract,
+            and start date should be reviewed before the home search gets
+            serious.
+          </p>
+        </article>
+        <article>
+          <span>Step 3</span>
+          <h3>Plan student loans</h3>
+          <p>
+            Income-based repayment, deferment, residency income, and future
+            earning path can affect how the file should be structured.
+          </p>
+        </article>
+        <article>
+          <span>Step 4</span>
+          <h3>Match the home search</h3>
+          <p>
+            Align purchase price, cash to close, timing, employment details, and
+            the offer strategy before contract pressure starts.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="split-section" aria-labelledby="clay-heading">
+    <div>
+      <p class="eyebrow">Why Clay</p>
+      <h2 id="clay-heading">A local mortgage conversation for a specialized career path.</h2>
+      <p>
+        Clay Duncan helps medical professionals think through the mortgage
+        pieces that matter before they are under contract: credential, income
+        path, start date, student loans, relocation timing, and the realities of
+        buying in Huntsville, Madison, and North Alabama.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href={site.schedulingUrl}>Talk to Clay</a>
+        <a class="button button-secondary" href={site.phoneHref}>Call Clay</a>
+      </div>
+    </div>
+    <div class="local-context-panel" aria-label="Medical professional mortgage fit">
+      <article>
+        <span>Best fit</span>
+        <strong>Primary residences</strong>
+        <p>This program is intended for eligible medical professionals buying a primary home.</p>
+      </article>
+      <article>
+        <span>Not sure?</span>
+        <strong>Ask before assuming</strong>
+        <p>A short conversation can clarify credential, role, employment, and timing questions.</p>
+      </article>
+      <article>
+        <span>Next step</span>
+        <strong>Get the path clear</strong>
+        <p>Review options before writing an offer or making relocation decisions.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">Medical professional mortgage questions.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

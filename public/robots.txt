@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
-Sitemap: https://clayduncan.com/sitemap-index.xml
+Disallow: /apply/
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://www.clayduncan.com/sitemap-index.xml

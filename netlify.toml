@@ -5,3 +5,53 @@ publish = "dist"
 [build.environment]
 NODE_VERSION = "22"
 ASTRO_TELEMETRY_DISABLED = "1"
+
+[[redirects]]
+from = "/about-me"
+to = "/about/"
+status = 301
+
+[[redirects]]
+from = "/join-us"
+to = "/join-us/"
+status = 301
+
+[[redirects]]
+from = "/supporting"
+to = "/"
+status = 301
+
+[[redirects]]
+from = "/blog/categories/ai-for-realtors"
+to = "/realtor-ai-training/"
+status = 301
+
+[[redirects]]
+from = "/blog/categories/ai-for-homebuyers"
+to = "/events/"
+status = 301
+
+[[redirects]]
+from = "/blog/categories/huntsville-market-intel"
+to = "/blog/"
+status = 301
+
+[[redirects]]
+from = "/blog/categories/mortgage-insights"
+to = "/huntsville/complex-mortgage-guidance/"
+status = 301
+
+[[redirects]]
+from = "/post/mortgage-rates-2025-homeowner-divide"
+to = "/blog/"
+status = 301
+
+[[redirects]]
+from = "/post/your-guide-to-ai-mortgages-and-the-real-estate-market-we-re-living-in"
+to = "/blog/"
+status = 301
+
+[[redirects]]
+from = "/event-details-registration/*"
+to = "/events/"
+status = 301

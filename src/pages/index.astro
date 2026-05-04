@@ -1,15 +1,216 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { clayDuncanPersonJsonLd } from '../data/personJsonLd';
+import { aggregateRating } from '../data/reviews';
+import { createFaqJsonLd, homePageSchema } from '../data/schema';
+import { site } from '../data/site';
+
+const formattedAverage = aggregateRating.ratingValue.toFixed(1);
+
+const homepageFaqs = [
+  {
+    question: 'Who is Clay Duncan?',
+    answer:
+      'Clay Duncan is a Huntsville, Alabama mortgage loan originator at Princeton Mortgage. He helps VA-eligible borrowers, military families, jumbo buyers, clients with complex mortgage questions, REALTORS® seeking practical AI education, and loan officers evaluating growth conversations across North Alabama.',
+  },
+  {
+    question: 'What mortgage guidance does Clay Duncan provide in Huntsville?',
+    answer:
+      'Clay provides mortgage guidance for VA loans near Redstone Arsenal, jumbo and higher-priced home purchases, complex mortgage scenarios, and North Alabama buyers who need a clearer plan before making an offer or choosing a loan path.',
+  },
+  {
+    question: 'Why should REALTORS® talk with Clay about AI training?',
+    answer:
+      'Clay teaches practical AI training for REALTORS®, real estate teams, and partner groups. His training focuses on useful workflows, client communication, content planning, follow-up, and responsible adoption instead of abstract AI hype.',
+  },
+];
+
+const schema = [...homePageSchema, createFaqJsonLd(homepageFaqs)];
 ---
 
 <BaseLayout
-  title="Clay Duncan"
-  description="Clay Duncan website rebuild in progress."
-  schema={clayDuncanPersonJsonLd}
+  title="Clay Duncan | Huntsville Mortgage Loan Originator | VA, Jumbo, AI Training"
+  description="Clay Duncan helps Huntsville and North Alabama buyers, REALTORS®, and loan officers with mortgage guidance, VA loans, AI training, and growth conversations."
+  schema={schema}
 >
-  <section class="site-shell" aria-labelledby="home-heading">
-    <h1 id="home-heading">Clay Duncan</h1>
-    <p>Clay Duncan website rebuild in progress.</p>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="home-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">Huntsville Mortgage Guidance + AI Education</p>
+      <h1 id="home-heading">Mortgage guidance built around clarity, trust, and results.</h1>
+      <p class="hero-lede">
+        Clay Duncan helps Huntsville-area homebuyers, REALTORS®, and loan
+        officers make clearer decisions through mortgage guidance, practical AI
+        education, and leadership conversations built around clarity, trust, and
+        results.
+      </p>
+      <div class="hero-actions" aria-label="Primary actions">
+        <a class="button button-primary" href="/huntsville/mortgage-guidance/"
+          >Start with mortgage guidance</a
+        >
+        <a class="button button-secondary" href={site.schedulingUrl}>Chat with Clay</a>
+      </div>
+      <dl class="proof-strip" aria-label="Clay Duncan credibility highlights">
+        <div>
+          <dt>{formattedAverage} <span class="rating-stars">★★★★★</span></dt>
+          <dd>{aggregateRating.reviewCount} Google reviews</dd>
+        </div>
+        <div>
+          <dt>North Alabama</dt>
+          <dd>Huntsville, Madison, and Redstone Arsenal guidance</dd>
+        </div>
+        <div>
+          <dt>Princeton</dt>
+          <dd>Sales Director and mortgage loan originator</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src="/images/clay-duncan-wbackground-1400.jpg"
+        width="1400"
+        height="787"
+        alt="Clay Duncan, Huntsville mortgage loan originator at Princeton Mortgage"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>Mortgage guidance, AI education, and leadership conversations</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="paths-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-stacked">
+        <p class="eyebrow">Start Here</p>
+        <h2 id="paths-heading">Choose the path that matches the question in front of you.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span>01</span>
+          <h3>Homebuyers</h3>
+          <p>
+            Start with VA loan guidance, jumbo strategy, medical professional
+            mortgage options, or complex mortgage planning for Huntsville,
+            Madison, Redstone Arsenal, and North Alabama.
+          </p>
+          <a href="/huntsville/mortgage-guidance/">Explore mortgage guidance</a>
+        </article>
+        <article class="feature-card">
+          <span>02</span>
+          <h3>REALTORS®</h3>
+          <p>
+            Learn about practical AI training for real estate professionals,
+            office sessions, webinars, event recaps, and responsible adoption.
+          </p>
+          <a href="/realtor-ai-training/">Explore AI training</a>
+        </article>
+        <article class="feature-card">
+          <span>03</span>
+          <h3>Loan officers</h3>
+          <p>
+            Have a leadership and growth conversation about systems, partner
+            strategy, culture, practical AI education, and fit.
+          </p>
+          <a href="/join-us/">Explore why join</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="split-section" aria-labelledby="authority-heading">
+    <div>
+      <p class="eyebrow">Why Clay</p>
+      <h2 id="authority-heading">A clear answer before the pressure starts.</h2>
+      <p>
+        Clay’s work sits at the intersection of lending, education, and
+        leadership. He originates mortgage loans through Princeton Mortgage,
+        teaches practical AI training for REALTORS®, and helps loan officers
+        think through better systems, partner growth, and professional fit.
+      </p>
+      <div class="signal-list" aria-label="Clay Duncan authority signals">
+        <span>Mortgage Loan Originator</span>
+        <span>{formattedAverage} Google rating</span>
+        <span>Princeton Mortgage</span>
+        <span>Huntsville + North Alabama</span>
+      </div>
+    </div>
+    <div class="local-context-panel" aria-label="Clay Duncan homepage focus areas">
+      <article>
+        <span>Mortgage</span>
+        <strong>Huntsville and North Alabama</strong>
+        <p>Guidance for VA, jumbo, and complex mortgage scenarios.</p>
+        <a href="/huntsville/va-loans/">VA loan guidance</a>
+      </article>
+      <article>
+        <span>Education</span>
+        <strong>REALTOR® AI training</strong>
+        <p>Practical sessions, webinars, and event recaps for real estate work.</p>
+        <a href="/events/">View events</a>
+      </article>
+      <article>
+        <span>Proof</span>
+        <strong>Reviews and trust signals</strong>
+        <p>Client and partner reviews that point to communication and follow-through.</p>
+        <a href="/reviews/">Read reviews</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-band section-band-dark" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-row">
+        <div>
+          <p class="eyebrow">Local Signal</p>
+          <h2 id="local-heading">Built for Huntsville, Madison, Redstone Arsenal, and North Alabama.</h2>
+        </div>
+        <p>
+          Clay’s homepage gives visitors clear paths by audience and gives
+          search systems a consistent relationship between Clay Duncan,
+          Huntsville mortgage guidance, REALTOR® AI education, and Princeton
+          Mortgage.
+        </p>
+      </div>
+      <div class="dark-signal-grid" aria-label="Clay Duncan local focus signals">
+        <article>
+          <span>Huntsville + Madison</span>
+          <h3>Local mortgage guidance</h3>
+          <p>Clear planning for buyers across the core North Alabama market.</p>
+        </article>
+        <article>
+          <span>Redstone Arsenal</span>
+          <h3>VA and military buyers</h3>
+          <p>Guidance for VA-eligible borrowers and military families relocating near Huntsville.</p>
+        </article>
+        <article>
+          <span>North Alabama</span>
+          <h3>Complex purchase questions</h3>
+          <p>Support for higher-priced homes, documentation questions, and serious offer planning.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="homepage-faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-row">
+        <div>
+          <p class="eyebrow">Homepage FAQ</p>
+          <h2 id="homepage-faq-heading">Quick answers for searchers and visitors.</h2>
+        </div>
+        <p>
+          These answers state Clay’s role, location, service focus, and next
+          steps in plain language.
+        </p>
+      </div>
+      <div class="faq-list">
+        {
+          homepageFaqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
   </section>
 </BaseLayout>

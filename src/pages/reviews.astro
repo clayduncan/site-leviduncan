@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { aggregateRating, reviews } from '../data/reviews';
+import {
+  createAggregateRatingJsonLd,
+  createBreadcrumbJsonLd,
+  createReviewJsonLd,
+  personJsonLd,
+} from '../data/schema';
+import { site } from '../data/site';
+
+const formattedAverage = aggregateRating.ratingValue.toFixed(1);
+const googleBusinessProfileUrl = site.reviewLinks.find(
+  (link) => link.label === 'Google Business',
+)?.url;
+const googleReviewsUrl = 'https://share.google/qPTvGrULgryXchU49';
+
+const formatReviewDate = (date: string) =>
+  new Intl.DateTimeFormat('en', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00.000Z`));
+
+const schema = [
+  personJsonLd,
+  createAggregateRatingJsonLd(aggregateRating),
+  ...reviews.map((review) => createReviewJsonLd(review)),
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Reviews', path: '/reviews/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Clay Duncan Reviews | Mortgage Guidance and AI Training"
+  description="Read Google reviews from homebuyers, REALTOR® partners, and AI training attendees describing Clay Duncan’s communication, closings, and practical education."
+  schema={schema}
+>
+  <section class="reviews-page" aria-labelledby="reviews-heading">
+    <div class="reviews-hero">
+      <div class="hero-copy reviews-hero-copy">
+        <p class="eyebrow">Reviews</p>
+        <h1 id="reviews-heading">What people say about working with Clay.</h1>
+        <p class="hero-lede">
+          Clients and REALTOR® partners point to clear communication, reliable
+          closings, practical AI training, and a steady mortgage process from
+          first conversation through closing.
+        </p>
+        <div class="hero-actions" aria-label="Review page actions">
+          <a class="button button-primary" href={site.schedulingUrl}>Chat with Clay</a>
+          {
+            googleBusinessProfileUrl && (
+              <a
+                class="button button-secondary"
+                href={googleReviewsUrl}
+                aria-label="Read more Google reviews for Clay Duncan (opens in new tab)"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View Google reviews
+              </a>
+            )
+          }
+        </div>
+        <dl class="proof-strip" aria-label="Review themes">
+          <div>
+            <dt>Clarity</dt>
+            <dd>Clear communication through the process</dd>
+          </div>
+          <div>
+            <dt>Trust</dt>
+            <dd>Clients and partners willing to say it publicly</dd>
+          </div>
+          <div>
+            <dt>Results</dt>
+            <dd>Reliable closings, useful training, better decisions</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="hero-media va-hero-media reviews-hero-media">
+        <img
+          src="/images/clay-duncan-wbackground-1400.jpg"
+        width="1400"
+        height="787"
+          alt="Clay Duncan, Huntsville mortgage loan originator with five-star Google reviews"
+        />
+        <aside class="rating-summary" aria-label="Google review summary">
+          <strong>{formattedAverage}</strong>
+          <span aria-label={`${formattedAverage} out of 5 stars`}>★★★★★</span>
+          <p>
+            {formattedAverage} ★ from {aggregateRating.reviewCount} Google reviews
+          </p>
+        </aside>
+      </div>
+    </div>
+
+    <section class="section-band section-band-light" aria-labelledby="credibility-signals">
+      <div class="section-inner">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow">Credibility Signals</p>
+            <h2 id="credibility-signals">The reviews show where Clay has earned trust.</h2>
+          </div>
+          <p>
+            The most useful reviews are specific. They show how Clay
+            communicates, teaches, solves problems, and follows through when
+            the process needs to stay clear.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span>01</span>
+            <h3>Mortgage guidance</h3>
+            <p>
+              Borrowers and REALTOR® partners describe communication, clarity,
+              reliable closings, and confidence during complicated purchase
+              scenarios.
+            </p>
+            <a href="/huntsville/complex-mortgage-guidance/">Complex guidance</a>
+          </article>
+          <article class="feature-card">
+            <span>02</span>
+            <h3>AI education</h3>
+            <p>
+              Training attendees describe practical AI classes that help agents
+              improve content, client communication, listing presentations, and
+              daily workflow.
+            </p>
+            <a href="/realtor-ai-training/">AI training</a>
+          </article>
+          <article class="feature-card">
+            <span>03</span>
+            <h3>Partner trust</h3>
+            <p>
+              Referral partners describe consistency over multiple transactions,
+              which is one of the strongest signals a mortgage professional can
+              earn.
+            </p>
+            <a href="/contact/">Start a conversation</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band section-band-light" aria-labelledby="curated-reviews">
+      <div class="section-inner">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow">Selected Reviews</p>
+            <h2 id="curated-reviews">Recent proof from clients and partners.</h2>
+          </div>
+          <p class="reviews-note">
+            A selection of recent reviews. View all {aggregateRating.reviewCount}
+            on Google.
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+          {
+            reviews.map((review) => (
+              <article class="review-card">
+                <div class="review-card__header">
+                  <div>
+                    <h3>{review.author}</h3>
+                    <p>
+                      {review.source} · {formatReviewDate(review.date)}
+                    </p>
+                  </div>
+                  <span class="review-stars" aria-label={`${review.rating} out of 5 stars`}>
+                    {'★'.repeat(review.rating)}
+                  </span>
+                </div>
+                <blockquote>{review.text}</blockquote>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {
+      googleBusinessProfileUrl && (
+        <div class="cta-band">
+          <h2>Read more reviews on Google.</h2>
+          <p>
+            Clay’s verified Google Business Profile includes 28 five-star
+            reviews from clients, partners, and training attendees.
+          </p>
+          <a
+            class="button button-primary"
+            href={googleReviewsUrl}
+            aria-label="Read more Google reviews for Clay Duncan (opens in new tab)"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            See more Google reviews
+          </a>
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>
