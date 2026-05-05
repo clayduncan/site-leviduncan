@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../data/schema';
+import { site } from '../../../../data/site';
+
+const pagePath = '/huntsville/mortgage-guidance/first-time-home-buyer/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const buyerPriorities = [
+  {
+    label: 'Budget',
+    title: 'Know the payment before the search',
+    description:
+      'Compare monthly payment comfort, approval range, cash to close, reserves, and the cost of owning the home after closing.',
+  },
+  {
+    label: 'Readiness',
+    title: 'Avoid mistakes before underwriting',
+    description:
+      'Review credit, income, documents, deposits, job changes, new debt, and large purchases before they create avoidable delays.',
+  },
+  {
+    label: 'Team',
+    title: 'Understand the full buying process',
+    description:
+      'Financing, property strategy, inspection, insurance, title, and closing all connect before keys transfer.',
+  },
+];
+
+const masterClassTopics = [
+  {
+    title: 'Financing strategy',
+    description:
+      'Understand approval, payment comfort, loan options, down payment, closing costs, and what lenders review before closing.',
+  },
+  {
+    title: 'Property strategy',
+    description:
+      'Know how location, offer terms, contingencies, timing, and representation affect the search before emotions take over.',
+  },
+  {
+    title: 'Home inspection',
+    description:
+      'Use inspections to understand roof, HVAC, plumbing, electrical, safety, and repair items before final decisions.',
+  },
+  {
+    title: 'Homeowners insurance',
+    description:
+      'Shop coverage early enough to understand replacement cost, deductibles, special risks, and lender timing.',
+  },
+  {
+    title: 'Title and legal',
+    description:
+      'Understand ownership, title search, title insurance, closing documents, and what must be clear before keys transfer.',
+  },
+];
+
+const dosAndDonts = [
+  {
+    title: 'Do talk through payment comfort early',
+    description:
+      'A preapproval number is not the same thing as a comfortable monthly payment. Start with the budget you can live with.',
+  },
+  {
+    title: 'Do keep documents and deposits clean',
+    description:
+      'Pay stubs, bank statements, tax documents, and large deposits can all matter. Clean records make underwriting easier.',
+  },
+  {
+    title: 'Don’t open new debt during the process',
+    description:
+      'New credit cards, car loans, furniture financing, or large purchases can change approval strength before closing.',
+  },
+  {
+    title: 'Don’t skip insurance and inspection timing',
+    description:
+      'Insurance quotes and inspection findings can affect cost, negotiation, and closing readiness. Handle both early.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What should a first-time homebuyer do first in Huntsville?',
+    answer:
+      'A first-time homebuyer should start by reviewing payment comfort, credit, savings, income, debt, and likely cash to close before touring homes. Levi Duncan helps buyers compare the practical mortgage path before the search creates pressure.',
+  },
+  {
+    question: 'What is Levi’s 101 In-depth Homebuyer Review?',
+    answer:
+      'Levi’s 101 In-depth Homebuyer Review is a buyer consultation for walking through budget, documents, loan options, timeline, and next steps before a first-time buyer gets serious about offers.',
+  },
+  {
+    question: 'Should first-time buyers attend the Homebuyer Master Class?',
+    answer:
+      'Yes. The Homebuyer Master Class is built for first-time and experienced buyers who want to understand financing, property strategy, inspection, insurance, title, legal, and closing topics before making a move.',
+  },
+  {
+    question: 'Which loan options should first-time buyers compare?',
+    answer:
+      'First-time buyers may need to compare FHA, USDA, conventional, First Step down payment assistance, and other options depending on credit, income, property location, down payment, and long-term goals.',
+  },
+  {
+    question: 'What mistakes should first-time buyers avoid before closing?',
+    answer:
+      'Common mistakes include opening new debt, making large undocumented deposits, changing jobs without guidance, skipping insurance timing, ignoring inspection concerns, or shopping homes before knowing payment comfort.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'First-Time Home Buyer Guidance in Huntsville',
+    description:
+      'First-time homebuyer guidance from Levi Duncan for Huntsville and North Alabama buyers comparing budget, loan options, Homebuyer Master Class events, and next steps.',
+    serviceType: 'First-time homebuyer mortgage guidance',
+    audience: ['first-time homebuyers', 'homebuyers'],
+  }),
+  createFaqJsonLd(faqs),
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'First-Time Home Buyer', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="First-Time Home Buyer | Huntsville | Levi Duncan"
+  description="Start first-time homebuyer guidance with Levi Duncan for Huntsville-area budget, loan options, buyer readiness, and next steps."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="first-time-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">First-Time Home Buyer Guidance</p>
+      <h1 id="first-time-heading">First-time homebuyer guidance in Huntsville.</h1>
+      <p class="hero-lede">
+        First-time homebuyer guidance helps Huntsville and North Alabama buyers
+        understand budget, loan options, cash to close, offer readiness, and the
+        full buying team before the search creates pressure. Levi Duncan,
+        Mortgage Loan Originator with Princeton Mortgage, helps buyers turn
+        early questions into a practical next step.
+      </p>
+      <div class="hero-actions" aria-label="First-time homebuyer actions">
+        <a class="button button-primary" href={site.calendlyUrl}>
+          Book Levi's 101 Homebuyer Review
+        </a>
+        <a class="button button-secondary" href="/events/">View Homebuyer Master Class events</a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator for first-time homebuyer guidance in Huntsville"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>First-time buyer guidance and Homebuyer Master Class events</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="priorities-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Where to Start</p>
+        <h2 id="priorities-heading">What should first-time buyers understand first?</h2>
+        <p>
+          The first step is not picking a house. It is understanding payment
+          comfort, upfront cash, loan fit, documents, and what could slow down a
+          closing. Once those pieces are clear, the home search becomes more
+          focused and less reactive.
+        </p>
+        <div class="hero-actions" aria-label="First-time buyer consultation actions">
+          <a class="button button-primary" href={site.calendlyUrl}>
+            Connect with Levi
+          </a>
+          <a class="button button-secondary" href="/events/">Attend a Homebuyer Master Class</a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="First-time homebuyer priorities">
+        {
+          buyerPriorities.map((priority) => (
+            <article>
+              <span>{priority.label}</span>
+              <strong>{priority.title}</strong>
+              <p>{priority.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="masterclass-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Homebuyer Master Class</p>
+        <h2 id="masterclass-heading">What the Homebuyer Master Class helps buyers see.</h2>
+      </div>
+      <div class="feature-grid feature-grid-five">
+        {
+          masterClassTopics.map((topic) => (
+            <article class="feature-card">
+              <span>Topic</span>
+              <h3>{topic.title}</h3>
+              <p>{topic.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="dos-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Do's and Don'ts</p>
+        <h2 id="dos-heading">First-time homebuyer best practices before an offer.</h2>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          dosAndDonts.map((item, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+          <h2 id="local-heading">
+            First-time buyer guidance for Huntsville, Madison, Decatur, Athens, Albertville, and
+            Arab.
+          </h2>
+        </div>
+        <p>
+          Buyers across North Alabama may be comparing FHA, USDA, First Step
+          down payment assistance, conventional options, and timing around
+          inspection, insurance, title, and closing. Levi helps first-time
+          buyers slow the process down enough to understand what matters before
+          they make a move.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">First-time homebuyer questions in Huntsville.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Start with a clear buyer review before the home search gets serious.</h2>
+          </div>
+          <div class="hero-actions" aria-label="First-time homebuyer next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>
+              Book Levi's 101 Homebuyer Review
+            </a>
+            <a class="button button-secondary" href="/events/">View Homebuyer Master Class events</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
