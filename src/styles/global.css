@@ -738,6 +738,10 @@ main {
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
+.events-section-heading {
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
 .section-heading h2,
 .split-section h2,
 .proof-layout h2,
