@@ -91,11 +91,7 @@ main {
 
 .site-header,
 .site-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem clamp(1rem, 5vw, 3rem);
+  padding: 0 clamp(1rem, 5vw, 3rem);
 }
 
 .site-header {
@@ -110,9 +106,19 @@ main {
   box-shadow: 0 0.75rem 2rem rgb(36 48 95 / 5%);
 }
 
-.site-header {
+.site-header-inner,
+.site-footer-inner {
+  width: 100%;
+  max-width: var(--site-max);
+  margin: 0 auto;
+}
+
+.site-header-inner {
   display: grid;
   grid-template-columns: minmax(12rem, 1fr) auto minmax(12rem, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .site-logo {
@@ -217,16 +223,21 @@ main {
 }
 
 .site-footer {
+  border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 82%);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+}
+
+.site-footer-inner {
   display: grid;
   grid-template-columns: minmax(18rem, 1fr) minmax(14rem, 0.7fr) minmax(
       18rem,
       1fr
     );
   align-items: flex-start;
-  border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 82%);
-  color: var(--color-navy);
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .site-footer p {
@@ -1671,15 +1682,12 @@ main {
 }
 
 @media (max-width: 720px) {
-  .site-header,
-  .site-footer {
+  .site-header-inner,
+  .site-footer-inner {
     align-items: flex-start;
+    display: flex;
     flex-direction: column;
     max-width: 100%;
-  }
-
-  .site-header {
-    display: flex;
   }
 
   .site-logo,
@@ -1702,11 +1710,6 @@ main {
   .site-nav,
   .social-links {
     max-width: 100%;
-  }
-
-  .site-footer {
-    display: grid;
-    grid-template-columns: 1fr;
   }
 
   .footer-links,

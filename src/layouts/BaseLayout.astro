@@ -63,60 +63,64 @@ const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
   </head>
   <body>
     <header class="site-header" aria-label="Site header">
-      <a class="site-logo" href="/" aria-label={`${site.name} home`}>
-        <img src="/favicon.svg" width="40" height="40" alt="" aria-hidden="true" />
-        <span>
-          <strong>{site.name}</strong>
-          <small>{site.tagline}</small>
-        </span>
-      </a>
-      <div class="site-team-brand" aria-label="Duncan Mortgage Team powered by Princeton Mortgage">
-        <strong>Duncan Mortgage Team</strong>
-        <small>powered by Princeton Mortgage</small>
+      <div class="site-header-inner">
+        <a class="site-logo" href="/" aria-label={`${site.name} home`}>
+          <img src="/favicon.svg" width="40" height="40" alt="" aria-hidden="true" />
+          <span>
+            <strong>{site.name}</strong>
+            <small>{site.tagline}</small>
+          </span>
+        </a>
+        <div class="site-team-brand" aria-label="Duncan Mortgage Team powered by Princeton Mortgage">
+          <strong>Duncan Mortgage Team</strong>
+          <small>powered by Princeton Mortgage</small>
+        </div>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="/huntsville/mortgage-guidance/">Mortgage Hub</a>
+          <a href="/about/">About</a>
+          <a href="/reviews/">Reviews</a>
+          <a href="/events/">Events</a>
+        </nav>
       </div>
-      <nav class="site-nav" aria-label="Primary navigation">
-        <a href="/huntsville/mortgage-guidance/">Mortgage Hub</a>
-        <a href="/about/">About</a>
-        <a href="/reviews/">Reviews</a>
-        <a href="/events/">Events</a>
-      </nav>
     </header>
     <main id="content">
       <slot />
     </main>
     <footer class="site-footer">
-      <div class="footer-contact">
-        <p>
-          {compliance.individualNmls.name}, {compliance.individualNmls.title},
-          <a href={compliance.individualNmls.url} rel="noopener noreferrer" target="_blank">
-            NMLS #{compliance.individualNmls.id}
-          </a>
-        </p>
-        <p>
-          <a href={site.phoneHref}>{site.phoneDisplay}</a> &middot;
-          <a href={site.emailHref}>{site.email}</a>
-        </p>
-      </div>
-      <div class="footer-links">
-        <nav class="social-links" aria-label="Social profiles">
-          {
-            profileLinks.map((link) => (
-              <a href={link.url} rel="me noopener noreferrer" target="_blank">
-                {link.label}
-              </a>
-            ))
-          }
-        </nav>
-        <p>&copy; {new Date().getFullYear()} {site.name}.</p>
-      </div>
-      <div class="site-disclosure">
-        <p>
-          {compliance.companyNmls.name},
-          <a href={compliance.companyNmls.url} rel="noopener noreferrer" target="_blank">
-            NMLS #{compliance.companyNmls.id}
-          </a>.
-        </p>
-        <p>{compliance.equalHousing}</p>
+      <div class="site-footer-inner">
+        <div class="footer-contact">
+          <p>
+            {compliance.individualNmls.name}, {compliance.individualNmls.title},
+            <a href={compliance.individualNmls.url} rel="noopener noreferrer" target="_blank">
+              NMLS #{compliance.individualNmls.id}
+            </a>
+          </p>
+          <p>
+            <a href={site.phoneHref}>{site.phoneDisplay}</a> &middot;
+            <a href={site.emailHref}>{site.email}</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <nav class="social-links" aria-label="Social profiles">
+            {
+              profileLinks.map((link) => (
+                <a href={link.url} rel="me noopener noreferrer" target="_blank">
+                  {link.label}
+                </a>
+              ))
+            }
+          </nav>
+          <p>&copy; {new Date().getFullYear()} {site.name}.</p>
+        </div>
+        <div class="site-disclosure">
+          <p>
+            {compliance.companyNmls.name},
+            <a href={compliance.companyNmls.url} rel="noopener noreferrer" target="_blank">
+              NMLS #{compliance.companyNmls.id}
+            </a>.
+          </p>
+          <p>{compliance.equalHousing}</p>
+        </div>
       </div>
     </footer>
   </body>
