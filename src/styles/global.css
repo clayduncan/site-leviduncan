@@ -700,6 +700,17 @@ main {
   gap: 1rem;
 }
 
+.bio-copy-wide {
+  max-width: 58rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.bio-copy-wide p {
+  margin: 0;
+  color: var(--color-navy);
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+}
+
 .section-heading-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(15rem, 22rem);
