@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../data/schema';
+import { site } from '../../../../data/site';
+
+const pagePath = '/huntsville/mortgage-guidance/investment-property/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const investorHighlights = [
+  {
+    label: 'Cash flow',
+    title: 'Start with the property math',
+    description:
+      'DSCR-style investor loans focus on whether expected rental income can support the proposed mortgage payment and property expenses.',
+  },
+  {
+    label: 'Strategy',
+    title: 'Compare the right investor path',
+    description:
+      'Levi helps investors compare DSCR, conventional investment-property financing, rental income documentation, reserves, and offer timing.',
+  },
+  {
+    label: 'Risk',
+    title: 'Plan for more than approval',
+    description:
+      'Investor loans should be reviewed around vacancy, repairs, taxes, insurance, reserves, rent assumptions, and long-term holding goals.',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Review the investment goal',
+    description:
+      'Start with the rental strategy, target area, property type, purchase price range, timeline, and cash available for down payment and reserves.',
+  },
+  {
+    title: 'Compare DSCR and conventional options',
+    description:
+      'Some investors need a property-cash-flow approach, while others may fit a conventional investment-property path using personal income and rental documentation.',
+  },
+  {
+    title: 'Test the rental numbers',
+    description:
+      'Look at projected rent, payment, insurance, taxes, HOA dues, maintenance, vacancy, and whether the property still makes sense after financing.',
+  },
+  {
+    title: 'Prepare for underwriting and offer timing',
+    description:
+      'Before writing an offer, clarify documents, appraisal or rent schedule expectations, reserves, entity ownership questions, and closing timeline.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What is a DSCR investor loan?',
+    answer:
+      'A DSCR investor loan is an investment-property mortgage option where the property’s rental cash flow is a central part of the qualification review. Guidelines vary by lender and program, so buyers should compare the full structure before relying on it.',
+  },
+  {
+    question: 'What does DSCR mean?',
+    answer:
+      'DSCR stands for debt service coverage ratio. In practical terms, it compares a property’s rental income against the debt payment the property needs to support.',
+  },
+  {
+    question: 'How is an investment property loan different from a primary residence loan?',
+    answer:
+      'Investment property loans are for non-owner-occupied properties and often require more attention to rental income, reserves, down payment, insurance, and the buyer’s overall investment plan.',
+  },
+  {
+    question: 'Can rental income help qualify for an investment property mortgage?',
+    answer:
+      'Rental income may help in some investment-property mortgage scenarios, but the documentation and calculation depend on the loan type, property, lease or market rent support, and program rules.',
+  },
+  {
+    question: 'When should an investor talk with Levi?',
+    answer:
+      'Talk with Levi before making an offer. Investor financing should be reviewed early because cash flow, reserves, down payment, rent assumptions, and closing timing can change whether a deal works.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'Investment Property Loans in Huntsville',
+    description:
+      'Investment property and DSCR investor loan guidance from Levi Duncan for Huntsville and North Alabama buyers comparing rental-property financing.',
+    serviceType: 'Investment property mortgage guidance',
+    audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
+  }),
+  createFaqJsonLd(faqs),
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'Investment Property', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Investment Property Loans | Huntsville | Levi Duncan"
+  description="Compare investment property and DSCR investor loan guidance with Levi Duncan for Huntsville and North Alabama rental-property buyers."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="investor-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">Investment Property Loans in Huntsville</p>
+      <h1 id="investor-heading">DSCR and investor loan guidance for rental-property buyers.</h1>
+      <p class="hero-lede">
+        Investment property financing helps Huntsville and North Alabama buyers
+        compare rental-property loan options before a deal is under contract.
+        Levi Duncan, Mortgage Loan Originator with Princeton Mortgage, helps
+        investors review DSCR-style cash-flow options, conventional investor
+        paths, reserves, down payment, and whether the property math supports
+        the purchase.
+      </p>
+      <div class="hero-actions" aria-label="Investment property loan actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator for investment property and DSCR investor loans"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>Investor guidance for rental-property financing</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="fit-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Why Investor Financing</p>
+        <h2 id="fit-heading">What should investors compare before choosing a loan?</h2>
+        <p>
+          Investor financing is not just about getting approved. The better
+          question is whether the property, rent assumptions, cash needed at
+          closing, reserves, and long-term strategy still work after financing
+          is included. DSCR can be useful for investors who want the property’s
+          rental income to carry more of the qualification story, but it still
+          needs careful review.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="Investment property loan priorities">
+        {
+          investorHighlights.map((highlight) => (
+            <article>
+              <span>{highlight.label}</span>
+              <strong>{highlight.title}</strong>
+              <p>{highlight.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="process-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">How It Works</p>
+        <h2 id="process-heading">How investor loan guidance works before an offer.</h2>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          processSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+          <h2 id="local-heading">
+            Investor loan guidance for Huntsville, Madison, Decatur, Athens, Albertville, and Arab.
+          </h2>
+        </div>
+        <p>
+          Investors across North Alabama often need to move quickly, but rental
+          property financing should be reviewed before the offer gets emotional.
+          Levi helps buyers compare property cash flow, rent assumptions, loan
+          structure, reserve needs, and the next step with Princeton Mortgage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">Investment property and DSCR loan questions.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Review the financing before deciding the rental deal works.</h2>
+          </div>
+          <div class="hero-actions" aria-label="Investment property loan next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book an investor consultation</a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
