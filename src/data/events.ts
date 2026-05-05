@@ -41,6 +41,11 @@ export const events: EventItem[] = [
         company: 'Keller Williams Huntsville',
         topic: 'Property strategy',
       },
+      {
+        name: 'Lisa Zibas',
+        company: 'Keller Williams Horizon',
+        topic: 'Property strategy',
+      },
       { name: 'Todd Howard', company: 'VIB Title', topic: 'Title and legal' },
       {
         name: 'Christian Daschle',
