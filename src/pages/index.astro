@@ -10,7 +10,7 @@ const homepageFaqs = [
   {
     question: 'Who is Levi Duncan?',
     answer:
-      'Levi Duncan is a Huntsville, Alabama Mortgage Loan Originator with Princeton Mortgage, NMLS 2721357, focused on first-time homebuyer guidance, FHA loans, USDA loans, down payment assistance, and buyer readiness.',
+      'Levi Duncan is a Huntsville, Alabama Mortgage Loan Originator with Princeton Mortgage, focused on first-time homebuyer guidance, FHA loans, USDA loans, down payment assistance, and buyer readiness.',
   },
   {
     question: 'Who should start with Levi Duncan?',
@@ -47,12 +47,12 @@ const schema = [
       </div>
       <dl class="proof-strip" aria-label="Levi Duncan focus areas">
         <div>
-          <dt>NMLS</dt>
-          <dd>{site.nmlsId}</dd>
-        </div>
-        <div>
           <dt>Focus</dt>
           <dd>First-time buyers, FHA, USDA, and DPA</dd>
+        </div>
+        <div>
+          <dt>Education</dt>
+          <dd>101 Homebuyer Review and Homebuyer Master Class</dd>
         </div>
         <div>
           <dt>Local</dt>
@@ -85,10 +85,13 @@ const schema = [
           <span>01</span>
           <h3>Homebuyers</h3>
           <p>
-            Start with buyer readiness, budgeting, credit preparation, and loan
-            program fit before the home search gets urgent.
+            Start with first-time buyer guidance, payment comfort, cash to
+            close, credit preparation, and loan program fit before the home
+            search gets urgent.
           </p>
-          <a href="/huntsville/mortgage-guidance/">Explore mortgage guidance</a>
+          <a href="/huntsville/mortgage-guidance/first-time-home-buyer/">
+            Explore first-time buyer guidance
+          </a>
         </article>
         <article class="feature-card">
           <span>02</span>
@@ -101,12 +104,59 @@ const schema = [
         </article>
         <article class="feature-card">
           <span>03</span>
-          <h3>Reviews</h3>
+          <h3>Homebuyer Master Class</h3>
           <p>
-            Levi's Google Business Profile is in setup. The reviews page is
-            ready for verified client proof when GBP is live.
+            The next listed event gives buyers a local education session before
+            the pressure of an offer, inspection, insurance, title, and closing.
           </p>
-          <a href="/reviews/">See review status</a>
+          <a href="/events/">View upcoming events</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="first-time-home-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">First-Time Homebuyers</p>
+        <h2 id="first-time-home-heading">Start with the questions that protect the first offer.</h2>
+        <p>
+          First-time buyers often ask the right questions too late. Levi's 101
+          Homebuyer Review helps buyers compare payment comfort, cash to close,
+          documents, loan options, and offer readiness before they fall in love
+          with a house.
+        </p>
+        <div class="hero-actions" aria-label="First-time homebuyer homepage actions">
+          <a class="button button-primary" href="/huntsville/mortgage-guidance/first-time-home-buyer/">
+            First-time buyer guidance
+          </a>
+          <a class="button button-secondary" href={site.calendlyUrl}>Book Levi's 101 Review</a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="First-time homebuyer review points">
+        <article>
+          <span>Payment</span>
+          <strong>Comfort before qualification</strong>
+          <p>
+            Separate the amount a buyer may qualify for from the payment that
+            still leaves room for life after closing.
+          </p>
+        </article>
+        <article>
+          <span>Cash</span>
+          <strong>Plan beyond the down payment</strong>
+          <p>
+            Review closing costs, prepaid items, inspections, reserves, moving
+            costs, and setup money before the offer stage.
+          </p>
+        </article>
+        <article>
+          <span>Offer</span>
+          <strong>Know what can still change</strong>
+          <p>
+            Understand appraisal, insurance, title, credit, employment, and
+            document conditions that can still matter after acceptance.
+          </p>
         </article>
       </div>
     </div>
