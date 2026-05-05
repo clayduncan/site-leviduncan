@@ -12,52 +12,73 @@ import { site } from '../../../../data/site';
 const pagePath = '/huntsville/mortgage-guidance/first-time-home-buyer/';
 const pageUrl = new URL(pagePath, site.url).href;
 
-const buyerPriorities = [
+const readinessQuestions = [
   {
-    label: 'Budget',
-    title: 'Know the payment before the search',
+    label: 'Monthly comfort',
+    title: 'What payment still leaves room to live?',
     description:
-      'Compare monthly payment comfort, approval range, cash to close, reserves, and the cost of owning the home after closing.',
+      'A buyer needs to know the payment that works after utilities, savings, debt, groceries, maintenance, and life outside the mortgage.',
   },
   {
-    label: 'Readiness',
-    title: 'Avoid mistakes before underwriting',
+    label: 'Cash plan',
+    title: 'What money is needed before keys?',
     description:
-      'Review credit, income, documents, deposits, job changes, new debt, and large purchases before they create avoidable delays.',
+      'Down payment is only one piece. Closing costs, inspections, appraisal, insurance, reserves, moving costs, and setup costs all need a place in the plan.',
   },
   {
-    label: 'Team',
-    title: 'Understand the full buying process',
+    label: 'Timeline',
+    title: 'How ready are you to write an offer?',
     description:
-      'Financing, property strategy, inspection, insurance, title, and closing all connect before keys transfer.',
+      'The right timeline depends on documents, credit, savings, lease timing, job stability, and how quickly the buyer can respond once a home fits.',
   },
 ];
 
-const masterClassTopics = [
+const reviewItems = [
   {
-    title: 'Financing strategy',
+    title: 'Payment comfort and approval range',
     description:
-      'Understand approval, payment comfort, loan options, down payment, closing costs, and what lenders review before closing.',
+      'Separate what a buyer may qualify for from what actually feels comfortable each month.',
   },
   {
-    title: 'Property strategy',
+    title: 'Cash to close and reserves',
     description:
-      'Know how location, offer terms, contingencies, timing, and representation affect the search before emotions take over.',
+      'Estimate likely funds needed for down payment, closing costs, prepaid items, and money left after closing.',
   },
   {
-    title: 'Home inspection',
+    title: 'Credit and debt positioning',
     description:
-      'Use inspections to understand roof, HVAC, plumbing, electrical, safety, and repair items before final decisions.',
+      'Review current debts, credit history, and avoidable changes that could affect approval strength.',
   },
   {
-    title: 'Homeowners insurance',
+    title: 'Documents and income story',
     description:
-      'Shop coverage early enough to understand replacement cost, deductibles, special risks, and lender timing.',
+      'Know which pay stubs, bank statements, tax documents, employment details, and deposit explanations may be needed.',
   },
   {
-    title: 'Title and legal',
+    title: 'Loan program comparison',
     description:
-      'Understand ownership, title search, title insurance, closing documents, and what must be clear before keys transfer.',
+      'Compare FHA, USDA, conventional, and First Step assistance based on the buyer’s real scenario.',
+  },
+];
+
+const offerReadiness = [
+  {
+    label: 'Preapproval',
+    title: 'Strength before speed',
+    description:
+      'A stronger offer starts with a cleaner buyer file, not just a quick letter. Sellers and agents need confidence that the financing can close.',
+  },
+  {
+    label: 'Conditions',
+    title: 'Know what can still change',
+    description:
+      'A buyer should understand that appraisal, inspection, insurance, title, employment, assets, and credit can still matter after an offer is accepted.',
+  },
+  {
+    label: 'Communication',
+    title: 'Respond fast when it counts',
+    description:
+      'The smoothest closings usually come from buyers who know what documents may be requested and respond quickly when the file moves.',
   },
 ];
 
@@ -143,10 +164,10 @@ const schema = [
       <h1 id="first-time-heading">First-time homebuyer guidance in Huntsville.</h1>
       <p class="hero-lede">
         First-time homebuyer guidance helps Huntsville and North Alabama buyers
-        understand budget, loan options, cash to close, offer readiness, and the
-        full buying team before the search creates pressure. Levi Duncan,
-        Mortgage Loan Originator with Princeton Mortgage, helps buyers turn
-        early questions into a practical next step.
+        separate excitement from readiness. Levi Duncan, Mortgage Loan
+        Originator with Princeton Mortgage, helps buyers understand what they
+        can afford, what could slow approval, and what to have in place before
+        they write their first offer.
       </p>
       <div class="hero-actions" aria-label="First-time homebuyer actions">
         <a class="button button-primary" href={site.calendlyUrl}>
@@ -169,16 +190,16 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="priorities-heading">
+  <section class="section-band section-band-light" aria-labelledby="readiness-heading">
     <div class="split-section">
       <div>
-        <p class="eyebrow">Where to Start</p>
-        <h2 id="priorities-heading">What should first-time buyers understand first?</h2>
+        <p class="eyebrow">Buyer Readiness</p>
+        <h2 id="readiness-heading">Three questions to answer before touring homes.</h2>
         <p>
-          The first step is not picking a house. It is understanding payment
-          comfort, upfront cash, loan fit, documents, and what could slow down a
-          closing. Once those pieces are clear, the home search becomes more
-          focused and less reactive.
+          A first-time buyer does not need to know everything before getting
+          started, but they do need to understand the pressure points. The 101
+          review is built to turn the unknowns into a short list of numbers,
+          documents, and next steps.
         </p>
         <div class="hero-actions" aria-label="First-time buyer consultation actions">
           <a class="button button-primary" href={site.calendlyUrl}>
@@ -187,9 +208,9 @@ const schema = [
           <a class="button button-secondary" href="/events/">Attend a Homebuyer Master Class</a>
         </div>
       </div>
-      <div class="local-context-panel" aria-label="First-time homebuyer priorities">
+      <div class="local-context-panel" aria-label="First-time homebuyer readiness questions">
         {
-          buyerPriorities.map((priority) => (
+          readinessQuestions.map((priority) => (
             <article>
               <span>{priority.label}</span>
               <strong>{priority.title}</strong>
@@ -201,17 +222,17 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="masterclass-heading">
+  <section class="section-band" aria-labelledby="review-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
-        <p class="eyebrow">Homebuyer Master Class</p>
-        <h2 id="masterclass-heading">What the Homebuyer Master Class helps buyers see.</h2>
+        <p class="eyebrow">Levi's 101 Review</p>
+        <h2 id="review-heading">What should be reviewed before a first offer?</h2>
       </div>
       <div class="feature-grid feature-grid-five">
         {
-          masterClassTopics.map((topic) => (
+          reviewItems.map((topic) => (
             <article class="feature-card">
-              <span>Topic</span>
+              <span>Review</span>
               <h3>{topic.title}</h3>
               <p>{topic.description}</p>
             </article>
@@ -241,23 +262,22 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="local-heading">
+  <section class="section-band" aria-labelledby="offer-heading">
     <div class="section-inner">
-      <div class="answer-panel">
-        <div>
-          <p class="eyebrow">North Alabama Context</p>
-          <h2 id="local-heading">
-            First-time buyer guidance for Huntsville, Madison, Decatur, Athens, Albertville, and
-            Arab.
-          </h2>
-        </div>
-        <p>
-          Buyers across North Alabama may be comparing FHA, USDA, First Step
-          down payment assistance, conventional options, and timing around
-          inspection, insurance, title, and closing. Levi helps first-time
-          buyers slow the process down enough to understand what matters before
-          they make a move.
-        </p>
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Offer Readiness</p>
+        <h2 id="offer-heading">What makes a first-time buyer easier to help?</h2>
+      </div>
+      <div class="feature-grid">
+        {
+          offerReadiness.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
