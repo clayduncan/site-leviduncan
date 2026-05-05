@@ -701,7 +701,6 @@ main {
 }
 
 .bio-copy-wide {
-  max-width: 58rem;
   margin-bottom: clamp(2rem, 5vw, 3rem);
 }
 
