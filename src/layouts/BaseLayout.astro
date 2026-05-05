@@ -66,10 +66,14 @@ const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
       <a class="site-logo" href="/" aria-label={`${site.name} home`}>
         <img src="/favicon.svg" width="40" height="40" alt="" aria-hidden="true" />
         <span>
-          <strong>Duncan Mortgage Team</strong>
-          <small>powered by Princeton Mortgage</small>
+          <strong>{site.name}</strong>
+          <small>{site.tagline}</small>
         </span>
       </a>
+      <div class="site-team-brand" aria-label="Duncan Mortgage Team powered by Princeton Mortgage">
+        <strong>Duncan Mortgage Team</strong>
+        <small>powered by Princeton Mortgage</small>
+      </div>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="/huntsville/mortgage-guidance/">Mortgage Hub</a>
         <a href="/about/">About</a>
