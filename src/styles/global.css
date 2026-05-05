@@ -847,6 +847,10 @@ main {
   align-items: center;
 }
 
+.split-section-contained {
+  padding: 0;
+}
+
 .split-section-reverse {
   grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1fr);
 }

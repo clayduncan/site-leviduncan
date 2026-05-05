@@ -2,7 +2,7 @@ export const site = {
   name: 'Levi Duncan',
   url: 'https://www.leviduncan.com',
   description:
-    'Levi Duncan is a Huntsville, Alabama mortgage loan originator at Princeton Mortgage, helping entry-level and mid-market homebuyers with first-time buyer guidance, FHA loans, USDA loans, down payment assistance, and investment property financing across the Tennessee Valley.',
+    'Levi Duncan is a Huntsville, Alabama mortgage loan originator at Princeton Mortgage, helping homebuyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley compare practical mortgage paths before the home search creates pressure.',
   tagline: 'Clarity. Trust. Results.',
   title: 'Mortgage Loan Originator',
   phone: '+1 (256) 550-8099',
@@ -27,9 +27,11 @@ export const site = {
     nmlsId: '113856',
   },
   serviceArea:
-    'Huntsville, Madison, Decatur, Athens — Madison County, Morgan County, and the broader Tennessee Valley',
-  serviceAreaCities: ['Huntsville', 'Madison', 'Decatur', 'Athens'],
-  serviceAreaCounties: ['Madison County', 'Morgan County'],
+    'Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley — Madison County, Marshall County, and Morgan County across North Alabama',
+  serviceAreaStatement:
+    'Levi Duncan helps homebuyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley compare practical mortgage paths before the home search creates pressure, serving Madison County, Marshall County, and Morgan County across North Alabama.',
+  serviceAreaCities: ['Madison', 'Decatur', 'Athens', 'Albertville', 'Arab'],
+  serviceAreaCounties: ['Madison County', 'Marshall County', 'Morgan County'],
   social: {
     linkedin: 'https://www.linkedin.com/in/levi-duncan-36669b303/',
     facebook: 'https://www.facebook.com/profile.php?id=100089730019688',

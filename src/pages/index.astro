@@ -14,8 +14,7 @@ const homepageFaqs = [
   },
   {
     question: 'Who should start with Levi Duncan?',
-    answer:
-      'Homebuyers in Huntsville, Madison, Decatur, Athens, Madison County, Morgan County, and the broader Tennessee Valley should start with Levi when they want clear early mortgage guidance before applying or touring homes.',
+    answer: `${site.serviceAreaStatement} Homebuyers should start with Levi when they want clear early mortgage guidance before applying or touring homes.`,
   },
 ];
 
@@ -28,7 +27,7 @@ const schema = [
 
 <BaseLayout
   title="Mortgage Guidance | Huntsville | Levi Duncan"
-  description="Levi Duncan helps Huntsville-area buyers start with first-time buyer, FHA, USDA, DPA, and investment property mortgage guidance."
+  description="Levi Duncan helps buyers compare first-time buyer, FHA, USDA, DPA, and investment property mortgage paths before the home search."
   schema={schema}
 >
   <section class="hero-section landing-hero va-landing-hero" aria-labelledby="home-heading">
@@ -36,10 +35,9 @@ const schema = [
       <p class="eyebrow">Huntsville Mortgage Loan Originator</p>
       <h1 id="home-heading">A clearer first step for homebuyers in Huntsville.</h1>
       <p class="hero-lede">
-        Levi Duncan helps entry-level and mid-market homebuyers in Huntsville,
-        Madison, Decatur, Athens, Madison County, Morgan County, and the broader
-        Tennessee Valley understand mortgage options, prepare early, and choose
-        the right next step with Princeton Mortgage.
+        {site.serviceAreaStatement} He helps entry-level and mid-market buyers
+        understand mortgage options, prepare early, and choose the right next
+        step with Princeton Mortgage.
       </p>
       <div class="hero-actions" aria-label="Primary actions">
         <a class="button button-primary" href={site.calendlyUrl}>Book a call with Levi</a>
@@ -56,7 +54,7 @@ const schema = [
         </div>
         <div>
           <dt>Local</dt>
-          <dd>Huntsville, Madison, Decatur, and Athens</dd>
+          <dd>Madison, Decatur, Athens, Albertville, and Arab</dd>
         </div>
       </dl>
     </div>
@@ -164,31 +162,33 @@ const schema = [
 
   {
     nextEvent && (
-      <section class="split-section" aria-labelledby="event-heading">
-        <div>
-          <p class="eyebrow">Featured Event</p>
-          <h2 id="event-heading">Next Homebuyer Master Class in Huntsville.</h2>
-          <p>
-            The Homebuyer Master Class is a monthly Huntsville-area education
-            series for first-time and experienced buyers. The next session is at
-            {` ${nextEvent.venue}`} and covers property strategy, title, legal,
-            inspection, insurance, and financing strategy.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="/events/">View events</a>
-            <a class="button button-secondary" href={site.calendlyUrl}>Book Levi</a>
+      <section class="section-band section-band-light" aria-labelledby="event-heading">
+        <div class="split-section split-section-contained">
+          <div>
+            <p class="eyebrow">Featured Event</p>
+            <h2 id="event-heading">Next Homebuyer Master Class in Huntsville.</h2>
+            <p>
+              The Homebuyer Master Class is a monthly Huntsville-area education
+              series for first-time and experienced buyers. The next session is at
+              {` ${nextEvent.venue}`} and covers property strategy, title, legal,
+              inspection, insurance, and financing strategy.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/events/">View events</a>
+              <a class="button button-secondary" href={site.calendlyUrl}>Book Levi</a>
+            </div>
           </div>
-        </div>
-        <div class="local-context-panel" aria-label="Next Homebuyer Master Class details">
-          <article>
-            <span>{new Date(nextEvent.date).toLocaleDateString('en', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric',
-            })}</span>
-            <strong>{nextEvent.name}</strong>
-            <p>{nextEvent.venue}, {nextEvent.city}, {nextEvent.state}</p>
-          </article>
+          <div class="local-context-panel" aria-label="Next Homebuyer Master Class details">
+            <article>
+              <span>{new Date(nextEvent.date).toLocaleDateString('en', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })}</span>
+              <strong>{nextEvent.name}</strong>
+              <p>{nextEvent.venue}, {nextEvent.city}, {nextEvent.state}</p>
+            </article>
+          </div>
         </div>
       </section>
     )

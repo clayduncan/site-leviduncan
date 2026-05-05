@@ -91,7 +91,7 @@ const schema = [
     pageUrl,
     name: 'FHA Loans in Huntsville',
     description:
-      'FHA loan guidance from Levi Duncan for Huntsville, Madison, Decatur, Athens, Albertville, Arab, and North Alabama homebuyers comparing credit, down payment, and property readiness.',
+      'FHA loan guidance from Levi Duncan for homebuyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing credit, down payment, and property readiness.',
     serviceType: 'FHA mortgage loan origination',
     audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
   }),
@@ -106,7 +106,7 @@ const schema = [
 
 <BaseLayout
   title="FHA Loans | Huntsville | Levi Duncan"
-  description="Compare FHA loan guidance with Levi Duncan for Huntsville-area buyers who need clear credit, down payment, and homebuying next steps."
+  description="Compare FHA loan guidance with Levi Duncan for buyers who need clear credit, down payment, and homebuying next steps."
   schema={schema}
 >
   <section class="hero-section landing-hero va-landing-hero" aria-labelledby="fha-heading">
@@ -192,15 +192,14 @@ const schema = [
         <div>
           <p class="eyebrow">North Alabama Context</p>
           <h2 id="local-heading">
-            FHA guidance for Huntsville, Madison, Decatur, Athens, Albertville, and Arab.
+            FHA guidance across Madison, Decatur, Athens, Albertville, Arab, and the wider
+            Tennessee Valley.
           </h2>
         </div>
         <p>
-          Buyers across Huntsville, Madison, Decatur, Athens, Albertville, Arab,
-          and the wider Tennessee Valley often need a clear comparison before
-          choosing a loan path. Levi helps buyers look at the FHA option
-          alongside budget, property condition, offer timing, and the next step
-          with Princeton Mortgage.
+          {site.serviceAreaStatement} FHA buyers often need a clear comparison
+          before choosing a loan path, including budget, property condition,
+          offer timing, and the next step with Princeton Mortgage.
         </p>
       </div>
     </div>

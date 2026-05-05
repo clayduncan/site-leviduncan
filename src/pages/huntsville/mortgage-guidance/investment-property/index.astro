@@ -117,7 +117,7 @@ const schema = [
     pageUrl,
     name: 'Investment Property Loans in Huntsville',
     description:
-      'Investment property and DSCR investor loan guidance from Levi Duncan for Huntsville and North Alabama buyers comparing rental-property financing.',
+      'Investment property and DSCR investor loan guidance from Levi Duncan for buyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing rental-property financing.',
     serviceType: 'Investment property mortgage guidance',
     audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
   }),
@@ -132,7 +132,7 @@ const schema = [
 
 <BaseLayout
   title="Investment Property Loans | Huntsville | Levi Duncan"
-  description="Compare investment property and DSCR investor loan guidance with Levi Duncan for Huntsville and North Alabama rental-property buyers."
+  description="Compare investment property and DSCR investor loan guidance with Levi Duncan for rental-property buyers."
   schema={schema}
 >
   <section class="hero-section landing-hero va-landing-hero" aria-labelledby="investor-heading">
@@ -140,12 +140,11 @@ const schema = [
       <p class="eyebrow">Investment Property Loans in Huntsville</p>
       <h1 id="investor-heading">DSCR and investor loan guidance for rental-property buyers.</h1>
       <p class="hero-lede">
-        Investment property financing helps Huntsville and North Alabama buyers
-        compare rental-property loan options before a deal is under contract.
-        Levi Duncan, Mortgage Loan Originator with Princeton Mortgage, helps
-        investors review DSCR-style cash-flow options, conventional investor
-        paths, rent support, reserves, down payment, and whether the property
-        math supports the purchase.
+        {site.serviceAreaStatement} Investment property financing helps buyers
+        compare rental-property loan options before a deal is under contract,
+        including DSCR-style cash-flow options, conventional investor paths,
+        rent support, reserves, down payment, and whether the property math
+        supports the purchase.
       </p>
       <div class="hero-actions" aria-label="Investment property loan actions">
         <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
@@ -240,15 +239,16 @@ const schema = [
         <div>
           <p class="eyebrow">North Alabama Context</p>
           <h2 id="local-heading">
-            Investor loan guidance for Huntsville, Madison, Decatur, Athens, Albertville, and Arab.
+            Investor loan guidance across Madison, Decatur, Athens, Albertville, Arab, and the
+            wider Tennessee Valley.
           </h2>
         </div>
         <p>
-          Investors across North Alabama often need to move quickly, but rental
-          property financing should be reviewed before the offer gets emotional.
-          Levi helps buyers compare property cash flow, rent assumptions, loan
-          structure, reserve needs, entity or title questions, and the next step
-          with Princeton Mortgage.
+          {site.serviceAreaStatement} Investors often need to move quickly, but
+          rental property financing should be reviewed before the offer gets
+          emotional. Levi helps buyers compare property cash flow, rent
+          assumptions, loan structure, reserve needs, entity or title questions,
+          and the next step with Princeton Mortgage.
         </p>
       </div>
     </div>

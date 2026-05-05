@@ -33,21 +33,21 @@ export const mortgageServices = [
     path: '/huntsville/mortgage-guidance/first-time-home-buyer/',
     serviceType: 'First-time homebuyer mortgage guidance',
     description:
-      'Mortgage guidance for first-time homebuyers preparing to buy in Huntsville, Madison, Decatur, Athens, and the Tennessee Valley.',
+      'Mortgage guidance for first-time homebuyers preparing to buy across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley.',
   },
   {
     name: 'FHA Loans',
     path: '/huntsville/mortgage-guidance/fha-loans/',
     serviceType: 'FHA mortgage loan origination',
     description:
-      'FHA loan guidance for Huntsville-area buyers comparing credit, down payment, and homebuying readiness options.',
+      'FHA loan guidance for buyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing credit, down payment, and homebuying readiness options.',
   },
   {
     name: 'USDA Loans',
     path: '/huntsville/mortgage-guidance/usda-loans/',
     serviceType: 'USDA mortgage loan origination',
     description:
-      'USDA loan guidance for eligible homebuyers evaluating rural and suburban purchase options in North Alabama.',
+      'USDA loan guidance for eligible homebuyers evaluating rural and suburban purchase options across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley.',
   },
   {
     name: 'Down Payment Assistance',
@@ -61,7 +61,7 @@ export const mortgageServices = [
     path: '/huntsville/mortgage-guidance/investment-property/',
     serviceType: 'Investment property mortgage guidance',
     description:
-      'Investment property mortgage guidance for buyers evaluating rental-property financing in Huntsville and North Alabama.',
+      'Investment property mortgage guidance for buyers evaluating rental-property financing across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley.',
   },
 ] as const;
 
@@ -139,7 +139,7 @@ export const professionalServiceJsonLd = {
   url: site.url,
   image: defaultSchemaImage,
   description:
-    'Address-free mortgage origination services from Levi Duncan for Huntsville, Madison, Decatur, Athens, Madison County, Morgan County, and the Tennessee Valley.',
+    'Address-free mortgage origination services from Levi Duncan for Madison, Decatur, Athens, Albertville, Arab, Madison County, Marshall County, Morgan County, and the wider Tennessee Valley.',
   telephone: site.phone,
   email: site.email,
   priceRange: '$$',

@@ -91,7 +91,7 @@ const schema = [
     pageUrl,
     name: 'USDA Loans in North Alabama',
     description:
-      'USDA loan guidance from Levi Duncan for Huntsville-area buyers comparing no-down-payment options, rural and suburban property eligibility, and household income requirements.',
+      'USDA loan guidance from Levi Duncan for buyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing no-down-payment options, rural and suburban property eligibility, and household income requirements.',
     serviceType: 'USDA mortgage loan origination',
     audience: ['homebuyers', 'first-time homebuyers', 'USDA loan borrowers'],
   }),
@@ -106,7 +106,7 @@ const schema = [
 
 <BaseLayout
   title="USDA Loans | North Alabama | Levi Duncan"
-  description="Compare USDA loan guidance with Levi Duncan for North Alabama buyers exploring no-down-payment rural and suburban home financing."
+  description="Compare USDA loan guidance with Levi Duncan for eligible buyers exploring no-down-payment rural and suburban home financing."
   schema={schema}
 >
   <section class="hero-section landing-hero va-landing-hero" aria-labelledby="usda-heading">
@@ -114,11 +114,10 @@ const schema = [
       <p class="eyebrow">USDA Loans in North Alabama</p>
       <h1 id="usda-heading">USDA loan guidance for North Alabama homebuyers.</h1>
       <p class="hero-lede">
-        USDA loans can help eligible North Alabama buyers compare a
-        no-down-payment path for qualifying rural and suburban primary
-        residences. Levi Duncan, Mortgage Loan Originator with Princeton
-        Mortgage, helps buyers understand property eligibility, household
-        income, and whether USDA fits before the home search creates pressure.
+        {site.serviceAreaStatement} USDA loans can help eligible buyers compare
+        a no-down-payment path for qualifying rural and suburban primary
+        residences, including property eligibility, household income, and
+        whether USDA fits before the home search creates pressure.
       </p>
       <div class="hero-actions" aria-label="USDA loan actions">
         <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
@@ -143,7 +142,7 @@ const schema = [
     <div class="split-section">
       <div>
         <p class="eyebrow">Why USDA</p>
-        <h2 id="fit-heading">What makes USDA loans useful for North Alabama buyers?</h2>
+        <h2 id="fit-heading">What makes USDA loans useful for eligible homebuyers?</h2>
         <p>
           USDA financing is designed to support homeownership in eligible rural
           areas, and the practical buyer benefit is simple: qualified borrowers
@@ -192,15 +191,15 @@ const schema = [
         <div>
           <p class="eyebrow">North Alabama Context</p>
           <h2 id="local-heading">
-            USDA guidance for Huntsville, Madison, Decatur, Athens, Albertville, and Arab.
+            USDA guidance across Madison, Decatur, Athens, Albertville, Arab, and the wider
+            Tennessee Valley.
           </h2>
         </div>
         <p>
-          Buyers looking around the wider Tennessee Valley may find that USDA is
-          worth checking, especially when the target area sits outside a major
-          city center. Levi helps buyers compare USDA eligibility with payment
-          comfort, property location, cash to close, and the next step with
-          Princeton Mortgage.
+          {site.serviceAreaStatement} USDA may be worth checking when the
+          target area sits outside a major city center. Levi helps buyers
+          compare USDA eligibility with payment comfort, property location, cash
+          to close, and the next step with Princeton Mortgage.
         </p>
       </div>
     </div>
