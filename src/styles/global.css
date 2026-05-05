@@ -33,6 +33,7 @@
 
 html {
   min-height: 100%;
+  overflow-x: hidden;
   background: var(--color-off-white);
   color: var(--color-ink);
   font-family: var(--font-body);
@@ -57,6 +58,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
 }
 
 img,
@@ -1673,13 +1675,42 @@ main {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
+    max-width: 100%;
   }
 
   .site-header {
     display: flex;
   }
 
+  .site-logo,
+  .site-logo span,
   .site-team-brand {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .site-logo span,
+  .site-team-brand,
+  .site-nav,
+  .social-links,
+  .footer-contact,
+  .footer-links,
+  .site-disclosure {
+    overflow-wrap: anywhere;
+  }
+
+  .site-nav,
+  .social-links {
+    max-width: 100%;
+  }
+
+  .site-footer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links,
+  .site-disclosure {
     justify-items: start;
     text-align: left;
   }
@@ -1740,6 +1771,12 @@ main {
   }
 
   .proof-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid-compact,
+  .feature-grid-six,
+  .proof-layout {
     grid-template-columns: 1fr;
   }
 
