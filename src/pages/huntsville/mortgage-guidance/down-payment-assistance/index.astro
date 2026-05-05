@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../data/schema';
+import { site } from '../../../../data/site';
+
+const pagePath = '/huntsville/mortgage-guidance/down-payment-assistance/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const firstStepHighlights = [
+  {
+    label: 'Assistance',
+    title: 'Help with upfront cash',
+    description:
+      'First Step may provide down payment assistance up to $10,000 or 4% of the sales price, whichever is lower, for eligible borrowers.',
+  },
+  {
+    label: 'Rate',
+    title: 'Below-market mortgage rates',
+    description:
+      'AHFA describes First Step as offering special low mortgage interest rates through Mortgage Revenue Bond loans.',
+  },
+  {
+    label: 'Structure',
+    title: 'Paired with a first mortgage',
+    description:
+      'The assistance is secured by a 10-year second mortgage combined with the borrower’s 30-year fixed-rate First Step mortgage.',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Check the buyer and property fit',
+    description:
+      'First Step requires the borrower and property to meet program rules, including income limits, sales price limits, creditworthiness standards, and owner occupancy.',
+  },
+  {
+    title: 'Choose an eligible loan path',
+    description:
+      'First Step can be available with FHA, VA, USDA, and Freddie Mac HFA Advantage conventional loans when the full scenario qualifies.',
+  },
+  {
+    title: 'Compare cash to close',
+    description:
+      'Levi helps buyers understand how assistance may affect down payment, closing costs, monthly payment, and the funds needed at closing.',
+  },
+  {
+    title: 'Move from review to application',
+    description:
+      'When First Step looks like a practical fit, Levi can help the buyer move into a formal application with Princeton Mortgage.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What is Alabama First Step down payment assistance?',
+    answer:
+      'First Step is an Alabama Housing Finance Authority program that offers below-market 30-year fixed mortgage interest rates and down payment assistance for eligible Alabama homebuyers.',
+  },
+  {
+    question: 'How much assistance can First Step provide?',
+    answer:
+      'AHFA states that First Step borrowers may be eligible for down payment assistance up to $10,000 or 4% of the sales price, whichever is lower. Final eligibility depends on the borrower, property, loan type, and current program guidelines.',
+  },
+  {
+    question: 'Is First Step a grant?',
+    answer:
+      'The First Step down payment funds are secured by a 10-year second mortgage combined with the borrower’s 30-year fixed-rate First Step mortgage. Buyers should understand the repayment structure before choosing the program.',
+  },
+  {
+    question: 'Can First Step work with FHA, USDA, VA, or conventional loans?',
+    answer:
+      'AHFA says First Step loans are available with FHA, VA, USDA, and Freddie Mac HFA Advantage conventional loans when program and loan requirements are met.',
+  },
+  {
+    question: 'Who should ask Levi about First Step in Alabama?',
+    answer:
+      'A buyer who can afford a mortgage payment but needs help with the upfront cash for a down payment or closing should ask Levi about First Step before the home search gets serious.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'Alabama First Step Down Payment Assistance',
+    description:
+      'First Step down payment assistance guidance from Levi Duncan for Alabama homebuyers comparing AHFA assistance, mortgage options, eligibility, and cash to close.',
+    serviceType: 'Down payment assistance mortgage guidance',
+    audience: ['first-time homebuyers', 'homebuyers', 'down payment assistance borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'Down Payment Assistance', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="First Step DPA | Alabama | Levi Duncan"
+  description="Explore Alabama First Step down payment assistance with Levi Duncan, including benefits, eligibility, loan structure, and next steps."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="dpa-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">Alabama Down Payment Assistance</p>
+      <h1 id="dpa-heading">First Step down payment assistance in Alabama.</h1>
+      <p class="hero-lede">
+        Alabama First Step can help eligible homebuyers compare below-market
+        mortgage rates and down payment assistance before the home search
+        creates pressure. Levi Duncan, Mortgage Loan Originator with Princeton
+        Mortgage, helps buyers understand how First Step works, who it may fit,
+        and what to check before applying.
+      </p>
+      <div class="hero-actions" aria-label="First Step down payment assistance actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator for Alabama First Step down payment assistance"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>First Step guidance for Alabama homebuyers</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="benefits-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Why First Step</p>
+        <h2 id="benefits-heading">What are the benefits of First Step assistance?</h2>
+        <p>
+          First Step is designed to make homeownership more reachable for
+          eligible Alabama buyers. The main advantage is not just one feature;
+          it is the combination of special low mortgage rates, assistance for
+          upfront cash, and a structured second mortgage that is paired with the
+          buyer’s first mortgage.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="First Step benefits">
+        {
+          firstStepHighlights.map((highlight) => (
+            <article>
+              <span>{highlight.label}</span>
+              <strong>{highlight.title}</strong>
+              <p>{highlight.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="process-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">How It Works</p>
+        <h2 id="process-heading">How First Step guidance works before an offer.</h2>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          processSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+          <h2 id="local-heading">
+            First Step guidance for Huntsville, Madison, Decatur, Athens, Albertville, and Arab.
+          </h2>
+        </div>
+        <p>
+          Buyers across North Alabama may be closer to homeownership than they
+          think if the main barrier is upfront cash. Levi helps buyers compare
+          First Step with FHA, USDA, conventional options, payment comfort,
+          income limits, sales price limits, and the next step with Princeton
+          Mortgage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">First Step down payment assistance questions.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Check First Step before assuming the down payment is out of reach.</h2>
+          </div>
+          <div class="hero-actions" aria-label="First Step assistance next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book a buyer consultation</a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
