@@ -18,6 +18,7 @@ const heroPaths = [
   {
     title: 'FHA Loans',
     subtitle: 'Flexible credit and down payment options',
+    href: '/huntsville/mortgage-guidance/fha-loans/',
   },
   {
     title: 'USDA Loans',
@@ -107,10 +108,17 @@ const schema = [
       <div class="hero-path-grid" aria-label="Levi Duncan mortgage specialties">
         {
           heroPaths.map((path) => (
-            <div>
-              <strong>{path.title}</strong>
-              <span>{path.subtitle}</span>
-            </div>
+            path.href ? (
+              <a href={path.href}>
+                <strong>{path.title}</strong>
+                <span>{path.subtitle}</span>
+              </a>
+            ) : (
+              <div>
+                <strong>{path.title}</strong>
+                <span>{path.subtitle}</span>
+              </div>
+            )
           ))
         }
       </div>
