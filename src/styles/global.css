@@ -1146,6 +1146,11 @@ main {
   text-decoration: none;
 }
 
+.event-card .event-registration-link {
+  display: block;
+  margin-top: 0.5rem;
+}
+
 .expert-list {
   display: grid;
   gap: 0.65rem;

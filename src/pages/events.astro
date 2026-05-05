@@ -169,7 +169,12 @@ const schema = [
                 <dl>
                   <div>
                     <dt>Date</dt>
-                    <dd>{formatEventDate(event.date)}</dd>
+                    <dd>
+                      {formatEventDate(event.date)}
+                      <a class="event-registration-link" href={getRegistrationUrl(event)}>
+                        Register for this class
+                      </a>
+                    </dd>
                   </div>
                   <div>
                     <dt>Location</dt>
@@ -177,7 +182,7 @@ const schema = [
                   </div>
                 </dl>
                 <p>{event.description}</p>
-                <div class="expert-list" aria-label={`${event.name} subject matter experts`}>
+                <div class="expert-list expert-list-compact" aria-label={`${event.name} subject matter experts`}>
                   <p>Subject Matter Experts</p>
                   {event.speakers.map((speaker) => (
                     <div>
@@ -186,7 +191,6 @@ const schema = [
                     </div>
                   ))}
                 </div>
-                <a href={getRegistrationUrl(event)}>Register for this class</a>
               </article>
             ))
           ) : (
