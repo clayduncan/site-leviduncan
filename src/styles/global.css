@@ -620,10 +620,6 @@ main {
   background: var(--color-mist);
 }
 
-.section-band-sage {
-  background: var(--color-sage-soft);
-}
-
 .section-band-white {
   background: color-mix(in srgb, var(--color-white), var(--color-off-white) 8%);
 }
