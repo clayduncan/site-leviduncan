@@ -742,6 +742,10 @@ main {
   margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
 }
 
+.past-events-heading .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
 .section-heading h2,
 .split-section h2,
 .proof-layout h2,
