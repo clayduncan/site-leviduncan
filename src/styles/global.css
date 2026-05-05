@@ -734,6 +734,10 @@ main {
   max-width: 68rem;
 }
 
+.class-topics-heading {
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
 .section-heading h2,
 .split-section h2,
 .proof-layout h2,
