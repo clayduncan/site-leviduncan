@@ -14,45 +14,66 @@ const pageUrl = new URL(pagePath, site.url).href;
 
 const investorHighlights = [
   {
-    label: 'Cash flow',
-    title: 'Start with the property math',
+    label: 'DSCR',
+    title: 'Qualify around rental cash flow',
     description:
-      'DSCR-style investor loans focus on whether expected rental income can support the proposed mortgage payment and property expenses.',
+      'DSCR investor loans focus on whether the property’s rent can support the proposed debt payment, instead of leading with W-2 or tax-return income.',
   },
   {
-    label: 'Strategy',
-    title: 'Compare the right investor path',
+    label: 'Ratio',
+    title: 'Know what 1.0 means',
     description:
-      'Levi helps investors compare DSCR, conventional investment-property financing, rental income documentation, reserves, and offer timing.',
+      'A DSCR near 1.0 generally means rent is close to covering the payment. A stronger ratio can give the deal more room for vacancy or expense surprises.',
   },
   {
-    label: 'Risk',
-    title: 'Plan for more than approval',
+    label: 'Terms',
+    title: 'Tradeoffs still matter',
     description:
-      'Investor loans should be reviewed around vacancy, repairs, taxes, insurance, reserves, rent assumptions, and long-term holding goals.',
+      'DSCR programs still review credit, down payment, reserves, property type, rent support, loan-to-value, and whether the investor is buying or refinancing.',
   },
 ];
 
 const processSteps = [
   {
-    title: 'Review the investment goal',
+    title: 'Estimate market rent',
     description:
-      'Start with the rental strategy, target area, property type, purchase price range, timeline, and cash available for down payment and reserves.',
+      'Start with realistic rent support from a lease, market rent schedule, short-term rental analysis, or another acceptable source for the program.',
   },
   {
-    title: 'Compare DSCR and conventional options',
+    title: 'Calculate the proposed payment',
     description:
-      'Some investors need a property-cash-flow approach, while others may fit a conventional investment-property path using personal income and rental documentation.',
+      'Compare rent against principal, interest, taxes, insurance, association dues, and other payment items the program counts.',
   },
   {
-    title: 'Test the rental numbers',
+    title: 'Stress-test the investor plan',
     description:
-      'Look at projected rent, payment, insurance, taxes, HOA dues, maintenance, vacancy, and whether the property still makes sense after financing.',
+      'Look beyond the ratio by reviewing vacancy, repairs, insurance changes, property taxes, management costs, reserves, and cash left after closing.',
   },
   {
-    title: 'Prepare for underwriting and offer timing',
+    title: 'Compare the financing path',
     description:
-      'Before writing an offer, clarify documents, appraisal or rent schedule expectations, reserves, entity ownership questions, and closing timeline.',
+      'Levi helps compare DSCR with conventional investor financing so the buyer understands speed, documentation, down payment, and monthly payment tradeoffs.',
+  },
+];
+
+const dscrFactors = [
+  {
+    label: 'Rent',
+    title: 'Income support',
+    description:
+      'The rental number may come from a signed lease, appraiser rent schedule, market rent analysis, or short-term rental support, depending on the program.',
+  },
+  {
+    label: 'Payment',
+    title: 'Debt service',
+    description:
+      'Programs may compare rent against principal and interest or a broader PITIA-style payment. The details can change the ratio quickly.',
+  },
+  {
+    label: 'Cushion',
+    title: 'Coverage margin',
+    description:
+      'A higher DSCR gives the property more room for vacancy, repairs, and expense changes. A lower ratio may require more cash down or different terms.',
   },
 ];
 
@@ -60,22 +81,27 @@ const faqs = [
   {
     question: 'What is a DSCR investor loan?',
     answer:
-      'A DSCR investor loan is an investment-property mortgage option where the property’s rental cash flow is a central part of the qualification review. Guidelines vary by lender and program, so buyers should compare the full structure before relying on it.',
+      'A DSCR investor loan is a non-owner-occupied investment-property mortgage option where the property’s rental cash flow is central to the qualification review. Guidelines vary by lender and program, so buyers should compare the full structure before relying on it.',
   },
   {
     question: 'What does DSCR mean?',
     answer:
-      'DSCR stands for debt service coverage ratio. In practical terms, it compares a property’s rental income against the debt payment the property needs to support.',
+      'DSCR stands for debt service coverage ratio. In practical terms, it compares a property’s rental income against the debt payment the property needs to support. A ratio above 1.0 generally means rent is greater than the counted debt payment; below 1.0 generally means rent does not fully cover it.',
+  },
+  {
+    question: 'Why do investors use DSCR financing?',
+    answer:
+      'Investors often compare DSCR financing when personal income documentation, tax returns, or debt-to-income calculations do not tell the full story of a rental-property deal. DSCR puts more weight on whether the property can carry the proposed payment.',
   },
   {
     question: 'How is an investment property loan different from a primary residence loan?',
     answer:
-      'Investment property loans are for non-owner-occupied properties and often require more attention to rental income, reserves, down payment, insurance, and the buyer’s overall investment plan.',
+      'Investment property loans are for non-owner-occupied properties and often require more attention to rental income, reserves, down payment, insurance, loan-to-value, and the buyer’s overall investment plan.',
   },
   {
     question: 'Can rental income help qualify for an investment property mortgage?',
     answer:
-      'Rental income may help in some investment-property mortgage scenarios, but the documentation and calculation depend on the loan type, property, lease or market rent support, and program rules.',
+      'Rental income may help in some investment-property mortgage scenarios, but the documentation and calculation depend on the loan type, property, lease or market rent support, short-term rental treatment, and program rules.',
   },
   {
     question: 'When should an investor talk with Levi?',
@@ -118,8 +144,8 @@ const schema = [
         compare rental-property loan options before a deal is under contract.
         Levi Duncan, Mortgage Loan Originator with Princeton Mortgage, helps
         investors review DSCR-style cash-flow options, conventional investor
-        paths, reserves, down payment, and whether the property math supports
-        the purchase.
+        paths, rent support, reserves, down payment, and whether the property
+        math supports the purchase.
       </p>
       <div class="hero-actions" aria-label="Investment property loan actions">
         <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
@@ -146,12 +172,12 @@ const schema = [
         <p class="eyebrow">Why Investor Financing</p>
         <h2 id="fit-heading">What should investors compare before choosing a loan?</h2>
         <p>
-          Investor financing is not just about getting approved. The better
-          question is whether the property, rent assumptions, cash needed at
+          Investor financing is not just about getting approved. A DSCR loan is
+          typically an investor-focused, non-QM mortgage that reviews the
+          property’s rental income against the debt payment it needs to support.
+          The better question is whether the rent, payment, cash needed at
           closing, reserves, and long-term strategy still work after financing
-          is included. DSCR can be useful for investors who want the property’s
-          rental income to carry more of the qualification story, but it still
-          needs careful review.
+          is included.
         </p>
       </div>
       <div class="local-context-panel" aria-label="Investment property loan priorities">
@@ -168,7 +194,27 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="process-heading">
+  <section class="section-band" aria-labelledby="dscr-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">DSCR Math</p>
+        <h2 id="dscr-heading">What changes the DSCR number on an investor loan?</h2>
+      </div>
+      <div class="feature-grid">
+        {
+          dscrFactors.map((factor) => (
+            <article class="feature-card">
+              <span>{factor.label}</span>
+              <h3>{factor.title}</h3>
+              <p>{factor.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="process-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
         <p class="eyebrow">How It Works</p>
@@ -188,7 +234,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="local-heading">
+  <section class="section-band" aria-labelledby="local-heading">
     <div class="section-inner">
       <div class="answer-panel">
         <div>
@@ -201,7 +247,8 @@ const schema = [
           Investors across North Alabama often need to move quickly, but rental
           property financing should be reviewed before the offer gets emotional.
           Levi helps buyers compare property cash flow, rent assumptions, loan
-          structure, reserve needs, and the next step with Princeton Mortgage.
+          structure, reserve needs, entity or title questions, and the next step
+          with Princeton Mortgage.
         </p>
       </div>
     </div>
