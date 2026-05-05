@@ -695,6 +695,11 @@ main {
   font-size: clamp(1.15rem, 2vw, 1.35rem);
 }
 
+.bio-copy {
+  display: grid;
+  gap: 1rem;
+}
+
 .section-heading-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(15rem, 22rem);
