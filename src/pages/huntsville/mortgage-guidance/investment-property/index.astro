@@ -99,6 +99,15 @@ const officialResources = [
   },
 ];
 
+const relatedGuides = [
+  {
+    title: 'DSCR Loan Requirements in Alabama',
+    description:
+      'Review DSCR ratio math, rent support, credit, reserves, LTV, LLC considerations, property eligibility, and short-term rental risks.',
+    url: '/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/',
+  },
+];
+
 const faqs = [
   {
     question: 'What is a DSCR investor loan?',
@@ -284,7 +293,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+  <section class="section-band section-band-light" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused DSCR Guide</p>
+        <h2 id="related-heading">Need to check DSCR requirements more closely?</h2>
+        <p>
+          This focused guide helps investors review DSCR ratio math, rent
+          support, reserves, credit, prepayment penalties, LLC considerations,
+          and Alabama property-specific risks before relying on DSCR financing.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
         <p class="eyebrow">Official Sources</p>
@@ -310,7 +344,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="faq-heading">
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>

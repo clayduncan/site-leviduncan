@@ -127,14 +127,15 @@ const expectedRoutes = [
   '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/',
   '/huntsville/mortgage-guidance/first-time-home-buyer/',
   '/huntsville/mortgage-guidance/',
+  '/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/',
   '/huntsville/mortgage-guidance/investment-property/',
   '/huntsville/mortgage-guidance/usda-loans/',
   '/reviews/',
 ];
 
 assert(
-  htmlFiles.length === 16,
-  `Expected 16 built HTML files including 404, found ${htmlFiles.length}.`,
+  htmlFiles.length === 17,
+  `Expected 17 built HTML files including 404, found ${htmlFiles.length}.`,
 );
 
 for (const route of expectedRoutes) {
