@@ -1,0 +1,355 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const comparisonCards = [
+  {
+    label: 'Location',
+    title: 'USDA starts with the property address',
+    description:
+      'USDA only works when the home is in an eligible rural or suburban area. FHA does not have a USDA-style map restriction, so it is often the practical path inside city cores.',
+  },
+  {
+    label: 'Income',
+    title: 'USDA has household income limits',
+    description:
+      'USDA eligibility includes household income limits by county and household size. FHA does not impose an income ceiling, though income still has to support the payment.',
+  },
+  {
+    label: 'Cash',
+    title: 'USDA can reduce upfront cash',
+    description:
+      'USDA may allow 100% financing for eligible buyers and properties. FHA usually requires a minimum down payment, though gift funds and assistance may help.',
+  },
+  {
+    label: 'Credit',
+    title: 'FHA may be more flexible on credit',
+    description:
+      'USDA often depends on automated underwriting and lender overlays. FHA can be more practical when credit is recovering or below a common USDA overlay threshold.',
+  },
+];
+
+const decisionRules = [
+  {
+    title: 'USDA may win when the address and income fit',
+    description:
+      'If the property is USDA-eligible, household income is within USDA limits, and the buyer profile clears underwriting, USDA may reduce cash to close and monthly mortgage insurance cost.',
+  },
+  {
+    title: 'FHA may win inside city limits',
+    description:
+      'If the home is in Huntsville, Madison, Decatur, or another ineligible city-core area, USDA may not be available. FHA can still be compared for eligible primary residences.',
+  },
+  {
+    title: 'FHA may win when credit is the main issue',
+    description:
+      'A buyer with recovering credit may find FHA more practical than USDA, especially when the USDA path depends on a higher lender overlay or manual underwriting.',
+  },
+  {
+    title: 'Compare both before the offer',
+    description:
+      'The best time to compare FHA and USDA is before writing an offer, because property eligibility, appraisal expectations, seller concessions, and closing timing can differ.',
+  },
+];
+
+const areaPatterns = [
+  {
+    title: 'Usually FHA territory',
+    description:
+      'Huntsville, Madison, and Decatur city-limit properties are generally not USDA-eligible. Buyers in those areas usually compare FHA, conventional, AHFA, or VA if eligible.',
+  },
+  {
+    title: 'Address-by-address territory',
+    description:
+      'Athens, Hartselle, Albertville, Arab, Guntersville, and fast-growing edges of Limestone, Morgan, and Marshall County need exact-address verification.',
+  },
+  {
+    title: 'Often worth a USDA check',
+    description:
+      'Unincorporated areas near Hazel Green, Harvest, New Market, Meridianville, Toney, Gurley, Owens Cross Roads, and rural county areas may be worth checking.',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'USDA Guaranteed Loan Program',
+    description:
+      'USDA Rural Development overview of the Single Family Housing Guaranteed Loan Program and official program framework.',
+    url: 'https://www.rd.usda.gov/programs-services/single-family-housing-programs/single-family-housing-guaranteed-loan-program',
+  },
+  {
+    title: 'USDA eligibility tools',
+    description:
+      'Official USDA site for property and income eligibility checks before relying on USDA financing for a specific address.',
+    url: 'https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do',
+  },
+  {
+    title: 'HUD FHA lender information',
+    description:
+      'HUD resources for FHA loan limits, handbook updates, and FHA Single Family lender guidance.',
+    url: 'https://www.hud.gov/hud-partners/single-family-lender',
+  },
+  {
+    title: 'CFPB mortgage insurance guide',
+    description:
+      'CFPB consumer explanation of mortgage insurance and how FHA, USDA, and conventional insurance costs can differ.',
+    url: 'https://www.consumerfinance.gov/ask-cfpb/what-is-mortgage-insurance-and-how-does-it-work-en-1953/',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Is FHA or USDA better in North Alabama?',
+    answer:
+      'USDA may be better when the property is eligible, household income fits USDA limits, and the buyer clears underwriting. FHA may be better inside ineligible city areas, when income exceeds USDA limits, or when credit flexibility matters more than zero down.',
+  },
+  {
+    question: 'Can I get a USDA loan in Huntsville?',
+    answer:
+      'Inside Huntsville city limits, USDA is generally not available. Some nearby unincorporated Madison County areas may still be eligible. Buyers should check the exact property address using USDA’s official eligibility tool before relying on USDA financing.',
+  },
+  {
+    question: 'Is USDA cheaper than FHA?',
+    answer:
+      'USDA is often cheaper when both programs are available because it can allow no down payment and usually has lower mortgage insurance-style fees. The final comparison still depends on rate, closing costs, seller concessions, property eligibility, and the buyer profile.',
+  },
+  {
+    question: 'Can FHA and USDA both use down payment assistance?',
+    answer:
+      'FHA and USDA may both work with certain Alabama Housing Finance Authority programs when the buyer, property, lender, and assistance program all meet the rules. USDA already has no down payment requirement, so assistance is often more useful for closing costs.',
+  },
+  {
+    question: 'When should I compare FHA and USDA?',
+    answer:
+      'Compare FHA and USDA before writing an offer. Once a property is under contract, changing programs can affect the appraisal, documents, seller expectations, closing timing, and whether the property still fits the selected loan path.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Focused FHA and USDA comparison guidance for North Alabama buyers reviewing property eligibility, income limits, cash to close, credit, mortgage insurance, and timing.',
+    serviceType: 'FHA and USDA mortgage loan comparison guidance',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers', 'USDA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'FHA and USDA mortgage comparison guidance for North Alabama buyers evaluating eligible property areas, income limits, down payment, and buyer readiness.',
+    loanType: 'FHA and USDA mortgage loan comparison',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers', 'USDA loan borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Answer-first guide comparing FHA and USDA loans for North Alabama buyers.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'FHA Loans', path: '/huntsville/mortgage-guidance/fha-loans/' },
+    { name: 'FHA vs USDA Loans in North Alabama', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="FHA vs USDA | North Alabama | Levi Duncan"
+  description="Compare FHA vs USDA loans in North Alabama with Levi Duncan, including eligibility maps, income limits, cash to close, and credit fit."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="comparison-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">FHA vs USDA Loans</p>
+      <h1 id="comparison-heading">FHA vs USDA loans in North Alabama.</h1>
+      <p class="hero-lede">
+        FHA and USDA loans can both help North Alabama homebuyers, but they
+        solve different problems. Levi Duncan helps buyers compare property
+        location, household income, credit, cash to close, mortgage insurance,
+        and timing before choosing a loan path or writing an offer.
+      </p>
+      <div class="hero-actions" aria-label="FHA vs USDA loan actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Compare FHA and USDA with Levi</a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/usda-loans/">
+          Review USDA loan guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator comparing FHA and USDA loans in North Alabama"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>FHA vs USDA guidance before the home search</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">Which is better, FHA or USDA?</h2>
+        </div>
+        <p>
+          USDA may be stronger when the property is eligible, household income
+          fits USDA limits, and the buyer wants to reduce upfront cash. FHA may
+          be stronger when the property is not USDA-eligible, income exceeds
+          USDA limits, or the buyer needs more credit flexibility.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          comparisonCards.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="local-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Local Eligibility</p>
+        <h2 id="local-heading">Where does USDA usually matter around Huntsville?</h2>
+        <p>
+          {site.serviceAreaStatement} USDA eligibility is address-specific, so
+          buyers should never rely on a city name, ZIP code, or listing note by
+          itself. The exact address and household income need to be checked
+          before USDA becomes the plan.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="North Alabama FHA and USDA area patterns">
+        {
+          areaPatterns.map((item) => (
+            <article>
+              <span>Area Pattern</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="decision-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Decision Framework</p>
+        <h2 id="decision-heading">How should a buyer decide between FHA and USDA?</h2>
+        <p>
+          Start with the facts that can disqualify one path quickly: address,
+          household income, credit profile, occupancy, and property type. Then
+          compare payment, cash to close, seller concessions, assistance, and
+          closing timing.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          decisionRules.map((rule, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{rule.title}</h3>
+              <p>{rule.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where buyers can verify FHA and USDA rules.</h2>
+        <p>
+          USDA and FHA rules include time-sensitive eligibility, income, fee,
+          and property details. Buyers should verify official sources before
+          assuming a specific program will work for a property.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">FHA vs USDA questions in North Alabama.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Check the loan path before the property choice narrows your options.</h2>
+          </div>
+          <div class="hero-actions" aria-label="FHA vs USDA next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book a buyer consultation</a>
+            <a class="button button-secondary" href="/huntsville/mortgage-guidance/fha-loans/">
+              Review FHA guidance
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

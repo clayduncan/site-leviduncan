@@ -78,6 +78,15 @@ const officialResources = [
   },
 ];
 
+const relatedGuides = [
+  {
+    title: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Compare USDA property eligibility, income limits, no-down-payment structure, FHA credit flexibility, and local buyer timing.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+  },
+];
+
 const faqs = [
   {
     question: 'What is the biggest benefit of a USDA loan?',
@@ -235,7 +244,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="resources-heading">
+  <section class="section-band" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused Comparison</p>
+        <h2 id="related-heading">Need to compare USDA against FHA?</h2>
+        <p>
+          This focused guide helps buyers decide when USDA may be stronger,
+          when FHA may be more practical, and what to verify before writing an
+          offer.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
         <p class="eyebrow">Official Sources</p>
@@ -260,7 +294,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+  <section class="section-band" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>
