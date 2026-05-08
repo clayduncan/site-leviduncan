@@ -1,0 +1,476 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/usda-loans/usda-eligible-areas-north-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const areaPatterns = [
+  {
+    label: 'Ineligible',
+    title: 'Huntsville, Madison, and Decatur city cores',
+    description:
+      'The city cores are generally USDA-ineligible because their population and urbanized-area status exceed USDA rural-area thresholds. Edge cases still need address-level verification.',
+  },
+  {
+    label: 'Mixed',
+    title: 'Athens, Hartselle, Harvest, and Priceville',
+    description:
+      'These areas can include both eligible and ineligible parcels. They are exactly where buyers should avoid assumptions and check the specific address.',
+  },
+  {
+    label: 'Often eligible',
+    title: 'Meridianville, Hazel Green, Gurley, New Market, and outer-ring communities',
+    description:
+      'Many outer-ring North Alabama communities may include USDA-eligible territory, but the answer still comes from the USDA property tool.',
+  },
+  {
+    label: 'County context',
+    title: 'Marshall, Jackson, DeKalb, and Cullman counties',
+    description:
+      'These counties generally have broad USDA availability, with city-core and boundary exceptions that should still be verified parcel by parcel.',
+  },
+];
+
+const mapSteps = [
+  {
+    title: 'Use the USDA eligibility tool',
+    description:
+      'Start with the official USDA property eligibility site, not a listing-site tag, ZIP code rule, map screenshot, or third-party search result.',
+  },
+  {
+    title: 'Enter the exact property address',
+    description:
+      'USDA eligibility is parcel-level. The same ZIP code, mailing city, subdivision, or even street can include both eligible and ineligible parcels.',
+  },
+  {
+    title: 'Save the result before an offer',
+    description:
+      'For a serious USDA offer, the eligibility result should be checked and saved close to the time the buyer writes the offer.',
+  },
+  {
+    title: 'Re-check when timing stretches',
+    description:
+      'USDA maps are reviewed periodically. Lenders commonly re-check eligibility at major milestones in active growth markets.',
+  },
+];
+
+const buyerMistakes = [
+  {
+    title: 'Relying on the listing',
+    description:
+      'A listing that says USDA-eligible is only a hint. The official USDA tool is the source buyers and lenders need to verify.',
+  },
+  {
+    title: 'Using ZIP code logic',
+    description:
+      'There is no reliable USDA-eligible ZIP code list. ZIP codes often cover eligible and ineligible parcels at the same time.',
+  },
+  {
+    title: 'Assuming rural appearance is enough',
+    description:
+      'Some properties look rural but sit inside the ineligible polygon. Other suburban-feeling neighborhoods may still be outside it.',
+  },
+  {
+    title: 'Forgetting borrower and property rules',
+    description:
+      'Geographic eligibility is only one requirement. Household income, occupancy, credit, property condition, and USDA underwriting still matter.',
+  },
+];
+
+const localChecks = [
+  {
+    title: 'Huntsville mailing address',
+    description:
+      'A Huntsville mailing address does not automatically mean the parcel is ineligible. Mailing city, municipal limits, and USDA boundaries are different things.',
+  },
+  {
+    title: 'Athens watch item',
+    description:
+      'Athens has current eligibility pockets but is growing quickly. Buyers should verify specific addresses and understand that future map cycles may change.',
+  },
+  {
+    title: 'Hartselle and Priceville nuance',
+    description:
+      'These areas can feel like obvious USDA candidates, but the Decatur urbanized-area boundary can create mixed eligibility inside and around them.',
+  },
+  {
+    title: 'Annexation timing',
+    description:
+      'Annexation does not usually flip eligibility immediately, but it can help shape future USDA boundary reviews in fast-growth corridors.',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'USDA Loans in North Alabama',
+    description:
+      'Return to the main USDA page for buyer benefits, income fit, no-down-payment structure, and next steps.',
+    url: '/huntsville/mortgage-guidance/usda-loans/',
+  },
+  {
+    title: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Compare USDA against FHA when property location, credit, cash to close, and household income all matter.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+  },
+  {
+    title: 'First-Time Homebuyer Checklist',
+    description:
+      'Use the broader buyer checklist to plan documents, offer timing, closing steps, and post-closing tasks.',
+    url: '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'USDA property eligibility tool',
+    description:
+      'The official USDA map and address lookup tool for property eligibility. Final determination is made by USDA during application review.',
+    url: 'https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=sfp',
+  },
+  {
+    title: 'USDA Guaranteed Loan Program',
+    description:
+      'Official USDA Rural Development page for the Single Family Housing Guaranteed Loan Program.',
+    url: 'https://www.rd.usda.gov/programs-services/single-family-housing-programs/single-family-housing-guaranteed-loan-program',
+  },
+  {
+    title: 'USDA HB-1-3555 Chapter 12',
+    description:
+      'USDA handbook chapter covering property and appraisal requirements, including rural area designation context.',
+    url: 'https://www.rd.usda.gov/media/file/download/3555-chapter12.pdf',
+  },
+  {
+    title: 'USDA FY23 eligibility map changes',
+    description:
+      'USDA notice describing the most recent map update cycle that became effective October 1, 2023.',
+    url: 'https://www.rd.usda.gov/newsroom/news-release/notice-changes-eligible-area-maps-usda-rural-development-housing-programs-912023',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Is Huntsville USDA-eligible?',
+    answer:
+      'The City of Huntsville core is generally USDA-ineligible. Some outer-edge or recently annexed parcels with a Huntsville mailing address may still need to be checked on the USDA tool because mailing address and USDA boundary are not the same thing.',
+  },
+  {
+    question: 'Is Madison, Alabama USDA-eligible?',
+    answer:
+      'The City of Madison is generally USDA-ineligible because its population and urbanized-area status exceed rural-area thresholds. Buyers should still verify any specific edge-case property address through the USDA eligibility tool.',
+  },
+  {
+    question: 'Is Athens USDA-eligible?',
+    answer:
+      'Athens has mixed USDA eligibility. Significant outer areas and nearby Limestone County communities may be eligible, while the urbanized core may be ineligible. Check each property address before writing an offer.',
+  },
+  {
+    question: 'Can a ZIP code tell me whether a home is USDA-eligible?',
+    answer:
+      'No. USDA eligibility is not decided by ZIP code. The same ZIP code can include eligible and ineligible parcels, so buyers need to verify the exact address through the USDA property eligibility tool.',
+  },
+  {
+    question: 'Can USDA eligibility change before closing?',
+    answer:
+      'It can, although major changes usually follow periodic review cycles. In fast-growth areas, lenders commonly re-check USDA eligibility during the transaction so the file does not rely on an outdated result.',
+  },
+  {
+    question: 'Does USDA eligibility mean the buyer is approved?',
+    answer:
+      'No. Property location is only one part of USDA eligibility. The buyer still needs to meet income, credit, occupancy, property condition, and underwriting requirements.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'USDA Eligible Areas in North Alabama',
+    description:
+      'Focused USDA eligible-area guidance for North Alabama buyers checking property eligibility near Huntsville, Madison, Athens, Decatur, Albertville, Arab, and surrounding counties.',
+    serviceType: 'USDA property eligibility guidance',
+    audience: ['homebuyers', 'first-time homebuyers', 'USDA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'USDA Eligible Areas in North Alabama',
+    description:
+      'USDA mortgage property eligibility guidance for North Alabama buyers reviewing eligible areas, parcel-level map checks, income caveats, and offer timing.',
+    loanType: 'USDA mortgage loan',
+    audience: ['homebuyers', 'first-time homebuyers', 'USDA loan borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${pageUrl}#howto`,
+    name: 'How to Check USDA Property Eligibility Near Huntsville',
+    description:
+      'A practical sequence for checking USDA property eligibility before a North Alabama buyer writes an offer.',
+    step: mapSteps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: step.description,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'USDA Eligible Areas in North Alabama',
+    description:
+      'Answer-first guide to USDA eligible areas near Huntsville, parcel-level map checks, and common North Alabama boundary mistakes.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'USDA Loans', path: '/huntsville/mortgage-guidance/usda-loans/' },
+    { name: 'USDA Eligible Areas in North Alabama', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="USDA Eligible Areas | North Alabama | Levi Duncan"
+  description="Check USDA eligible areas near Huntsville, Madison, Athens, Decatur, Albertville, Arab, and North Alabama before making an offer."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="eligible-areas-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">USDA Eligible Areas</p>
+      <h1 id="eligible-areas-heading">USDA eligible areas near Huntsville and North Alabama.</h1>
+      <p class="hero-lede">
+        USDA eligible areas are determined at the property-address level, not by
+        ZIP code, mailing city, or listing remarks. Levi Duncan helps buyers
+        check the official USDA map before they rely on USDA financing for a
+        Huntsville-area, Athens, Decatur, Albertville, Arab, or North Alabama
+        home search.
+      </p>
+      <div class="hero-actions" aria-label="USDA eligible area actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Check an address with Levi</a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/usda-loans/">
+          Back to USDA loan guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining USDA eligible areas near Huntsville"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>USDA map checks, eligible areas, and buyer timing</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">How do buyers know whether an area is USDA-eligible?</h2>
+        </div>
+        <p>
+          Buyers should use the official USDA property eligibility tool and
+          check the exact address before writing an offer. Geographic eligibility
+          only means the property is in a USDA-designated area; the buyer,
+          household income, property condition, and full loan file still need to
+          meet USDA requirements.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          areaPatterns.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="map-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Map Check</p>
+        <h2 id="map-heading">How should buyers use the USDA eligibility map?</h2>
+        <p>
+          The USDA map is the only authoritative starting point for property
+          eligibility. A screenshot is still not a final loan approval, but it
+          is the right evidence to start a USDA offer conversation.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          mapSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="local-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">North Alabama Context</p>
+        <h2 id="local-heading">Which North Alabama areas need the closest USDA check?</h2>
+        <p>
+          {site.serviceAreaStatement} USDA can be especially relevant outside
+          the densest Huntsville, Madison, and Decatur cores. The highest-risk
+          assumption is treating a whole city, ZIP code, or corridor as eligible
+          without checking the parcel.
+        </p>
+        <div class="hero-actions" aria-label="USDA map review actions">
+          <a class="button button-primary" href={site.calendlyUrl}>Review a property address</a>
+          <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="USDA local eligibility checks">
+        {
+          localChecks.map((item) => (
+            <article>
+              <span>Check</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="mistakes-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Common Mistakes</p>
+        <h2 id="mistakes-heading">What USDA area assumptions should buyers avoid?</h2>
+        <p>
+          USDA eligibility can surprise buyers because the boundary is based on
+          USDA and Census geography, not how rural the road feels or what a
+          listing says.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          buyerMistakes.map((item) => (
+            <article class="feature-card">
+              <span>Avoid</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Related Guides</p>
+        <h2 id="related-heading">What should buyers compare after checking the address?</h2>
+        <p>
+          Once the address is checked, buyers still need to compare USDA with
+          the rest of the mortgage path: income fit, cash to close, FHA
+          fallback options, and offer timing.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where buyers can verify USDA eligibility.</h2>
+        <p>
+          USDA is the source of truth for property eligibility. Princeton
+          Mortgage is not affiliated with, endorsed by, or sponsored by the U.S.
+          Department of Agriculture.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">USDA eligible-area questions near Huntsville.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Check the USDA address before the offer creates pressure.</h2>
+          </div>
+          <div class="hero-actions" aria-label="USDA eligible area next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book a buyer consultation</a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
