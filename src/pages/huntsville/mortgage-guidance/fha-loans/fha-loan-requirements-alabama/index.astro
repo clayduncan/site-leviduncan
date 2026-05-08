@@ -1,0 +1,359 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const requirementCards = [
+  {
+    label: 'Credit',
+    title: 'Federal FHA floors are not always lender floors',
+    description:
+      'FHA rules allow 3.5% down at 580+ credit and 10% down from 500-579, but many lenders apply overlays. Buyers should ask what the actual lender minimum is for their file.',
+  },
+  {
+    label: 'Down payment',
+    title: 'Minimum down payment can start at 3.5%',
+    description:
+      'For eligible buyers with qualifying credit, FHA can allow a 3.5% minimum down payment. Gift funds and approved assistance may help when documentation and program rules fit.',
+  },
+  {
+    label: 'DTI',
+    title: 'Debt ratios depend on the whole file',
+    description:
+      'FHA looks at income, debts, credit, reserves, payment history, and automated underwriting. A ratio that works in one file may not work in another.',
+  },
+  {
+    label: 'Property',
+    title: 'The home must meet FHA condition standards',
+    description:
+      'FHA appraisals review value and minimum property standards. Safety, soundness, roof condition, peeling paint, utilities, termites, well, and septic issues can all affect timing.',
+  },
+];
+
+const alabamaFactors = [
+  {
+    title: '2026 Alabama FHA loan limit',
+    description:
+      'For 2026, Alabama counties are generally at the FHA floor for a one-unit property: $541,287. For most starter and mid-market North Alabama buyers, underwriting is more likely to matter than the county loan limit.',
+  },
+  {
+    title: 'Termite and WDO timing',
+    description:
+      'Alabama contracts commonly involve a wood-destroying-organism inspection. FHA does not automatically require one on every existing home, but appraiser observations or contract requirements can bring it into the loan timeline.',
+  },
+  {
+    title: 'Rural well and septic checks',
+    description:
+      'Buyers in Limestone, Morgan, Marshall, Jackson, DeKalb, or Cullman County may need extra time for well water, septic, or access-road questions if the property is outside public utilities.',
+  },
+  {
+    title: 'Insurance and escrow clarity',
+    description:
+      'North Alabama buyers should review homeowners insurance early, especially wind and hail deductibles. Alabama property taxes are comparatively low, but escrow still affects the monthly payment.',
+  },
+];
+
+const buyerSteps = [
+  {
+    title: 'Check the buyer profile',
+    description:
+      'Review credit, income, debt, savings, employment history, large deposits, and likely cash to close before assuming FHA is the right answer.',
+  },
+  {
+    title: 'Check the property fit',
+    description:
+      'Look at age, roof, paint, utilities, termite evidence, well, septic, access, and obvious repair issues before writing an FHA offer.',
+  },
+  {
+    title: 'Compare assistance options',
+    description:
+      'FHA may pair with AHFA First Step or Step Up when buyer, property, lender, and program requirements all line up.',
+  },
+  {
+    title: 'Write the offer with fewer surprises',
+    description:
+      'Once the buyer and property path are clearer, the offer can reflect financing, inspection, appraisal, repair, and closing-timeline realities.',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'HUD Single Family Handbook 4000.1',
+    description:
+      'HUD’s policy handbook for FHA Single Family mortgage eligibility, underwriting, property standards, and program rules.',
+    url: 'https://www.hud.gov/hud-partners/single-family-handbook-4000-1',
+  },
+  {
+    title: 'HUD 2026 FHA loan limits',
+    description:
+      'HUD’s lender page and Mortgagee Letter references for current FHA forward mortgage limits, including the 2026 floor.',
+    url: 'https://www.hud.gov/hud-partners/single-family-lender',
+  },
+  {
+    title: 'CFPB FHA loan guide',
+    description:
+      'Consumer Financial Protection Bureau explanation of FHA loans, mortgage insurance, and consumer-facing comparison points.',
+    url: 'https://www.consumerfinance.gov/owning-a-home/fha-loans/',
+  },
+  {
+    title: 'AHFA homeownership programs',
+    description:
+      'Alabama Housing Finance Authority program information for First Step, Step Up, and other homebuyer assistance paths.',
+    url: 'https://www.ahfa.com/programs/homeownership/available-programs',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What credit score do I need for an FHA loan in Alabama?',
+    answer:
+      'The federal FHA framework allows 3.5% down at 580+ credit and 10% down from 500-579. Many lenders use higher overlays, so Alabama buyers should ask what credit score is actually available for their lender, loan type, and full file.',
+  },
+  {
+    question: 'What is the 2026 FHA loan limit in Alabama?',
+    answer:
+      'For 2026, the FHA one-unit floor is $541,287, and Alabama counties are generally at that floor. The limit is the maximum insured loan amount, not the maximum purchase price. Buyers can exceed it only by bringing additional cash down.',
+  },
+  {
+    question: 'Does FHA require a termite inspection in Alabama?',
+    answer:
+      'FHA does not automatically require a termite inspection on every existing home, but Alabama contracts commonly include a WDO inspection. If an appraiser observes termite evidence or makes the appraisal subject to pest review, the issue must be cleared before closing.',
+  },
+  {
+    question: 'Can FHA work with Alabama down payment assistance?',
+    answer:
+      'FHA may work with AHFA First Step, AHFA Step Up, or other approved assistance when the buyer, property, lender, and program all meet the rules. Assistance is not automatic, and buyers should compare the structure before relying on it.',
+  },
+  {
+    question: 'Is FHA only for first-time homebuyers?',
+    answer:
+      'No. FHA does not have a first-time buyer requirement. Repeat buyers can use FHA when they meet credit, income, occupancy, loan limit, property, and underwriting requirements.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'FHA Loan Requirements in Alabama',
+    description:
+      'Focused FHA loan requirements guidance for Alabama buyers comparing credit, down payment, DTI, property standards, loan limits, and North Alabama transaction issues.',
+    serviceType: 'FHA mortgage loan requirements guidance',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'FHA Loan Requirements in Alabama',
+    description:
+      'FHA mortgage loan requirement guidance for Alabama buyers reviewing credit, minimum down payment, loan limits, property standards, and buyer readiness.',
+    loanType: 'FHA mortgage loan',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'FHA Loan Requirements in Alabama',
+    description:
+      'Answer-first guide to FHA credit, down payment, loan limit, property, and North Alabama transaction requirements.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'FHA Loans', path: '/huntsville/mortgage-guidance/fha-loans/' },
+    { name: 'FHA Loan Requirements in Alabama', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="FHA Requirements | Alabama | Levi Duncan"
+  description="Understand FHA loan requirements in Alabama, including credit, down payment, 2026 limits, property standards, and buyer next steps."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="requirements-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">FHA Loan Requirements in Alabama</p>
+      <h1 id="requirements-heading">FHA loan requirements for Alabama homebuyers.</h1>
+      <p class="hero-lede">
+        FHA loan requirements in Alabama start with the buyer profile and the
+        property. Levi Duncan helps buyers compare credit, down payment, debt
+        ratio, loan limit, property condition, and local closing issues before
+        they write an FHA offer or assume the loan will fit.
+      </p>
+      <div class="hero-actions" aria-label="FHA loan requirement actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through FHA requirements</a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/fha-loans/">
+          Back to FHA loan guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining FHA loan requirements in Alabama"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>FHA requirements, Alabama limits, and buyer readiness</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="requirements-summary-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="requirements-summary-heading">What are the main FHA requirements in Alabama?</h2>
+        </div>
+        <p>
+          Alabama FHA buyers should review credit score, minimum down payment,
+          income stability, debt-to-income ratio, owner occupancy, FHA loan
+          limit, and property condition. The federal FHA rules are only the
+          starting point; lender overlays, property repairs, assistance-program
+          rules, and local inspections can change the practical path.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          requirementCards.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="alabama-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">North Alabama Context</p>
+        <h2 id="alabama-heading">What changes an FHA file in North Alabama?</h2>
+        <p>
+          {site.serviceAreaStatement} In many local FHA files, the county loan
+          limit is not the binding constraint. The practical questions are
+          usually credit profile, payment comfort, condition repairs, seller
+          concessions, assistance-program fit, insurance, and whether rural
+          property details create extra underwriting steps.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="Alabama FHA transaction factors">
+        {
+          alabamaFactors.map((item) => (
+            <article>
+              <span>Alabama</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="steps-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Buyer Checklist</p>
+        <h2 id="steps-heading">What should a buyer check before writing an FHA offer?</h2>
+        <p>
+          FHA can be a practical path, but the strongest FHA offer starts before
+          the contract. These checks help a buyer understand whether the file,
+          property, and timing are likely to work together.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          buyerSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where Alabama FHA buyers can verify requirements.</h2>
+        <p>
+          FHA requirements and assistance-program details can change. Buyers
+          should use this page as guidance and verify time-sensitive details
+          against official HUD, CFPB, and AHFA sources before applying.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">FHA requirement questions in Alabama.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Review the FHA requirements before the offer creates pressure.</h2>
+          </div>
+          <div class="hero-actions" aria-label="FHA requirement next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book a buyer consultation</a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

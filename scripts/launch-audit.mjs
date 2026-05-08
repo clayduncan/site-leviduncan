@@ -119,6 +119,7 @@ const expectedRoutes = [
   '/about/',
   '/events/',
   '/huntsville/mortgage-guidance/down-payment-assistance/',
+  '/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/',
   '/huntsville/mortgage-guidance/fha-loans/',
   '/huntsville/mortgage-guidance/first-time-home-buyer/',
   '/huntsville/mortgage-guidance/',
@@ -128,8 +129,8 @@ const expectedRoutes = [
 ];
 
 assert(
-  htmlFiles.length === 11,
-  `Expected 11 built HTML files including 404, found ${htmlFiles.length}.`,
+  htmlFiles.length === 12,
+  `Expected 12 built HTML files including 404, found ${htmlFiles.length}.`,
 );
 
 for (const route of expectedRoutes) {
