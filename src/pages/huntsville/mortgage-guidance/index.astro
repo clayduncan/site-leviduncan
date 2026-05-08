@@ -67,6 +67,71 @@ const guidanceAnswers = [
   },
 ];
 
+const focusedGuideGroups = [
+  {
+    category: 'First-time homebuyers',
+    guides: [
+      {
+        title: 'First-Time Homebuyer Checklist',
+        description:
+          'A step-by-step sequence for preparation, documents, offers, Alabama closing items, and post-closing tasks.',
+        href: '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/',
+      },
+      {
+        title: 'First-Time Homebuyer Mistakes to Avoid',
+        description:
+          'A risk-prevention guide for credit, cash, property fit, offer timing, closing details, and wire fraud.',
+        href: '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/',
+      },
+    ],
+  },
+  {
+    category: 'FHA and USDA decisions',
+    guides: [
+      {
+        title: 'FHA Loan Requirements in Alabama',
+        description:
+          'Review FHA credit, down payment, property standards, loan limits, and local Alabama transaction issues.',
+        href: '/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/',
+      },
+      {
+        title: 'FHA vs USDA Loans in North Alabama',
+        description:
+          'Compare FHA and USDA when property location, income limits, credit, cash to close, and payment matter.',
+        href: '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+      },
+    ],
+  },
+  {
+    category: 'Assistance and investor paths',
+    guides: [
+      {
+        title: 'First Step Eligibility in Alabama',
+        description:
+          'Understand First Step income limits, sales-price limits, repayment structure, and recapture-tax considerations.',
+        href: '/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/',
+      },
+      {
+        title: 'DSCR Loan Requirements in Alabama',
+        description:
+          'Review DSCR ratio math, rent support, credit, reserves, LTV, LLC considerations, and property eligibility.',
+        href: '/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/',
+      },
+    ],
+  },
+];
+
+const focusedGuides = focusedGuideGroups.flatMap((group) =>
+  group.guides.map((guide) => ({
+    ...guide,
+    category: group.category,
+  })),
+);
+const hubItemList = [...mortgageServices, ...focusedGuides.map((guide) => ({
+  name: guide.title,
+  path: guide.href,
+}))];
+
 const schema = [
   personJsonLd,
   organizationJsonLd,
@@ -89,11 +154,11 @@ const schema = [
     description: `Start here for Levi Duncan mortgage guidance. ${site.serviceAreaStatement}`,
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: mortgageServices.map((service, index) => ({
+      itemListElement: hubItemList.map((item, index) => ({
         '@type': 'ListItem',
         position: index + 1,
-        name: service.name,
-        url: new URL(service.path, site.url).href,
+        name: item.name,
+        url: new URL(item.path, site.url).href,
       })),
     },
     isPartOf: { '@id': `${site.url}/#website` },
@@ -206,7 +271,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="answer-heading">
+  <section class="section-band" aria-labelledby="focused-guides-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused Guides</p>
+        <h2 id="focused-guides-heading">Deeper answers for specific mortgage questions.</h2>
+        <p>
+          These focused support pages help buyers and investors answer narrower
+          questions without turning each main program page into a catch-all.
+          Start with the guide that matches the question creating pressure.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          focusedGuides.map((guide) => (
+            <a class="resource-card" href={guide.href}>
+              <span>{guide.category}</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
         <p class="eyebrow">Quick Answers</p>
