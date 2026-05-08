@@ -624,6 +624,22 @@ main {
   line-height: 1.45;
 }
 
+.first-time-guidance-card {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 34rem;
+  margin-top: 1.25rem;
+}
+
+.first-time-guidance-card a {
+  min-height: 7.5rem;
+  border-top-color: var(--color-blue);
+  background: var(--color-white);
+}
+
+.first-time-guidance-card span {
+  font-size: 0.95rem;
+}
+
 .content-page {
   max-width: 72rem;
   margin: 0 auto;
