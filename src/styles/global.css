@@ -627,7 +627,7 @@ main {
 .first-time-guidance-card {
   grid-template-columns: minmax(0, 1fr);
   max-width: 34rem;
-  margin-top: 1.25rem;
+  margin: 1.25rem auto 0;
 }
 
 .first-time-guidance-card a {
