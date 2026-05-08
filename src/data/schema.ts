@@ -190,6 +190,37 @@ export function createMortgageServiceJsonLd({
   };
 }
 
+export function createMortgageLoanJsonLd({
+  pageUrl,
+  name,
+  description,
+  loanType,
+  audience,
+}: {
+  pageUrl: string;
+  name: string;
+  description: string;
+  loanType: string;
+  audience?: string[];
+}): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MortgageLoan',
+    '@id': `${pageUrl}#mortgage-loan`,
+    name,
+    description,
+    loanType,
+    url: pageUrl,
+    provider: { '@id': organizationId },
+    broker: { '@id': personId },
+    areaServed: areaServedJsonLd,
+    audience: audience?.map((audienceType) => ({
+      '@type': 'Audience',
+      audienceType,
+    })),
+  };
+}
+
 export const mortgageServiceJsonLd = mortgageServices.map((service) =>
   createMortgageServiceJsonLd({
     pageUrl: new URL(service.path, site.url).href,

@@ -3,6 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import {
   createBreadcrumbJsonLd,
   createFaqJsonLd,
+  createMortgageLoanJsonLd,
   createMortgageServiceJsonLd,
   organizationJsonLd,
   personJsonLd,
@@ -114,6 +115,14 @@ const schema = [
     description:
       'USDA loan guidance from Levi Duncan for buyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing no-down-payment options, rural and suburban property eligibility, and household income requirements.',
     serviceType: 'USDA mortgage loan origination',
+    audience: ['homebuyers', 'first-time homebuyers', 'USDA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'USDA Loans in North Alabama',
+    description:
+      'USDA mortgage guidance for eligible North Alabama buyers comparing no-down-payment possibilities, property eligibility, household income requirements, and primary residence fit.',
+    loanType: 'USDA mortgage loan',
     audience: ['homebuyers', 'first-time homebuyers', 'USDA loan borrowers'],
   }),
   createFaqJsonLd(faqs),

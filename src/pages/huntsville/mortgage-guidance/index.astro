@@ -49,6 +49,24 @@ const faqs = [
   },
 ];
 
+const guidanceAnswers = [
+  {
+    question: 'What should first-time buyers compare first?',
+    answer:
+      'First-time buyers should compare payment comfort, cash to close, credit position, documents, and loan program fit before touring homes. That early review helps a buyer understand whether FHA, USDA, First Step assistance, conventional financing, or another path deserves a closer look.',
+  },
+  {
+    question: 'Which mortgage paths does Levi help buyers compare?',
+    answer:
+      'Levi helps buyers compare first-time homebuyer guidance, FHA loans, USDA loans, Alabama First Step down payment assistance, and investment property options. The goal is to match the mortgage path to the buyer profile, property type, location, timeline, and cash available before pressure builds.',
+  },
+  {
+    question: 'Why start before the home search?',
+    answer:
+      'Starting before the home search gives buyers time to review budget, credit, documents, property expectations, and approval strength without an offer deadline. That makes it easier to ask better questions and avoid last-minute financing surprises during inspection, appraisal, underwriting, or closing.',
+  },
+];
+
 const schema = [
   personJsonLd,
   organizationJsonLd,
@@ -184,6 +202,25 @@ const schema = [
             and closing all work together before keys transfer.
           </p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Quick Answers</p>
+        <h2 id="answer-heading">What should buyers understand before choosing a mortgage path?</h2>
+      </div>
+      <div class="faq-list answer-list">
+        {
+          guidanceAnswers.map((item) => (
+            <article>
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>

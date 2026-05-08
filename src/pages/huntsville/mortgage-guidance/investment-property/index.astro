@@ -3,6 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import {
   createBreadcrumbJsonLd,
   createFaqJsonLd,
+  createMortgageLoanJsonLd,
   createMortgageServiceJsonLd,
   organizationJsonLd,
   personJsonLd,
@@ -140,6 +141,14 @@ const schema = [
     description:
       'Investment property and DSCR investor loan guidance from Levi Duncan for buyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing rental-property financing.',
     serviceType: 'Investment property mortgage guidance',
+    audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'Investment Property and DSCR Investor Loans',
+    description:
+      'Investment property and DSCR investor loan guidance for rental-property buyers comparing cash flow, rent support, reserves, down payment, and loan structure.',
+    loanType: 'Investment property mortgage loan',
     audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
   }),
   createFaqJsonLd(faqs),

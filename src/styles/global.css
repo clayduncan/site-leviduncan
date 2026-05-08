@@ -1591,6 +1591,15 @@ main {
   padding: clamp(1rem, 3vw, 1.5rem);
 }
 
+.answer-list {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.answer-list article {
+  border-top: 3px solid var(--color-blue);
+  box-shadow: 0 1rem 2rem rgb(20 20 20 / 5%);
+}
+
 .faq-list h3 {
   margin: 0 0 0.75rem;
   color: var(--color-ink);

@@ -3,6 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import {
   createBreadcrumbJsonLd,
   createFaqJsonLd,
+  createMortgageLoanJsonLd,
   createMortgageServiceJsonLd,
   organizationJsonLd,
   personJsonLd,
@@ -114,6 +115,14 @@ const schema = [
     description:
       'FHA loan guidance from Levi Duncan for homebuyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing credit, down payment, and property readiness.',
     serviceType: 'FHA mortgage loan origination',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'FHA Loans in Huntsville',
+    description:
+      'FHA mortgage guidance for Huntsville-area homebuyers comparing flexible credit, minimum down payment, property standards, and readiness before applying.',
+    loanType: 'FHA mortgage loan',
     audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
   }),
   createFaqJsonLd(faqs),

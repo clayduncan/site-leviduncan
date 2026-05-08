@@ -3,6 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import {
   createBreadcrumbJsonLd,
   createFaqJsonLd,
+  createMortgageLoanJsonLd,
   createMortgageServiceJsonLd,
   organizationJsonLd,
   personJsonLd,
@@ -114,6 +115,14 @@ const schema = [
     description:
       'First Step down payment assistance guidance from Levi Duncan for Alabama homebuyers comparing AHFA assistance, mortgage options, eligibility, and cash to close.',
     serviceType: 'Down payment assistance mortgage guidance',
+    audience: ['first-time homebuyers', 'homebuyers', 'down payment assistance borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'Alabama First Step Mortgage and Down Payment Assistance',
+    description:
+      'Alabama First Step mortgage and down payment assistance guidance for eligible buyers comparing AHFA program structure, loan fit, cash to close, and application readiness.',
+    loanType: 'Alabama First Step mortgage revenue bond loan',
     audience: ['first-time homebuyers', 'homebuyers', 'down payment assistance borrowers'],
   }),
   createFaqJsonLd(faqs),
