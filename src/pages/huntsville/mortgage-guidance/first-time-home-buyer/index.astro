@@ -103,6 +103,15 @@ const officialResources = [
   },
 ];
 
+const relatedGuides = [
+  {
+    title: 'First-Time Homebuyer Checklist in North Alabama',
+    description:
+      'Use this checklist to review prep timeline, buyer documents, offer readiness, Alabama closing steps, and post-closing ownership tasks.',
+    url: '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/',
+  },
+];
+
 const dosAndDonts = [
   {
     title: 'Do talk through payment comfort early',
@@ -302,7 +311,33 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+  <section class="section-band section-band-light" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused Buyer Checklist</p>
+        <h2 id="related-heading">Need a step-by-step first-time buyer checklist?</h2>
+        <p>
+          This focused guide is for buyers who want the sequence: what to
+          prepare before preapproval, what to check before an offer, what
+          Alabama closing items can surprise buyers, and what to handle after
+          closing.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
         <p class="eyebrow">Official Sources</p>
@@ -327,7 +362,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="faq-heading">
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>

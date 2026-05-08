@@ -1,0 +1,506 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const preparationSteps = [
+  {
+    label: '6-12 months',
+    title: 'Clean up the buyer file before the search',
+    description:
+      'Review credit, revolving balances, savings, employment history, large deposits, and monthly comfort before the home search starts creating urgency.',
+  },
+  {
+    label: 'Before touring',
+    title: 'Turn estimates into a documented preapproval',
+    description:
+      'A real preapproval should review income, assets, credit, debts, and loan program fit. A verbal estimate is not enough for a serious offer conversation.',
+  },
+  {
+    label: 'Before the offer',
+    title: 'Match the loan type to the property',
+    description:
+      'FHA, USDA, conventional, and assistance programs can each create different property, appraisal, timeline, and cash-to-close requirements.',
+  },
+  {
+    label: 'After closing',
+    title: 'Finish the Alabama ownership tasks',
+    description:
+      'First-time buyers should plan for homestead exemption filing, escrow setup, first-payment timing, address changes, and post-closing document storage.',
+  },
+];
+
+const documentItems = [
+  {
+    title: 'Income documents',
+    description:
+      'Gather recent pay stubs, W-2s, and tax returns when self-employed, commissioned, or bonus income needs to be averaged.',
+  },
+  {
+    title: 'Asset documentation',
+    description:
+      'Keep full bank statements, document transfers, avoid cash deposits, and make sure any gift funds can be sourced correctly.',
+  },
+  {
+    title: 'Debt and credit context',
+    description:
+      'Know minimum monthly payments, student-loan status, recent credit activity, collections, and any accounts that could change approval strength.',
+  },
+  {
+    title: 'Life documents',
+    description:
+      'Have divorce decrees, child support orders, photo ID, employment explanations, or VA eligibility documents ready when they apply.',
+  },
+];
+
+const offerChecks = [
+  {
+    title: 'Preapproval strength',
+    description:
+      'North Alabama sellers and listing agents usually want a clear lender letter backed by verified income, assets, credit, and a realistic loan path.',
+  },
+  {
+    title: 'Property condition',
+    description:
+      'Older Huntsville, Decatur, and Athens homes can raise FHA repair, appraisal, roof, paint, termite, electrical, well, or septic questions.',
+  },
+  {
+    title: 'Seller concessions',
+    description:
+      'Concession limits vary by loan type. They can help with allowable costs, but they cannot create cash back to the buyer.',
+  },
+  {
+    title: 'Contract timeline',
+    description:
+      'Inspection, appraisal, financing, insurance, title, WDIR, and Closing Disclosure timing should be understood before the closing date is negotiated.',
+  },
+];
+
+const alabamaClosingItems = [
+  {
+    title: 'Wood-destroying insect report',
+    description:
+      'Alabama transactions commonly include a WDIR or termite letter. FHA, VA, USDA, and conventional files can all be affected by active infestation or damage.',
+  },
+  {
+    title: 'Insurance before final approval',
+    description:
+      'Homeowners insurance should be quoted early, especially wind and hail deductibles. The lender needs proof of coverage before funding.',
+  },
+  {
+    title: 'Closing Disclosure timing',
+    description:
+      'Federal rules require the Closing Disclosure to be received at least three business days before closing. Certain changes can restart that waiting period.',
+  },
+  {
+    title: 'Wire fraud protection',
+    description:
+      'Confirm wiring instructions by phone using a trusted number known before closing. Last-minute email changes should be treated as suspicious.',
+  },
+];
+
+const afterClosingItems = [
+  {
+    title: 'File homestead exemption',
+    description:
+      'Owner-occupants should check county filing rules for Madison, Morgan, Marshall, Limestone, and nearby counties after the deed records.',
+  },
+  {
+    title: 'Understand first payment timing',
+    description:
+      'The first mortgage payment is usually due on the first day of the second month after closing, because prepaid interest is collected at closing.',
+  },
+  {
+    title: 'Watch the first escrow year',
+    description:
+      'Alabama property taxes are paid in arrears, and the first tax bill may still show the seller. Escrow setup and prorations deserve attention.',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'FHA Loan Requirements in Alabama',
+    description:
+      'Use this when credit, down payment, property condition, or FHA appraisal standards may shape the buyer path.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/',
+  },
+  {
+    title: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Compare FHA and USDA before writing an offer on a property that may qualify for rural or suburban USDA financing.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+  },
+  {
+    title: 'First Step Eligibility in Alabama',
+    description:
+      'Review AHFA First Step eligibility, limits, repayment structure, and recapture-tax considerations before relying on assistance.',
+    url: '/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'CFPB Buying a House guide',
+    description:
+      'Federal consumer guide for preparing, comparing loan options, reviewing disclosures, and understanding the mortgage process.',
+    url: 'https://www.consumerfinance.gov/owning-a-home/',
+  },
+  {
+    title: 'CFPB Home Loan Toolkit',
+    description:
+      'Know Before You Owe booklet explaining loan estimates, closing costs, rate comparisons, and closing documents.',
+    url: 'https://files.consumerfinance.gov/f/201503_cfpb_your-home-loan-toolkit-web.pdf',
+  },
+  {
+    title: 'FBI Internet Crime Complaint Center',
+    description:
+      'Federal reporting resource for internet crime, including business email compromise and real estate wire fraud.',
+    url: 'https://www.ic3.gov/',
+  },
+  {
+    title: 'Alabama homestead exemptions',
+    description:
+      'Alabama Department of Revenue overview of owner-occupant homestead exemptions and the county-level filing framework.',
+    url: 'https://www.revenue.alabama.gov/property-tax/homestead-exemptions/',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What should a first-time homebuyer do first in North Alabama?',
+    answer:
+      'A first-time homebuyer should review payment comfort, credit, income, debts, savings, documents, and likely cash to close before touring homes. That work makes the preapproval and offer strategy more useful.',
+  },
+  {
+    question: 'How much should I save before buying my first home?',
+    answer:
+      'It depends on the loan program. Some USDA or VA buyers may have no required down payment, FHA can start at 3.5% down, and conventional first-time buyer options can start near 3% down. Closing costs, prepaid items, inspections, insurance, and reserves still need to be planned separately.',
+  },
+  {
+    question: 'What should I avoid before closing on my first home?',
+    answer:
+      'Avoid opening new credit, making large undocumented deposits, changing jobs without guidance, co-signing debt, moving money without a paper trail, or making large purchases before the lender clears the loan to close.',
+  },
+  {
+    question: 'Do first-time buyers in Alabama need a Realtor agreement before touring?',
+    answer:
+      'Alabama law changed the timing conversation. Buyers should expect early brokerage and compensation discussions, and written agreement requirements should be reviewed with the real estate professional before submitting an offer.',
+  },
+  {
+    question: 'What should first-time buyers do after closing in Alabama?',
+    answer:
+      'After closing, first-time buyers should file any applicable homestead exemption, confirm first-payment timing, keep closing documents, update addresses, watch the first escrow year, and keep insurance information current.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'First-Time Homebuyer Checklist in North Alabama',
+    description:
+      'Sequential first-time homebuyer checklist for North Alabama buyers preparing documents, preapproval, offer strategy, closing tasks, and post-closing ownership steps.',
+    serviceType: 'First-time homebuyer checklist guidance',
+    audience: ['first-time homebuyers', 'homebuyers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${pageUrl}#howto`,
+    name: 'First-Time Homebuyer Checklist for North Alabama',
+    description:
+      'A practical sequence for first-time homebuyers preparing for mortgage preapproval, offers, closing, and post-closing tasks in North Alabama.',
+    step: preparationSteps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: step.description,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'First-Time Homebuyer Checklist for North Alabama',
+    description:
+      'Answer-first checklist for North Alabama first-time buyers preparing for preapproval, offers, closing, and post-closing tasks.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'First-Time Home Buyer', path: '/huntsville/mortgage-guidance/first-time-home-buyer/' },
+    { name: 'First-Time Homebuyer Checklist', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Homebuyer Checklist | North Alabama | Levi Duncan"
+  description="Use this North Alabama first-time homebuyer checklist to prepare documents, preapproval, offers, closing tasks, and post-closing steps."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="checklist-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">First-Time Homebuyer Checklist</p>
+      <h1 id="checklist-heading">First-time homebuyer checklist for North Alabama.</h1>
+      <p class="hero-lede">
+        A first-time homebuyer checklist helps buyers move in the right order:
+        clean up the buyer file, document the preapproval, choose the right loan
+        path, understand Alabama contract and closing steps, and finish the
+        ownership tasks after closing. Levi Duncan helps buyers use the
+        checklist before pressure builds.
+      </p>
+      <div class="hero-actions" aria-label="First-time homebuyer checklist actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Book Levi's 101 Homebuyer Review</a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/first-time-home-buyer/">
+          Back to first-time buyer guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining a first-time homebuyer checklist in North Alabama"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>Buyer checklist, offer readiness, and Alabama closing steps</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">What should first-time buyers do before shopping seriously?</h2>
+        </div>
+        <p>
+          First-time buyers should confirm payment comfort, review credit and
+          debt, gather documents, verify cash to close, compare loan programs,
+          and understand which property conditions could affect financing before
+          they tour homes or write an offer.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          preparationSteps.map((step) => (
+            <article class="feature-card">
+              <span>{step.label}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="documents-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">File Prep</p>
+        <h2 id="documents-heading">What documents make preapproval cleaner?</h2>
+        <p>
+          A first-time buyer does not need a perfect file, but the file should
+          be explainable. The goal is to reduce surprises around income, assets,
+          debts, deposits, and life documents before the buyer is under
+          contract.
+        </p>
+        <div class="hero-actions" aria-label="First-time buyer review actions">
+          <a class="button button-primary" href={site.calendlyUrl}>Review your buyer file</a>
+          <a class="button button-secondary" href="/events/">Check Homebuyer Master Class events</a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="First-time homebuyer document checklist">
+        {
+          documentItems.map((item) => (
+            <article>
+              <span>Document</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="offer-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Offer Readiness</p>
+        <h2 id="offer-heading">What should be checked before a first offer?</h2>
+        <p>
+          The financing type written into the offer matters. Buyers should know
+          whether the loan program, property condition, concession plan, and
+          closing timeline fit before the contract is signed.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          offerChecks.map((item, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="closing-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Alabama Closing Path</p>
+        <h2 id="closing-heading">What Alabama closing items surprise first-time buyers?</h2>
+        <p>
+          Alabama has local transaction habits and required timing that can
+          matter late in the file. Termite reports, insurance, attorney closing,
+          disclosures, and wire safety should be understood before closing week.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          alabamaClosingItems.map((item) => (
+            <article class="feature-card">
+              <span>Closing</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="after-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">After Closing</p>
+        <h2 id="after-heading">What should new homeowners handle after closing?</h2>
+        <p>
+          The first-time buyer checklist does not end when keys transfer.
+          Alabama buyers still need to confirm county ownership steps, first
+          payment timing, escrow setup, and records that may matter later.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="After-closing checklist">
+        {
+          afterClosingItems.map((item) => (
+            <article>
+              <span>After</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Related Guides</p>
+        <h2 id="related-heading">Which deeper guides should first-time buyers compare?</h2>
+        <p>
+          Use the checklist to choose the next question. These focused guides
+          cover program-specific decisions without turning this page into a
+          duplicate of each loan page.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where buyers can verify the checklist basics.</h2>
+        <p>
+          Official consumer sources are useful for reviewing loan disclosures,
+          closing cost language, scam prevention, and Alabama owner-occupant tax
+          steps.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">First-time homebuyer checklist questions.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Use the checklist before the search creates pressure.</h2>
+          </div>
+          <div class="hero-actions" aria-label="First-time homebuyer checklist next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>
+              Book Levi's 101 Homebuyer Review
+            </a>
+            <a class="button button-secondary" href="/events/">View Homebuyer Master Class events</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
