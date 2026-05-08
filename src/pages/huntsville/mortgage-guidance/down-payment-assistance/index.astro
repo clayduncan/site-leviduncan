@@ -78,6 +78,15 @@ const officialResources = [
   },
 ];
 
+const relatedGuides = [
+  {
+    title: 'First Step Eligibility in Alabama',
+    description:
+      'Review income limits, sales-price limits, first-time buyer rules, repayment structure, and recapture-tax considerations before relying on First Step.',
+    url: '/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/',
+  },
+];
+
 const faqs = [
   {
     question: 'What is Alabama First Step down payment assistance?',
@@ -237,7 +246,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="resources-heading">
+  <section class="section-band" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused First Step Guide</p>
+        <h2 id="related-heading">Need to check First Step eligibility more closely?</h2>
+        <p>
+          This focused guide helps buyers understand who may fit First Step,
+          what limits need to be checked, and how repayment works before they
+          count on assistance.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
         <p class="eyebrow">Official Sources</p>
@@ -262,7 +296,7 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+  <section class="section-band" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>
