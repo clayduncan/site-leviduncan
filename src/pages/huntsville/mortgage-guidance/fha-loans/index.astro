@@ -56,6 +56,27 @@ const processSteps = [
   },
 ];
 
+const officialResources = [
+  {
+    title: 'HUD FHA loan overview',
+    description:
+      'HUD explains FHA loan basics, including low down payments, low closing costs, and credit qualification flexibility.',
+    url: 'https://www.hud.gov/helping-americans/loans',
+  },
+  {
+    title: 'HUD-approved housing counselors',
+    description:
+      'HUD resources can help buyers find approved housing counseling for independent homebuyer education and support.',
+    url: 'https://www.hud.gov/counseling',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
 const faqs = [
   {
     question: 'Who should consider an FHA loan in Huntsville?',
@@ -205,7 +226,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="faq-heading">
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where FHA buyers can verify the basics.</h2>
+        <p>
+          FHA guidance should be practical, but buyers should also know where
+          the official program information lives. These resources support the
+          FHA topics Levi reviews with buyers.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>

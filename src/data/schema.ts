@@ -114,7 +114,10 @@ export const personJsonLd = {
     'Homebuyer Master Class',
     'mortgage loan origination',
   ],
-  sameAs: profileLinks.map((link) => link.url),
+  sameAs: [
+    compliance.individualNmls.url,
+    ...profileLinks.map((link) => link.url),
+  ],
 } as const;
 
 export const organizationJsonLd = {
@@ -151,7 +154,10 @@ export const professionalServiceJsonLd = {
     '@id': organizationId,
   },
   serviceType: 'Mortgage loan origination',
-  sameAs: profileLinks.map((link) => link.url),
+  sameAs: [
+    compliance.individualNmls.url,
+    ...profileLinks.map((link) => link.url),
+  ],
 } as const;
 
 export function createMortgageServiceJsonLd({
@@ -334,5 +340,45 @@ export function createEventJsonLd(event: EventItem): SchemaObject {
     },
     url: event.registrationUrl ?? `${site.url}/events/#${event.id}`,
     isAccessibleForFree: true,
+  };
+}
+
+export function createHomebuyerMasterClassLearningResourceJsonLd(
+  classEvents: EventItem[],
+): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    '@id': `${site.url}/events/#homebuyer-master-class-learning-resource`,
+    name: 'Homebuyer Master Class',
+    url: `${site.url}/events/`,
+    description:
+      'Monthly Huntsville-area homebuyer education series covering property strategy, financing strategy, title and legal, home inspection, homeowners insurance, and closing readiness.',
+    inLanguage: 'en-US',
+    isAccessibleForFree: true,
+    educationalUse: 'Homebuyer education',
+    learningResourceType: 'Class',
+    teaches: [
+      'first-time homebuyer readiness',
+      'mortgage financing strategy',
+      'property strategy',
+      'home inspection considerations',
+      'homeowners insurance considerations',
+      'title and legal considerations',
+      'closing readiness',
+    ],
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'First-time and experienced homebuyers',
+    },
+    provider: {
+      '@id': personId,
+    },
+    publisher: {
+      '@id': organizationId,
+    },
+    hasPart: classEvents.map((event) => ({
+      '@id': `${site.url}/events/#${event.id}`,
+    })),
   };
 }

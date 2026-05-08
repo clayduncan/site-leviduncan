@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { compliance } from '../data/compliance';
 import {
   createBreadcrumbJsonLd,
   organizationJsonLd,
@@ -79,14 +80,45 @@ const schema = [
         </p>
         <p>
           In the mortgage business, Levi wants buyers to feel informed instead
-          of overwhelmed. His goal is to help people compare practical loan
+          of overwhelmed. His goal is to help people compare practical mortgage
           options, pursue strong rates and great service, and understand the
-          process early enough to make confident decisions.
+          process early enough to make confident decisions. That is especially
+          important for buyers who are preparing for their first purchase,
+          comparing FHA or USDA financing, reviewing Alabama First Step down
+          payment assistance, or trying to decide whether a home search is
+          truly ready to begin.
         </p>
         <p>
           What Levi enjoys most is helping people get into a home they love and
           showing them that a mortgage process can be easier and smoother than
           they expected.
+        </p>
+        <p>
+          Levi works with homebuyers across Madison, Decatur, Athens,
+          Albertville, Arab, and the wider Tennessee Valley, serving Madison
+          County, Marshall County, and Morgan County across North Alabama. His
+          work is centered on early education, clear communication, and
+          practical next steps before pressure builds around a contract,
+          closing timeline, or changing market conditions.
+        </p>
+        <p>
+          Through Princeton Mortgage, Levi helps buyers review the details that
+          can shape a stronger purchase plan: payment comfort, cash to close,
+          credit position, income documentation, loan program fit, property
+          expectations, and timing. He also supports buyer education through
+          the Homebuyer Master Class, a monthly Huntsville-area class built to
+          help first-time and experienced buyers understand the full path before
+          making a move.
+        </p>
+        <p>
+          Levi believes good mortgage guidance should make the next decision
+          easier to understand. Buyers should know what matters now, what can
+          wait, what could create risk, and when it is time to move from
+          conversation to application.
+        </p>
+        <p class="credential-link">
+          NMLS #{site.nmlsId} —
+          <a href={compliance.individualNmls.url}>View Levi's NMLS Consumer Access profile</a>
         </p>
       </div>
       <div class="feature-grid">

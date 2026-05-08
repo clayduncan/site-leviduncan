@@ -77,6 +77,27 @@ const dscrFactors = [
   },
 ];
 
+const officialResources = [
+  {
+    title: 'CFPB Loan Estimate explanation',
+    description:
+      'CFPB explains the official Loan Estimate buyers receive after applying, including loan terms, payments, costs, and special features.',
+    url: 'https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-1995/',
+  },
+  {
+    title: 'CFPB mortgage resources',
+    description:
+      'Consumer Financial Protection Bureau mortgage resources help buyers understand comparison shopping and mortgage disclosures.',
+    url: 'https://www.consumerfinance.gov/mortgages/',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
 const faqs = [
   {
     question: 'What is a DSCR investor loan?',
@@ -250,6 +271,32 @@ const schema = [
           assumptions, loan structure, reserve needs, entity or title questions,
           and the next step with Princeton Mortgage.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where investors can verify mortgage disclosure basics.</h2>
+        <p>
+          DSCR program terms vary by lender and investor program, so there is
+          not one government DSCR rule page. These consumer resources help
+          investors verify the mortgage documents and disclosures that still
+          matter when comparing loan options.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>

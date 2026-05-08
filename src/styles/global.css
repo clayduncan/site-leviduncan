@@ -754,6 +754,20 @@ main {
   font-size: clamp(1.15rem, 2vw, 1.35rem);
 }
 
+.bio-copy-wide .credential-link {
+  margin-top: 0.35rem;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.credential-link a {
+  color: var(--color-blue);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
 .section-heading-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(15rem, 22rem);
@@ -846,6 +860,52 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: 64rem;
   margin-inline: auto;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+}
+
+.resource-card {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--color-navy), transparent 82%);
+  border-top: 3px solid var(--color-cognac);
+  border-radius: 0.5rem;
+  background: var(--color-white);
+  padding: clamp(1rem, 3vw, 1.35rem);
+  box-shadow: 0 1rem 2rem rgb(20 20 20 / 6%);
+  color: inherit;
+  text-decoration: none;
+}
+
+.resource-card span {
+  color: var(--color-cognac-dark);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.resource-card strong {
+  color: var(--color-ink);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  line-height: 1;
+}
+
+.resource-card p {
+  margin: 0;
+  color: var(--color-muted);
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+}
+
+.resource-card:hover strong {
+  color: var(--color-blue);
 }
 
 .feature-card,

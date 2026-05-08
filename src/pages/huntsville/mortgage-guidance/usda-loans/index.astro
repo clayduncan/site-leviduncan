@@ -56,6 +56,27 @@ const processSteps = [
   },
 ];
 
+const officialResources = [
+  {
+    title: 'USDA Guaranteed Loan Program',
+    description:
+      'USDA Rural Development explains the Section 502 Guaranteed Loan Program, including 100% financing for eligible buyers and properties.',
+    url: 'https://www.rd.usda.gov/programs-services/single-family-housing-programs/single-family-housing-guaranteed-loan-program',
+  },
+  {
+    title: 'USDA eligibility site',
+    description:
+      'USDA provides an address and map-based tool buyers can use to review income and property eligibility context.',
+    url: 'https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=RBSmenu',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
 const faqs = [
   {
     question: 'What is the biggest benefit of a USDA loan?',
@@ -205,7 +226,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="faq-heading">
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where USDA buyers can verify eligibility basics.</h2>
+        <p>
+          USDA fit depends on the borrower, household income, property address,
+          and occupancy plan. These official resources help buyers verify the
+          program framework Levi reviews with them.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>

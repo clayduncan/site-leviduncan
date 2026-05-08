@@ -4,6 +4,7 @@ import { events, pastEvents, upcomingEvents } from '../data/events';
 import {
   createBreadcrumbJsonLd,
   createEventJsonLd,
+  createHomebuyerMasterClassLearningResourceJsonLd,
   organizationJsonLd,
   personJsonLd,
 } from '../data/schema';
@@ -65,6 +66,7 @@ const schema = [
   personJsonLd,
   organizationJsonLd,
   ...events.map((event) => createEventJsonLd(event)),
+  createHomebuyerMasterClassLearningResourceJsonLd(events),
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',

@@ -56,6 +56,27 @@ const processSteps = [
   },
 ];
 
+const officialResources = [
+  {
+    title: 'AHFA First Step Mortgage Revenue Bonds',
+    description:
+      'Alabama Housing Finance Authority explains First Step, special low mortgage rates, and available down payment assistance.',
+    url: 'https://www.ahfa.com/homebuyers/programs-available/first-step-mortgage-revenue-bonds',
+  },
+  {
+    title: 'AHFA First Step FAQs',
+    description:
+      'AHFA’s First Step FAQ document gives buyers and lenders additional program details to verify before applying.',
+    url: 'https://www.ahfa.com/Content/Uploads/ahfa.com/files/First%20Step/First%20Step%20FAQs_revised042524_2.pdf',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
 const faqs = [
   {
     question: 'What is Alabama First Step down payment assistance?',
@@ -207,7 +228,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="faq-heading">
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where First Step buyers can verify program details.</h2>
+        <p>
+          Down payment assistance details can change, so buyers should compare
+          Levi's guidance with AHFA's official program information before
+          deciding whether First Step fits.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>

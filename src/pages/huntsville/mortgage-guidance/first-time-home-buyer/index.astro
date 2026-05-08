@@ -82,6 +82,27 @@ const offerReadiness = [
   },
 ];
 
+const officialResources = [
+  {
+    title: 'CFPB Buying a House guide',
+    description:
+      'Consumer Financial Protection Bureau guidance on preparing, comparing loan options, and reviewing official mortgage documents.',
+    url: 'https://www.consumerfinance.gov/owning-a-home/',
+  },
+  {
+    title: 'HUD homebuyer resources',
+    description:
+      'HUD resources for homebuyers, housing counseling, FHA basics, and help understanding homeownership options.',
+    url: 'https://www.hud.gov/topics/buying_a_home',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
 const dosAndDonts = [
   {
     title: 'Do talk through payment comfort early',
@@ -281,7 +302,32 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where first-time buyers can verify the basics.</h2>
+        <p>
+          Levi's guidance should make official information easier to understand,
+          not replace it. These sources help buyers verify consumer mortgage
+          basics, homebuyer education topics, and licensing.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="faq-heading">
     <div class="section-inner">
       <div class="section-heading">
         <p class="eyebrow">FAQ</p>
