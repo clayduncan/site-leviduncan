@@ -198,15 +198,38 @@ main {
   text-decoration: none;
 }
 
+.site-nav a {
+  border-radius: 999px;
+  line-height: 1;
+  padding: 0.58rem 0.78rem;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
 .site-nav {
   align-items: center;
   justify-content: flex-end;
+  gap: 0.35rem 0.45rem;
 }
 
 .site-nav a:hover,
 .social-links a:hover,
 .text-link:hover {
   color: var(--color-blue);
+}
+
+.site-nav a.is-active,
+.site-nav a[aria-current='page'] {
+  background: var(--color-navy);
+  color: var(--color-white);
+  box-shadow: 0 0.5rem 1.2rem rgb(36 48 95 / 12%);
+}
+
+.site-nav a.is-active:hover,
+.site-nav a[aria-current='page']:hover {
+  color: var(--color-white);
 }
 
 .site-nav .nav-cta {

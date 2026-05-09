@@ -14,6 +14,29 @@ interface Props {
 const { title, description, canonical, robots, schema } = Astro.props;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const pathname = Astro.url.pathname;
+const navItems = [
+  {
+    href: '/huntsville/mortgage-guidance/',
+    label: 'Mortgage Hub',
+    active: pathname.startsWith('/huntsville/mortgage-guidance/'),
+  },
+  {
+    href: '/about/',
+    label: 'About',
+    active: pathname === '/about/',
+  },
+  {
+    href: '/reviews/',
+    label: 'Reviews',
+    active: pathname === '/reviews/',
+  },
+  {
+    href: '/events/',
+    label: 'Events',
+    active: pathname === '/events/',
+  },
+];
 ---
 
 <!doctype html>
@@ -76,10 +99,17 @@ const schemaItems = Array.isArray(schema) ? schema : schema ? [schema] : [];
           <small>powered by Princeton Mortgage</small>
         </div>
         <nav class="site-nav" aria-label="Primary navigation">
-          <a href="/huntsville/mortgage-guidance/">Mortgage Hub</a>
-          <a href="/about/">About</a>
-          <a href="/reviews/">Reviews</a>
-          <a href="/events/">Events</a>
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class:list={[item.active && 'is-active']}
+                aria-current={item.active ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            ))
+          }
         </nav>
       </div>
     </header>
