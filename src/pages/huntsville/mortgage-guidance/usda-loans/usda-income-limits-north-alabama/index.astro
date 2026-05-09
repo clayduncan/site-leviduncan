@@ -1,0 +1,468 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/usda-loans/usda-income-limits-north-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const eligibilityRules = [
+  {
+    label: 'County',
+    title: 'The limit follows the property area',
+    description:
+      'USDA income eligibility is tied to where the home is located, so a buyer comparing Limestone, Madison, Morgan, Marshall, or Cullman County should check the correct county before relying on a number.',
+  },
+  {
+    label: 'Household',
+    title: 'Household size changes the answer',
+    description:
+      'The income cap is not one flat number for every buyer. USDA uses household size, so a one- to four-person household and a five- to eight-person household can have different limits.',
+  },
+  {
+    label: 'Adults',
+    title: 'More than borrower income may count',
+    description:
+      'For eligibility, USDA reviews household income, which can include income from adult household members even when someone is not applying for the mortgage.',
+  },
+  {
+    label: 'Adjustment',
+    title: 'Some deductions may matter',
+    description:
+      'USDA eligibility can include allowable adjustments for items such as dependents, childcare, and certain elderly or disability-related expenses when the rule applies.',
+  },
+];
+
+const incomeTypes = [
+  {
+    title: 'Annual household income',
+    description:
+      'This is the USDA eligibility test. It looks at the household income picture to see whether the buyer is within the program income cap for the area and household size.',
+  },
+  {
+    title: 'Adjusted annual income',
+    description:
+      'This is annual income after allowable USDA adjustments. It is the number USDA uses for the income-limit comparison when deductions apply.',
+  },
+  {
+    title: 'Repayment income',
+    description:
+      'This is the income used to qualify for the mortgage payment. A buyer can be under the USDA eligibility limit and still need enough stable repayment income for the proposed loan.',
+  },
+];
+
+const checkSteps = [
+  {
+    title: 'Start with the property county',
+    description:
+      'Choose the county or area tied to the property search. Do not use a Huntsville-area number for a different county without checking the USDA tool.',
+  },
+  {
+    title: 'Count the full household correctly',
+    description:
+      'Identify who will live in the home, which adults have income, and whether anyone is a borrower, non-borrowing spouse, adult child, roommate, or dependent.',
+  },
+  {
+    title: 'Separate eligibility from payment approval',
+    description:
+      'A buyer needs to be under the USDA income cap and still qualify for the mortgage payment, credit profile, assets, property, and underwriting requirements.',
+  },
+  {
+    title: 'Re-check before relying on USDA',
+    description:
+      'USDA income limits and household facts can change. Buyers should re-check the official tool before treating USDA as the final path for an offer.',
+  },
+];
+
+const commonScenarios = [
+  {
+    title: 'Two incomes, one borrower',
+    description:
+      'A spouse or other adult household member may affect USDA income eligibility even when only one person is applying for the mortgage.',
+  },
+  {
+    title: 'Adult child living at home',
+    description:
+      'Income from an adult household member can create an eligibility question, so buyers should bring that up early instead of waiting until underwriting.',
+  },
+  {
+    title: 'Commission, overtime, or bonus income',
+    description:
+      'Variable income can affect both eligibility and repayment analysis. The file needs a clear review of what income is stable, recurring, and properly documented.',
+  },
+  {
+    title: 'Income near the cap',
+    description:
+      'When a buyer is close to the USDA limit, the details matter: household size, eligible deductions, timing, county, and documentation can all change the answer.',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'USDA Loans in North Alabama',
+    description:
+      'Return to the main USDA page for no-down-payment benefits, property fit, income fit, and the full buyer path.',
+    url: '/huntsville/mortgage-guidance/usda-loans/',
+  },
+  {
+    title: 'USDA Eligible Areas in North Alabama',
+    description:
+      'Check whether a target address sits in an eligible USDA area before relying on USDA financing.',
+    url: '/huntsville/mortgage-guidance/usda-loans/usda-eligible-areas-north-alabama/',
+  },
+  {
+    title: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Compare USDA income and property rules with FHA when both programs could be realistic options.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'USDA Guaranteed Loan Program',
+    description:
+      'Official USDA Rural Development overview of the Section 502 Guaranteed Loan Program, including the 115% median household income requirement.',
+    url: 'https://www.rd.usda.gov/programs-services/single-family-housing-programs/single-family-housing-guaranteed-loan-program',
+  },
+  {
+    title: 'USDA eligibility site',
+    description:
+      'Official USDA tool for checking income eligibility and property eligibility. Buyers should use the current tool before relying on any static number.',
+    url: 'https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do?pageAction=RBSmenu',
+  },
+  {
+    title: 'USDA HB-1-3555 Chapter 9',
+    description:
+      'Official USDA handbook chapter covering income analysis for guaranteed loans, including annual income and documentation rules.',
+    url: 'https://www.rd.usda.gov/media/file/download/chapter-9-income-analysis-markup-version.pdf',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What are USDA income limits based on?',
+    answer:
+      'USDA guaranteed loan income limits are based on the property area and household size. The official USDA tool should be used for the current county and household-size limit because static numbers can change.',
+  },
+  {
+    question: 'Does USDA count only the borrower’s income?',
+    answer:
+      'No. USDA income eligibility can include income from adult household members, not only the person applying for the loan. That is different from repayment income, which is used to qualify for the mortgage payment.',
+  },
+  {
+    question: 'Can I make too much money for a USDA loan?',
+    answer:
+      'Yes. USDA guaranteed loans are for eligible low- and moderate-income households, and USDA states that applicants cannot exceed 115% of median household income for the applicable area.',
+  },
+  {
+    question: 'What if my income is close to the USDA limit?',
+    answer:
+      'If income is close to the limit, the buyer should review household size, adult household income, allowable adjustments, county, and documentation with Levi before assuming USDA will or will not work.',
+  },
+  {
+    question: 'Is USDA income eligibility the same as loan approval?',
+    answer:
+      'No. Income eligibility only answers whether the household may fit the USDA income cap. The buyer still needs to qualify for the mortgage payment, credit, assets, occupancy, property, and underwriting requirements.',
+  },
+  {
+    question: 'When should North Alabama buyers check USDA income limits?',
+    answer:
+      'Buyers should check USDA income limits before they narrow the home search around USDA financing, especially when shopping in Athens, Arab, Albertville, outer Madison County, Morgan County, Marshall County, or other eligible-area possibilities.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'USDA Income Limits in North Alabama',
+    description:
+      'Focused USDA income-limit and household eligibility guidance for North Alabama buyers comparing USDA financing near Huntsville, Athens, Decatur, Albertville, Arab, Madison County, Marshall County, and Morgan County.',
+    serviceType: 'USDA income eligibility guidance',
+    audience: ['homebuyers', 'first-time homebuyers', 'USDA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'USDA Income Limits in North Alabama',
+    description:
+      'USDA mortgage income-limit guidance for North Alabama buyers reviewing household income, adjusted annual income, repayment income, and USDA eligibility timing.',
+    loanType: 'USDA mortgage loan',
+    audience: ['homebuyers', 'first-time homebuyers', 'USDA loan borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${pageUrl}#howto`,
+    name: 'How to Check USDA Income Eligibility in North Alabama',
+    description:
+      'A practical sequence for reviewing USDA income eligibility before relying on USDA financing for a North Alabama home search.',
+    step: checkSteps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: step.description,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'USDA Income Limits in North Alabama',
+    description:
+      'Answer-first guide to USDA income limits, household eligibility, adjusted annual income, and repayment income for North Alabama buyers.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'USDA Loans', path: '/huntsville/mortgage-guidance/usda-loans/' },
+    { name: 'USDA Income Limits in North Alabama', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="USDA Income Limits | North Alabama | Levi Duncan"
+  description="Review USDA income limits, household eligibility, and buyer fit with Levi Duncan before relying on USDA financing in North Alabama."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="income-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">USDA Income Limits</p>
+      <h1 id="income-heading">USDA income limits for North Alabama homebuyers.</h1>
+      <p class="hero-lede">
+        USDA income limits help determine whether a household may use USDA
+        financing for an eligible property. Levi Duncan helps buyers across
+        Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee
+        Valley compare household income, county, household size, and payment
+        approval before the home search creates pressure.
+      </p>
+      <div class="hero-actions" aria-label="USDA income limit actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Check USDA income fit</a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/usda-loans/">
+          Back to USDA loan guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining USDA income limits in North Alabama"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>USDA household income, eligibility, and buyer fit</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">How do USDA income limits work?</h2>
+        </div>
+        <p>
+          USDA guaranteed loan eligibility includes an income cap tied to the
+          property area and household size. The important buyer distinction is
+          that USDA income eligibility can review the whole household, while
+          mortgage approval also reviews repayment income, credit, assets,
+          property eligibility, occupancy, and underwriting.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          eligibilityRules.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="income-types-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Income Types</p>
+        <h2 id="income-types-heading">Which income number matters for USDA?</h2>
+        <p>
+          USDA income conversations can feel confusing because the program does
+          not use one income number for every purpose. A buyer may be under the
+          eligibility limit but still need enough stable repayment income for
+          the proposed mortgage payment.
+        </p>
+        <div class="hero-actions" aria-label="USDA income review actions">
+          <a class="button button-primary" href={site.calendlyUrl}>Review income with Levi</a>
+          <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="USDA income types">
+        {
+          incomeTypes.map((item) => (
+            <article>
+              <span>USDA Income</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="steps-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">How to Check</p>
+        <h2 id="steps-heading">How should buyers check USDA income eligibility?</h2>
+        <p>
+          The right sequence is simple: use the correct area, count the
+          household correctly, separate eligibility from payment approval, and
+          re-check before relying on USDA for an offer.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          checkSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+          <h2 id="local-heading">Why does USDA income fit need local review?</h2>
+        </div>
+        <p>
+          {site.serviceAreaStatement} USDA can be especially useful when a
+          buyer is shopping in eligible rural or suburban areas, but income fit
+          should be checked against the right county, household size, and
+          documentation before a buyer builds the search around USDA financing.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          commonScenarios.map((item) => (
+            <article class="feature-card">
+              <span>Watch Item</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Related Guides</p>
+        <h2 id="related-heading">What should buyers check after income fit?</h2>
+        <p>
+          USDA income eligibility is only one piece. Buyers also need to check
+          property location, compare FHA and USDA fallback paths, and choose the
+          loan structure that fits the actual home search.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where buyers can verify current USDA income rules.</h2>
+        <p>
+          USDA is the source of truth for income eligibility and program rules.
+          Princeton Mortgage is not affiliated with, endorsed by, or sponsored
+          by the U.S. Department of Agriculture.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">USDA income limit questions in North Alabama.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Check income fit before building the home search around USDA.</h2>
+          </div>
+          <div class="hero-actions" aria-label="USDA income next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book a buyer consultation</a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

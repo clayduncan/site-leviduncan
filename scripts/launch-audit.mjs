@@ -130,13 +130,14 @@ const expectedRoutes = [
   '/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/',
   '/huntsville/mortgage-guidance/investment-property/',
   '/huntsville/mortgage-guidance/usda-loans/usda-eligible-areas-north-alabama/',
+  '/huntsville/mortgage-guidance/usda-loans/usda-income-limits-north-alabama/',
   '/huntsville/mortgage-guidance/usda-loans/',
   '/reviews/',
 ];
 
 assert(
-  htmlFiles.length === 18,
-  `Expected 18 built HTML files including 404, found ${htmlFiles.length}.`,
+  htmlFiles.length === 19,
+  `Expected 19 built HTML files including 404, found ${htmlFiles.length}.`,
 );
 
 for (const route of expectedRoutes) {
