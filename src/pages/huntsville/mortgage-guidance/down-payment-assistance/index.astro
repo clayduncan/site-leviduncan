@@ -15,45 +15,45 @@ const pageUrl = new URL(pagePath, site.url).href;
 
 const firstStepHighlights = [
   {
-    label: 'Assistance',
-    title: 'Help with upfront cash',
+    label: 'Cash gap',
+    title: 'Start with the funds needed at closing',
     description:
-      'First Step may provide down payment assistance up to $10,000 or 4% of the sales price, whichever is lower, for eligible borrowers.',
+      'The right DPA conversation starts by comparing down payment, closing costs, prepaid items, reserves, and how much cash the buyer wants to keep after closing.',
   },
   {
-    label: 'Rate',
-    title: 'Below-market mortgage rates',
+    label: 'Tradeoff',
+    title: 'Assistance can change the whole structure',
     description:
-      'AHFA describes First Step as offering special low mortgage interest rates through Mortgage Revenue Bond loans.',
+      'Assistance may help with upfront money, but buyers still need to understand rate, payment, second-mortgage terms, repayment, and future flexibility.',
   },
   {
-    label: 'Structure',
-    title: 'Paired with a first mortgage',
+    label: 'Fit',
+    title: 'The program should match the purchase plan',
     description:
-      'The assistance is secured by a 10-year second mortgage combined with the borrower’s 30-year fixed-rate First Step mortgage.',
+      'DPA is most useful when the buyer, property, income, sales price, loan type, and timeline all work together instead of being checked after the offer.',
   },
 ];
 
 const processSteps = [
   {
-    title: 'Check the buyer and property fit',
+    title: 'Find the actual cash gap',
     description:
-      'First Step requires the borrower and property to meet program rules, including income limits, sales price limits, creditworthiness standards, and owner occupancy.',
+      'Separate down payment from closing costs, prepaid taxes and insurance, inspections, reserves, moving money, and the amount the buyer wants left after closing.',
   },
   {
-    title: 'Choose an eligible loan path',
+    title: 'Compare assistance against the base loan',
     description:
-      'First Step can be available with FHA, VA, USDA, and Freddie Mac HFA Advantage conventional loans when the full scenario qualifies.',
+      'Look at the payment, rate, second-mortgage terms, seller credits, gift funds, and whether assistance improves the whole plan or only solves one line item.',
   },
   {
-    title: 'Compare cash to close',
+    title: 'Check program fit before the offer',
     description:
-      'Levi helps buyers understand how assistance may affect down payment, closing costs, monthly payment, and the funds needed at closing.',
+      'If First Step or another assistance option is likely, the buyer should understand income limits, property limits, participating lender requirements, and timing before writing.',
   },
   {
-    title: 'Move from review to application',
+    title: 'Choose the cleanest path forward',
     description:
-      'When First Step looks like a practical fit, Levi can help the buyer move into a formal application with Princeton Mortgage.',
+      'Sometimes DPA is the right tool. Sometimes FHA, USDA, seller credits, gift funds, or a different price point creates a cleaner purchase plan.',
   },
 ];
 
@@ -181,14 +181,14 @@ const schema = [
   <section class="section-band section-band-light" aria-labelledby="benefits-heading">
     <div class="split-section">
       <div>
-        <p class="eyebrow">Why First Step</p>
-        <h2 id="benefits-heading">What are the benefits of First Step assistance?</h2>
+        <p class="eyebrow">Cash Strategy</p>
+        <h2 id="benefits-heading">When is down payment assistance worth checking?</h2>
         <p>
-          First Step is designed to make homeownership more reachable for
-          eligible Alabama buyers. The main advantage is not just one feature;
-          it is the combination of special low mortgage rates, assistance for
-          upfront cash, and a structured second mortgage that is paired with the
-          buyer’s first mortgage.
+          Down payment assistance is worth checking when the buyer's income and
+          payment look workable, but the upfront cash creates friction. This
+          page helps buyers think through the cash-to-close strategy; the
+          focused First Step eligibility guide handles the detailed program
+          rules.
         </p>
       </div>
       <div class="local-context-panel" aria-label="First Step benefits">
@@ -209,7 +209,7 @@ const schema = [
     <div class="section-inner">
       <div class="section-heading section-heading-wide events-section-heading">
         <p class="eyebrow">How It Works</p>
-        <h2 id="process-heading">How First Step guidance works before an offer.</h2>
+        <h2 id="process-heading">How DPA guidance works before an offer.</h2>
       </div>
       <div class="feature-grid feature-grid-four">
         {
@@ -231,16 +231,17 @@ const schema = [
         <div>
           <p class="eyebrow">North Alabama Context</p>
           <h2 id="local-heading">
-            First Step guidance across Madison, Decatur, Athens, Albertville, Arab, and the
-            wider Tennessee Valley.
+            DPA strategy across Madison, Decatur, Athens, Albertville, Arab, and the wider
+            Tennessee Valley.
           </h2>
         </div>
         <p>
-          {site.serviceAreaStatement} Buyers may be closer to homeownership than
-          they think if the main barrier is upfront cash. Levi helps buyers
-          compare First Step with FHA, USDA, conventional options, payment
-          comfort, income limits, sales price limits, and the next step with
-          Princeton Mortgage.
+          In North Alabama, the best assistance conversation is usually not
+          “Can I get free money?” It is “Which structure leaves me with the
+          strongest purchase plan?” Levi helps buyers compare First Step,
+          FHA, USDA, conventional options, seller credits, gift funds, payment
+          comfort, and cash left after closing across Madison County, Marshall
+          County, Morgan County, and nearby communities.
         </p>
       </div>
     </div>

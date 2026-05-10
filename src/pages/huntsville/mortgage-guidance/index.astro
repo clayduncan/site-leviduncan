@@ -40,7 +40,8 @@ const heroPaths = [
 const faqs = [
   {
     question: 'What mortgage guidance does Levi Duncan provide in Huntsville?',
-    answer: `${site.serviceAreaStatement} He provides mortgage guidance for first-time buyers, FHA loans, USDA loans, down payment assistance, buyer readiness, and investment property financing.`,
+    answer:
+      'Levi provides Huntsville and North Alabama mortgage guidance for first-time buyers, FHA loans, USDA loans, down payment assistance, buyer readiness, and investment property financing.',
   },
   {
     question: 'When should a first-time homebuyer talk with Levi?',
@@ -169,7 +170,8 @@ const schema = [
     '@id': `${pageUrl}#webpage`,
     url: pageUrl,
     name: 'Mortgage Guidance in Huntsville',
-    description: `Start here for Levi Duncan mortgage guidance. ${site.serviceAreaStatement}`,
+    description:
+      'Start here for Levi Duncan mortgage guidance across Madison, Decatur, Athens, Albertville, Arab, Madison County, Marshall County, Morgan County, and the wider Tennessee Valley.',
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: hubItemList.map((item, index) => ({
@@ -198,7 +200,12 @@ const schema = [
       <p class="eyebrow">Mortgage Guidance in Huntsville</p>
       <h1 id="hub-heading">Mortgage guidance for Huntsville buyers starting smart.</h1>
       <p class="hero-lede">
-        {site.serviceAreaStatement}
+        This hub organizes Levi Duncan's mortgage guidance for buyers across
+        Madison, Decatur, Athens, Albertville, Arab, Madison County, Marshall
+        County, Morgan County, and the wider Tennessee Valley. Start here to
+        compare first-time buyer guidance, FHA loans, USDA loans, down payment
+        assistance, and DSCR investor financing before one program starts to
+        look like the only option.
       </p>
       <div class="hero-actions" aria-label="Mortgage guidance actions">
         <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
