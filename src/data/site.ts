@@ -10,8 +10,10 @@ export const site = {
   phoneHref: 'tel:+12565508099',
   email: 'lduncan@princetonmortgage.com',
   emailHref: 'mailto:lduncan@princetonmortgage.com',
-  calendlyUrl: 'https://bit.ly/BookLevi', // Canonical: https://calendly.com/lduncan-princetonmortgage/30min
-  schedulingUrl: 'https://bit.ly/BookLevi',
+  calendlyUrl: 'https://calendly.com/lduncan-princetonmortgage/book-levi',
+  schedulingUrl: 'https://calendly.com/lduncan-princetonmortgage/book-levi',
+  homebuyerConsultationUrl:
+    'https://calendly.com/lduncan-princetonmortgage/homebuyer-consultation',
   applicationUrl: 'https://bit.ly/AppWithLevi', // Canonical: https://princeton.tidalwave.ai/signup/levi.duncan/D2OUK3FT86H9KK708470
   contactCardUrl: null,
   nmls: '2721357',

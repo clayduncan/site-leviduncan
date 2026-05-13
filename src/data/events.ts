@@ -31,7 +31,8 @@ export const events: EventItem[] = [
       streetAddress: '809 Shoney Dr. Ste 108',
       postalCode: '35801',
     },
-    registrationUrl: 'https://bit.ly/BookLevi',
+    registrationUrl:
+      'https://calendly.com/lduncan-princetonmortgage/homebuyer-consultation',
     audience: 'First-time and experienced homebuyers',
     description:
       'Monthly homebuyer education session covering property strategy, title and legal, home inspection, homeowners insurance, and financing strategy.',
