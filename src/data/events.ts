@@ -21,9 +21,9 @@ export interface EventItem {
 
 export const events: EventItem[] = [
   {
-    id: 'homebuyer-masterclass-2026-05-14',
+    id: 'homebuyer-masterclass-2026-05-20',
     name: 'Homebuyer Master Class',
-    date: '2026-05-14T18:30:00-05:00',
+    date: '2026-05-20T18:30:00-05:00',
     venue: 'Keller Williams Huntsville',
     city: 'Huntsville',
     state: 'AL',

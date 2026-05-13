@@ -168,30 +168,53 @@ const schema = [
   {
     nextEvent && (
       <section class="section-band section-band-light" aria-labelledby="event-heading">
-        <div class="split-section split-section-contained">
-          <div>
+        <div class="section-inner">
+          <div class="section-heading section-heading-wide">
             <p class="eyebrow">Featured Event</p>
             <h2 id="event-heading">Next Homebuyer Master Class in Huntsville.</h2>
-            <p>
-              The Homebuyer Master Class is a monthly Huntsville-area education
-              series for first-time and experienced buyers. The next session is at
-              {` ${nextEvent.venue}`} and covers property strategy, title, legal,
-              inspection, insurance, and financing strategy.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="/events/">View events</a>
-              <a class="button button-secondary" href={site.calendlyUrl}>Book Levi</a>
-            </div>
           </div>
-          <div class="local-context-panel" aria-label="Next Homebuyer Master Class details">
-            <article>
-              <span>{new Date(nextEvent.date).toLocaleDateString('en', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-              })}</span>
-              <strong>{nextEvent.name}</strong>
-              <p>{nextEvent.venue}, {nextEvent.city}, {nextEvent.state}</p>
+          <div class="split-section split-section-contained">
+            <div>
+              <p>
+                The Homebuyer Master Class is a monthly Huntsville-area education
+                series for first-time and experienced buyers. The next session is at
+                {` ${nextEvent.venue}`} and covers property strategy, title, legal,
+                inspection, insurance, and financing strategy.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="/events/">View events</a>
+                <a class="button button-secondary" href={site.calendlyUrl}>Book Levi</a>
+              </div>
+            </div>
+            <article class="event-card event-card-featured" aria-label="Next Homebuyer Master Class details">
+              <p>{nextEvent.audience}</p>
+              <h3>{nextEvent.name}</h3>
+              <dl>
+                <div>
+                  <dt>Date</dt>
+                  <dd>
+                    <span>{new Date(nextEvent.date).toLocaleDateString('en', {
+                      month: 'long',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Location</dt>
+                  <dd>{nextEvent.venue}, {nextEvent.city}, {nextEvent.state}</dd>
+                </div>
+              </dl>
+              <p>{nextEvent.description}</p>
+              <div class="expert-list expert-list-compact" aria-label="Featured event subject matter experts">
+                <p>Subject Matter Experts</p>
+                {nextEvent.speakers.map((speaker) => (
+                  <div>
+                    <strong>{speaker.topic}</strong>
+                    <span>{speaker.name} · {speaker.company}</span>
+                  </div>
+                ))}
+              </div>
             </article>
           </div>
         </div>
@@ -201,7 +224,7 @@ const schema = [
 
   <section class="section-band" aria-labelledby="homepage-faq-heading">
     <div class="section-inner">
-      <div class="section-heading">
+      <div class="section-heading section-heading-wide">
         <p class="eyebrow">FAQ</p>
         <h2 id="homepage-faq-heading">Quick answers about Levi Duncan.</h2>
       </div>
