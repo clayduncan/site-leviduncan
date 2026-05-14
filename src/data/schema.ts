@@ -1,6 +1,6 @@
 import { compliance } from './compliance';
 import type { EventItem } from './events';
-import type { AggregateRating, Review } from './reviews';
+import type { Review } from './reviews';
 import { profileLinks, site } from './site';
 
 type SchemaObject = Record<string, unknown>;
@@ -9,10 +9,61 @@ const siteId = `${site.url}/#website`;
 const personId = `${site.url}/#person`;
 const organizationId = `${site.url}/#princeton-mortgage`;
 const professionalServiceId = `${site.url}/#professional-service`;
-export const defaultSchemaImage = new URL(
-  '/images/clay-duncan-wbackground-1400.jpg',
-  site.url,
-).href;
+
+export const defaultSchemaImage = new URL(site.heroImage, site.url).href;
+
+export const areaServedJsonLd = [
+  ...site.serviceAreaCities.map((city) => ({
+    '@type': 'City',
+    name: city,
+    addressRegion: site.state,
+    addressCountry: 'US',
+  })),
+  ...site.serviceAreaCounties.map((county) => ({
+    '@type': 'AdministrativeArea',
+    name: county,
+    addressRegion: site.state,
+    addressCountry: 'US',
+  })),
+] as const;
+
+export const mortgageServices = [
+  {
+    name: 'First-Time Home Buyer Guidance',
+    path: '/huntsville/mortgage-guidance/first-time-home-buyer/',
+    serviceType: 'First-time homebuyer mortgage guidance',
+    description:
+      'Mortgage guidance for first-time homebuyers preparing to buy across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley.',
+  },
+  {
+    name: 'FHA Loans',
+    path: '/huntsville/mortgage-guidance/fha-loans/',
+    serviceType: 'FHA mortgage loan origination',
+    description:
+      'FHA loan guidance for buyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing credit, down payment, and homebuying readiness options.',
+  },
+  {
+    name: 'USDA Loans',
+    path: '/huntsville/mortgage-guidance/usda-loans/',
+    serviceType: 'USDA mortgage loan origination',
+    description:
+      'USDA loan guidance for eligible homebuyers evaluating rural and suburban purchase options across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley.',
+  },
+  {
+    name: 'Down Payment Assistance',
+    path: '/huntsville/mortgage-guidance/down-payment-assistance/',
+    serviceType: 'Down payment assistance mortgage guidance',
+    description:
+      'Down payment assistance guidance for Alabama homebuyers who need a clearer starting point before applying.',
+  },
+  {
+    name: 'Investment Property',
+    path: '/huntsville/mortgage-guidance/investment-property/',
+    serviceType: 'Investment property mortgage guidance',
+    description:
+      'Investment property mortgage guidance for buyers evaluating rental-property financing across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley.',
+  },
+] as const;
 
 export const websiteJsonLd = {
   '@context': 'https://schema.org',
@@ -46,27 +97,27 @@ export const personJsonLd = {
   },
   identifier: {
     '@type': 'PropertyValue',
-    propertyID: 'Google Knowledge Graph',
-    value: site.googleKnowledgeGraphId,
+    propertyID: 'NMLS',
+    value: site.nmlsId,
+    url: compliance.individualNmls.url,
   },
-  areaServed: site.serviceArea,
+  areaServed: areaServedJsonLd,
   knowsAbout: [
-    'mortgage lending',
-    'VA loans',
-    'complex mortgage guidance',
-    'higher-priced home financing',
-    'AI training for REALTORS®',
-    'real estate AI education',
-    'loan officer growth',
-    'why join Princeton Mortgage',
-    'mortgage leadership',
+    'first-time homebuyer education',
+    'down payment assistance',
     'FHA loans',
     'USDA loans',
-    'first-time homebuyer education',
-    'AI education for real estate professionals',
-    'mortgage leadership',
+    'buyer readiness',
+    'credit preparation',
+    'budgeting for homebuyers',
+    'investment property mortgage guidance',
+    'Homebuyer Master Class',
+    'mortgage loan origination',
   ],
-  sameAs: profileLinks.map((link) => link.url),
+  sameAs: [
+    compliance.individualNmls.url,
+    ...profileLinks.map((link) => link.url),
+  ],
 } as const;
 
 export const organizationJsonLd = {
@@ -79,6 +130,7 @@ export const organizationJsonLd = {
     '@type': 'PropertyValue',
     propertyID: 'NMLS',
     value: compliance.companyNmls.id,
+    url: compliance.companyNmls.url,
   },
 } as const;
 
@@ -86,15 +138,15 @@ export const professionalServiceJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': professionalServiceId,
-  name: 'Clay Duncan Mortgage Services',
+  name: 'Levi Duncan Mortgage Services',
   url: site.url,
   image: defaultSchemaImage,
   description:
-    'Home-based mortgage origination services from Clay Duncan for Huntsville, Madison, Redstone Arsenal, and North Alabama borrowers.',
+    'Address-free mortgage origination services from Levi Duncan for Madison, Decatur, Athens, Albertville, Arab, Madison County, Marshall County, Morgan County, and the wider Tennessee Valley.',
   telephone: site.phone,
   email: site.email,
   priceRange: '$$',
-  areaServed: site.serviceArea,
+  areaServed: areaServedJsonLd,
   provider: {
     '@id': personId,
   },
@@ -102,7 +154,10 @@ export const professionalServiceJsonLd = {
     '@id': organizationId,
   },
   serviceType: 'Mortgage loan origination',
-  sameAs: profileLinks.map((link) => link.url),
+  sameAs: [
+    compliance.individualNmls.url,
+    ...profileLinks.map((link) => link.url),
+  ],
 } as const;
 
 export function createMortgageServiceJsonLd({
@@ -127,7 +182,7 @@ export function createMortgageServiceJsonLd({
     serviceType,
     provider: { '@id': personId },
     broker: { '@id': organizationId },
-    areaServed: site.serviceArea,
+    areaServed: areaServedJsonLd,
     audience: audience?.map((audienceType) => ({
       '@type': 'Audience',
       audienceType,
@@ -135,40 +190,67 @@ export function createMortgageServiceJsonLd({
   };
 }
 
+export function createMortgageLoanJsonLd({
+  pageUrl,
+  name,
+  description,
+  loanType,
+  audience,
+}: {
+  pageUrl: string;
+  name: string;
+  description: string;
+  loanType: string;
+  audience?: string[];
+}): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MortgageLoan',
+    '@id': `${pageUrl}#mortgage-loan`,
+    name,
+    description,
+    loanType,
+    url: pageUrl,
+    provider: { '@id': organizationId },
+    broker: { '@id': personId },
+    areaServed: areaServedJsonLd,
+    audience: audience?.map((audienceType) => ({
+      '@type': 'Audience',
+      audienceType,
+    })),
+  };
+}
+
+export const mortgageServiceJsonLd = mortgageServices.map((service) =>
+  createMortgageServiceJsonLd({
+    pageUrl: new URL(service.path, site.url).href,
+    name: service.name,
+    description: service.description,
+    serviceType: service.serviceType,
+    audience: ['homebuyers'],
+  }),
+);
+
 export const homePageSchema = [
   websiteJsonLd,
   personJsonLd,
   organizationJsonLd,
   professionalServiceJsonLd,
-  createMortgageServiceJsonLd({
-    pageUrl: site.url,
-    name: 'Mortgage Services in Huntsville and North Alabama',
-    description:
-      'Mortgage loan origination services for VA loans, jumbo loans, medical professional mortgages, and complex mortgage planning in Huntsville and North Alabama.',
-    serviceType: 'Mortgage loan origination',
-    audience: [
-      'homebuyers',
-      'VA-eligible borrowers',
-      'medical professionals',
-      'jumbo buyers',
-    ],
-  }),
   {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     '@id': `${site.url}/#webpage`,
     url: `${site.url}/`,
-    name: 'Clay Duncan | Huntsville Mortgage Loan Originator and AI Educator',
+    name: 'Levi Duncan | Huntsville Mortgage Loan Originator',
     description: site.description,
     isPartOf: { '@id': siteId },
     mainEntity: { '@id': personId },
     about: [
-      { '@type': 'Thing', name: 'Huntsville mortgage guidance' },
-      { '@type': 'Thing', name: 'VA loans near Redstone Arsenal' },
-      { '@type': 'Thing', name: 'medical professional mortgage in Huntsville' },
-      { '@type': 'Thing', name: 'complex mortgage guidance' },
-      { '@type': 'Thing', name: 'AI training for REALTORS®' },
-      { '@type': 'Thing', name: 'loan officer growth leadership' },
+      { '@type': 'Thing', name: 'Huntsville first-time homebuyer guidance' },
+      { '@type': 'Thing', name: 'FHA loans in Huntsville' },
+      { '@type': 'Thing', name: 'USDA loans in North Alabama' },
+      { '@type': 'Thing', name: 'down payment assistance' },
+      { '@type': 'Thing', name: 'Homebuyer Master Class' },
       { '@type': 'Organization', name: 'Princeton Mortgage' },
     ],
     hasPart: [
@@ -177,14 +259,9 @@ export const homePageSchema = [
         name: 'Mortgage Guidance',
         url: `${site.url}/huntsville/mortgage-guidance/`,
       },
-      {
-        '@type': 'WebPage',
-        name: 'REALTOR AI Training',
-        url: `${site.url}/realtor-ai-training/`,
-      },
-      { '@type': 'WebPage', name: 'Reviews', url: `${site.url}/reviews/` },
+      { '@type': 'WebPage', name: 'About', url: `${site.url}/about/` },
       { '@type': 'WebPage', name: 'Events', url: `${site.url}/events/` },
-      { '@type': 'WebPage', name: 'Why Join', url: `${site.url}/join-us/` },
+      { '@type': 'WebPage', name: 'Reviews', url: `${site.url}/reviews/` },
     ],
   },
 ] as const;
@@ -247,61 +324,92 @@ export function createReviewJsonLd(review: Review): SchemaObject {
   };
 }
 
-export function createAggregateRatingJsonLd(
-  rating: AggregateRating,
-): SchemaObject {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    '@id': personId,
-    name: site.name,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: rating.ratingValue,
-      reviewCount: rating.reviewCount,
-      bestRating: rating.bestRating,
-      worstRating: rating.worstRating,
-    },
-  };
-}
-
 export function createEventJsonLd(event: EventItem): SchemaObject {
-  const eventUrl = `${site.url}/events/#${event.date}`;
+  const eventUrl = `${site.url}/events/#${event.id}`;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Event',
     '@id': eventUrl,
-    name: event.title,
+    name: event.name,
     startDate: event.date,
-    eventAttendanceMode:
-      event.format === 'online'
-        ? 'https://schema.org/OnlineEventAttendanceMode'
-        : 'https://schema.org/OfflineEventAttendanceMode',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
-    location:
-      event.format === 'online'
-        ? {
-            '@type': 'VirtualLocation',
-            name: event.location,
-            url: event.registrationUrl ?? `${site.url}/events/`,
-          }
-        : {
-            '@type': 'Place',
-            name: event.location,
-          },
-    description: event.summary,
-    organizer: {
-      '@id': personId,
+    location: {
+      '@type': 'Place',
+      name: event.venue,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: event.address?.streetAddress,
+        addressLocality: event.city,
+        addressRegion: event.state,
+        postalCode: event.address?.postalCode,
+        addressCountry: 'US',
+      },
     },
-    performer: {
-      '@id': personId,
-    },
+    description: event.description,
+    organizer: [
+      {
+        '@id': personId,
+      },
+      {
+        '@id': organizationId,
+      },
+    ],
+    performer: event.speakers.map((speaker) => ({
+      '@type': 'Person',
+      name: speaker.name,
+      affiliation: {
+        '@type': 'Organization',
+        name: speaker.company,
+      },
+      knowsAbout: speaker.topic,
+    })),
     audience: {
       '@type': 'Audience',
       audienceType: event.audience,
     },
-    url: event.registrationUrl ?? `${site.url}/events/`,
+    url: event.registrationUrl ?? `${site.url}/events/#${event.id}`,
     isAccessibleForFree: true,
+  };
+}
+
+export function createHomebuyerMasterClassLearningResourceJsonLd(
+  classEvents: EventItem[],
+): SchemaObject {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    '@id': `${site.url}/events/#homebuyer-master-class-learning-resource`,
+    name: 'Homebuyer Master Class',
+    url: `${site.url}/events/`,
+    description:
+      'Monthly Huntsville-area homebuyer education series covering property strategy, financing strategy, title and legal, home inspection, homeowners insurance, and closing readiness.',
+    inLanguage: 'en-US',
+    isAccessibleForFree: true,
+    educationalUse: 'Homebuyer education',
+    learningResourceType: 'Class',
+    teaches: [
+      'first-time homebuyer readiness',
+      'mortgage financing strategy',
+      'property strategy',
+      'home inspection considerations',
+      'homeowners insurance considerations',
+      'title and legal considerations',
+      'closing readiness',
+    ],
+    audience: {
+      '@type': 'Audience',
+      audienceType: 'First-time and experienced homebuyers',
+    },
+    provider: {
+      '@id': personId,
+    },
+    publisher: {
+      '@id': organizationId,
+    },
+    hasPart: classEvents.map((event) => ({
+      '@id': `${site.url}/events/#${event.id}`,
+    })),
   };
 }

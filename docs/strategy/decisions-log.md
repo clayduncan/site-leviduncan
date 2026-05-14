@@ -33,6 +33,19 @@ This file records durable project decisions so future chats can quickly understa
 - Approved deep navy as the default filled CTA color for the warm authority system, with dark cognac as the hover/accent state.
 - Removed the separate `/huntsville/military-homebuyers/` page because it overlapped too heavily with `/huntsville/va-loans/`. The VA page should own Redstone Arsenal and military-homebuyer intent unless a future broader relocation guide becomes clearly differentiated.
 
+## 2026-05-04
+
+- Started the Levi Duncan personal-site rebuild from the Clay Duncan Phase 3+ scaffold.
+- Preserved Clay's Astro architecture, layouts, component patterns, schema composition approach, styles, and brand tokens for Levi's v1.
+- Set Levi Duncan as the primary site entity: Mortgage Loan Originator, NMLS #2721357, Huntsville, Alabama, Princeton Mortgage, NMLS #113856.
+- Confirmed Levi-owned topical depth: first-time homebuyer guidance, FHA loans, USDA loans, down payment assistance, buyer readiness, budgeting, credit preparation, and investment property guidance.
+- Removed Clay-specific v1 routes from Levi's scaffold: contact, blog, REALTOR AI training, why-join, VA, jumbo, medical professional mortgage, and complex mortgage guidance.
+- Added Homebuyer Master Class as Levi's unique events signal and retained past events as local authority proof.
+- Kept reviews as an empty placeholder until Levi's Google Business Profile and verified review source are available.
+- Levi's booking links are split by intent: general booking uses `https://calendly.com/lduncan-princetonmortgage/book-levi`, homebuyer consultations use `https://calendly.com/lduncan-princetonmortgage/homebuyer-consultation`, and `https://bit.ly/AppWithLevi` points to `https://princeton.tidalwave.ai/signup/levi.duncan/D2OUK3FT86H9KK708470`.
+- Foundation/data PRs may make minimal page-template edits required to keep `main` deployable after data shape changes and page deletions. Scope: "make it compile," not "build the final page." Full page builds happen in their dedicated PRs.
+- Phase 2 page PRs fully replace the Phase 1 lightweight scaffolds rather than building on them incrementally. Each Phase 2 page is built clean against its own AEO/SEO checklist. Scaffolds existed only to keep `main` deployable through Phase 1.
+
 ## Future Decisions
 
 Add new decisions here with dates, short rationale, and any affected files or pages.

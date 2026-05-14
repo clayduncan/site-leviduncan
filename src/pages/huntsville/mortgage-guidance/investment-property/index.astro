@@ -1,0 +1,379 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../data/schema';
+import { site } from '../../../../data/site';
+
+const pagePath = '/huntsville/mortgage-guidance/investment-property/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const investorHighlights = [
+  {
+    label: 'DSCR',
+    title: 'Qualify around rental cash flow',
+    description:
+      'DSCR investor loans focus on whether the property’s rent can support the proposed debt payment, instead of leading with W-2 or tax-return income.',
+  },
+  {
+    label: 'Ratio',
+    title: 'Know what 1.0 means',
+    description:
+      'A DSCR near 1.0 generally means rent is close to covering the payment. A stronger ratio can give the deal more room for vacancy or expense surprises.',
+  },
+  {
+    label: 'Terms',
+    title: 'Tradeoffs still matter',
+    description:
+      'DSCR programs still review credit, down payment, reserves, property type, rent support, loan-to-value, and whether the investor is buying or refinancing.',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Estimate market rent',
+    description:
+      'Start with realistic rent support from a lease, market rent schedule, short-term rental analysis, or another acceptable source for the program.',
+  },
+  {
+    title: 'Calculate the proposed payment',
+    description:
+      'Compare rent against principal, interest, taxes, insurance, association dues, and other payment items the program counts.',
+  },
+  {
+    title: 'Stress-test the investor plan',
+    description:
+      'Look beyond the ratio by reviewing vacancy, repairs, insurance changes, property taxes, management costs, reserves, and cash left after closing.',
+  },
+  {
+    title: 'Compare the financing path',
+    description:
+      'Levi helps compare DSCR with conventional investor financing so the buyer understands speed, documentation, down payment, and monthly payment tradeoffs.',
+  },
+];
+
+const dscrFactors = [
+  {
+    label: 'Rent',
+    title: 'Income support',
+    description:
+      'The rental number may come from a signed lease, appraiser rent schedule, market rent analysis, or short-term rental support, depending on the program.',
+  },
+  {
+    label: 'Payment',
+    title: 'Debt service',
+    description:
+      'Programs may compare rent against principal and interest or a broader PITIA-style payment. The details can change the ratio quickly.',
+  },
+  {
+    label: 'Cushion',
+    title: 'Coverage margin',
+    description:
+      'A higher DSCR gives the property more room for vacancy, repairs, and expense changes. A lower ratio may require more cash down or different terms.',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'CFPB Loan Estimate explanation',
+    description:
+      'CFPB explains the official Loan Estimate buyers receive after applying, including loan terms, payments, costs, and special features.',
+    url: 'https://www.consumerfinance.gov/ask-cfpb/what-is-a-loan-estimate-en-1995/',
+  },
+  {
+    title: 'CFPB mortgage resources',
+    description:
+      'Consumer Financial Protection Bureau mortgage resources help buyers understand comparison shopping and mortgage disclosures.',
+    url: 'https://www.consumerfinance.gov/mortgages/',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'DSCR Loan Requirements in Alabama',
+    description:
+      'Review DSCR ratio math, rent support, credit, reserves, LTV, LLC considerations, property eligibility, and short-term rental risks.',
+    url: '/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What is a DSCR investor loan?',
+    answer:
+      'A DSCR investor loan is a non-owner-occupied investment-property mortgage option where the property’s rental cash flow is central to the qualification review. Guidelines vary by lender and program, so buyers should compare the full structure before relying on it.',
+  },
+  {
+    question: 'What does DSCR mean?',
+    answer:
+      'DSCR stands for debt service coverage ratio. In practical terms, it compares a property’s rental income against the debt payment the property needs to support. A ratio above 1.0 generally means rent is greater than the counted debt payment; below 1.0 generally means rent does not fully cover it.',
+  },
+  {
+    question: 'Why do investors use DSCR financing?',
+    answer:
+      'Investors often compare DSCR financing when personal income documentation, tax returns, or debt-to-income calculations do not tell the full story of a rental-property deal. DSCR puts more weight on whether the property can carry the proposed payment.',
+  },
+  {
+    question: 'How is an investment property loan different from a primary residence loan?',
+    answer:
+      'Investment property loans are for non-owner-occupied properties and often require more attention to rental income, reserves, down payment, insurance, loan-to-value, and the buyer’s overall investment plan.',
+  },
+  {
+    question: 'Can rental income help qualify for an investment property mortgage?',
+    answer:
+      'Rental income may help in some investment-property mortgage scenarios, but the documentation and calculation depend on the loan type, property, lease or market rent support, short-term rental treatment, and program rules.',
+  },
+  {
+    question: 'When should an investor talk with Levi?',
+    answer:
+      'Talk with Levi before making an offer. Investor financing should be reviewed early because cash flow, reserves, down payment, rent assumptions, and closing timing can change whether a deal works.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'Investment Property Loans in Huntsville',
+    description:
+      'Investment property and DSCR investor loan guidance from Levi Duncan for buyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing rental-property financing.',
+    serviceType: 'Investment property mortgage guidance',
+    audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'Investment Property and DSCR Investor Loans',
+    description:
+      'Investment property and DSCR investor loan guidance for rental-property buyers comparing cash flow, rent support, reserves, down payment, and loan structure.',
+    loanType: 'Investment property mortgage loan',
+    audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
+  }),
+  createFaqJsonLd(faqs),
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'Investment Property', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Investment Property Loans | Huntsville | Levi Duncan"
+  description="Compare investment property and DSCR investor loan guidance with Levi Duncan for rental-property buyers."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="investor-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">Investment Property Loans in Huntsville</p>
+      <h1 id="investor-heading">DSCR and investor loan guidance for rental-property buyers.</h1>
+      <p class="hero-lede">
+        Investment property financing should start with the deal math, not just
+        the approval. Levi Duncan helps rental-property buyers across Madison,
+        Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley
+        compare DSCR-style cash-flow options, conventional investor paths, rent
+        support, reserves, down payment, and whether the property can support
+        the proposed purchase.
+      </p>
+      <div class="hero-actions" aria-label="Investment property loan actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator for investment property and DSCR investor loans"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>Investor guidance for rental-property financing</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="fit-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Why Investor Financing</p>
+        <h2 id="fit-heading">What should investors compare before choosing a loan?</h2>
+        <p>
+          Investor financing is not just about getting approved. A DSCR loan is
+          typically an investor-focused, non-QM mortgage that reviews the
+          property’s rental income against the debt payment it needs to support.
+          The better question is whether the rent, payment, cash needed at
+          closing, reserves, and long-term strategy still work after financing
+          is included.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="Investment property loan priorities">
+        {
+          investorHighlights.map((highlight) => (
+            <article>
+              <span>{highlight.label}</span>
+              <strong>{highlight.title}</strong>
+              <p>{highlight.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="dscr-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">DSCR Math</p>
+        <h2 id="dscr-heading">What changes the DSCR number on an investor loan?</h2>
+      </div>
+      <div class="feature-grid">
+        {
+          dscrFactors.map((factor) => (
+            <article class="feature-card">
+              <span>{factor.label}</span>
+              <h3>{factor.title}</h3>
+              <p>{factor.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="process-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">How It Works</p>
+        <h2 id="process-heading">How investor loan guidance works before an offer.</h2>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          processSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+          <h2 id="local-heading">
+            Investor loan guidance across Madison, Decatur, Athens, Albertville, Arab, and the
+            wider Tennessee Valley.
+          </h2>
+        </div>
+        <p>
+          In Madison County, Morgan County, Marshall County, and the surrounding
+          North Alabama rental markets, investors may be comparing long-term
+          leases, short-term rental assumptions, renovation needs, and changing
+          insurance or tax costs. Levi helps buyers slow the deal down enough to
+          review rent support, reserves, entity or title questions, loan
+          structure, and whether the numbers still work after financing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused DSCR Guide</p>
+        <h2 id="related-heading">Need to check DSCR requirements more closely?</h2>
+        <p>
+          This focused guide helps investors review DSCR ratio math, rent
+          support, reserves, credit, prepayment penalties, LLC considerations,
+          and Alabama property-specific risks before relying on DSCR financing.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where investors can verify mortgage disclosure basics.</h2>
+        <p>
+          DSCR program terms vary by lender and investor program, so there is
+          not one government DSCR rule page. These consumer resources help
+          investors verify the mortgage documents and disclosures that still
+          matter when comparing loan options.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">Investment property and DSCR loan questions.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Review the financing before deciding the rental deal works.</h2>
+          </div>
+          <div class="hero-actions" aria-label="Investment property loan next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book an investor consultation</a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

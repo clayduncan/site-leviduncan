@@ -1,73 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import {
-  organizationJsonLd,
-  professionalServiceJsonLd,
-  personJsonLd,
-  websiteJsonLd,
-} from '../data/schema';
 import { site } from '../data/site';
-
-const pageUrl = new URL('/404.html', site.url).href;
-
-const schema = [
-  websiteJsonLd,
-  personJsonLd,
-  organizationJsonLd,
-  professionalServiceJsonLd,
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
-    url: pageUrl,
-    name: 'Page Not Found | Clay Duncan',
-    description:
-      'A page-not-found route for Clay Duncan with clear paths back to mortgage guidance, reviews, events, and contact options.',
-    isPartOf: { '@id': `${site.url}/#website` },
-  },
-];
 ---
 
 <BaseLayout
-  title="Page Not Found | Clay Duncan"
-  description="The page you were looking for may have moved. Find Clay Duncan mortgage guidance, reviews, events, or contact options."
+  title="Page Not Found | Levi Duncan"
+  description="The page you were looking for was not found. Start again with Levi Duncan's homepage or Huntsville mortgage guidance."
   robots="noindex, follow"
-  schema={schema}
 >
-  <section class="article-page not-found-page" aria-labelledby="not-found-heading">
-    <header class="article-header">
-      <p class="eyebrow">Page Not Found</p>
-      <h1 id="not-found-heading">That page has moved or no longer exists.</h1>
-      <p>
-        If you came from an older Clay Duncan link, the site may have changed
-        during the move from Wix to the new Netlify site. Use one of the current
-        paths below.
+  <section class="hero-section hero-section-compact" aria-labelledby="not-found-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">404</p>
+      <h1 id="not-found-heading">This page is not available.</h1>
+      <p class="hero-lede">
+        The page may have moved during the Levi Duncan rebuild. Start with the
+        homepage or the Huntsville mortgage guidance hub.
       </p>
-      <div class="hero-actions" aria-label="Page not found actions">
-        <a class="button button-primary" href="/">Go home</a>
-        <a class="button button-secondary" href={site.schedulingUrl}>Chat with Clay</a>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/">Go to homepage</a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/"
+          >Mortgage guidance</a
+        >
+        <a class="button button-secondary" href={site.calendlyUrl}>Book Levi</a>
       </div>
-    </header>
-
-    <div class="feature-grid not-found-grid" aria-label="Current site paths">
-      <article class="feature-card">
-        <span>01</span>
-        <h2>Mortgage guidance</h2>
-        <p>Start with VA loans, jumbo planning, or complex mortgage guidance.</p>
-        <a href="/huntsville/va-loans/">Explore mortgage guidance</a>
-      </article>
-      <article class="feature-card">
-        <span>02</span>
-        <h2>REALTOR® AI training</h2>
-        <p>View Clay’s practical AI training path for REALTORS® and real estate teams.</p>
-        <a href="/realtor-ai-training/">Explore AI training</a>
-      </article>
-      <article class="feature-card">
-        <span>03</span>
-        <h2>Reviews and events</h2>
-        <p>Read Google review highlights or see upcoming and past AI training events.</p>
-        <a href="/reviews/">Read reviews</a>
-      </article>
     </div>
   </section>
 </BaseLayout>

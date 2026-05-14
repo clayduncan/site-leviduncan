@@ -1,0 +1,345 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../data/schema';
+import { site } from '../../../../data/site';
+
+const pagePath = '/huntsville/mortgage-guidance/fha-loans/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const fhaHighlights = [
+  {
+    label: 'Credit',
+    title: 'More room to recover',
+    description:
+      'FHA financing can be a little more lenient and may provide a practical path after credit challenges, thinner credit history, or a lower starting score.',
+  },
+  {
+    label: 'Cash to close',
+    title: 'A smaller down payment option',
+    description:
+      'FHA can give buyers a minimum down payment option, while Levi helps compare closing costs, seller credits, gift funds, and available assistance.',
+  },
+  {
+    label: 'Property',
+    title: 'Know the home standards early',
+    description:
+      'FHA loans include property review requirements, so buyers benefit from understanding condition, appraisal, and repair expectations before writing an offer.',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Review the buyer profile',
+    description:
+      'Start with credit, income, debts, savings, timeline, and the payment range that feels realistic.',
+  },
+  {
+    title: 'Compare FHA against other paths',
+    description:
+      'Look at FHA beside conventional, USDA, down payment assistance, and first-time buyer options so the loan type fits the goal.',
+  },
+  {
+    title: 'Plan the offer before pressure builds',
+    description:
+      'Talk through cash to close, seller credits, appraisal expectations, inspection timing, and closing documents before a contract is signed.',
+  },
+  {
+    title: 'Move from guidance to application',
+    description:
+      'When the path is clear, Levi can help the buyer move into a formal application with Princeton Mortgage.',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'HUD FHA loan overview',
+    description:
+      'HUD explains FHA loan basics, including low down payments, low closing costs, and credit qualification flexibility.',
+    url: 'https://www.hud.gov/helping-americans/loans',
+  },
+  {
+    title: 'HUD-approved housing counselors',
+    description:
+      'HUD resources can help buyers find approved housing counseling for independent homebuyer education and support.',
+    url: 'https://www.hud.gov/counseling',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'FHA Credit Score Guidance for First-Time Buyers',
+    description:
+      'Review lower starting scores, thin credit, previous credit challenges, timing, and what to avoid before applying.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-credit-score-guidance-first-time-buyers/',
+  },
+  {
+    title: 'FHA Loan Requirements in Alabama',
+    description:
+      'Review credit score, minimum down payment, 2026 Alabama loan limits, property standards, and local FHA timing issues.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/',
+  },
+  {
+    title: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Compare property eligibility, income limits, cash to close, credit flexibility, mortgage insurance, and timing before choosing a path.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Who should consider an FHA loan in Huntsville?',
+    answer:
+      'An FHA loan may fit a Huntsville-area buyer who wants flexible credit guidance, a clearer down payment plan, or a practical path into a primary residence. Levi Duncan helps buyers compare FHA with other mortgage options before they commit to a direction.',
+  },
+  {
+    question: 'Are FHA loans only for first-time homebuyers?',
+    answer:
+      'No. FHA loans are commonly used by first-time homebuyers, but they are not only for first-time buyers. The right fit depends on the buyer profile, property, occupancy plan, and the loan options available at the time of application.',
+  },
+  {
+    question: 'Can FHA work with down payment assistance?',
+    answer:
+      'FHA may be paired with certain down payment assistance options when the buyer, property, and assistance program all meet the required guidelines. Levi can help buyers compare the available paths before applying.',
+  },
+  {
+    question: 'What should buyers know about FHA property requirements?',
+    answer:
+      'FHA financing includes property review standards tied to safety, livability, and collateral quality. Buyers should understand that appraisal or repair items can affect timing, negotiation, and closing readiness.',
+  },
+  {
+    question: 'When should I talk with Levi about an FHA loan?',
+    answer:
+      'Talk with Levi before the home search gets serious. Early FHA guidance can clarify credit, budget, cash to close, documents, and whether FHA is stronger than another mortgage path.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'FHA Loans in Huntsville',
+    description:
+      'FHA loan guidance from Levi Duncan for homebuyers across Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley comparing credit, down payment, and property readiness.',
+    serviceType: 'FHA mortgage loan origination',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'FHA Loans in Huntsville',
+    description:
+      'FHA mortgage guidance for Huntsville-area homebuyers comparing flexible credit, minimum down payment, property standards, and readiness before applying.',
+    loanType: 'FHA mortgage loan',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'FHA Loans', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="FHA Loans | Huntsville | Levi Duncan"
+  description="Compare FHA loan guidance with Levi Duncan for buyers who need clear credit, down payment, and homebuying next steps."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="fha-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">FHA Loans in Huntsville</p>
+      <h1 id="fha-heading">FHA loan guidance for Huntsville homebuyers.</h1>
+      <p class="hero-lede">
+        FHA loans can help Huntsville-area homebuyers compare a practical path
+        when credit, down payment, or cash-to-close questions are part of the
+        decision. Levi Duncan, Mortgage Loan Originator with Princeton Mortgage,
+        helps buyers understand whether FHA fits before the home search creates
+        pressure.
+      </p>
+      <div class="hero-actions" aria-label="FHA loan actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator for FHA loan guidance in Huntsville"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>FHA guidance for credit, down payment, and buyer readiness</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="fit-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Who It Helps</p>
+        <h2 id="fit-heading">Is an FHA loan the right fit in Huntsville?</h2>
+        <p>
+          FHA may be worth comparing when a buyer wants more flexibility around
+          credit history, a clearer plan for cash to close, or a loan structure
+          designed for a primary residence. It is not automatically the best
+          path for every buyer, so Levi helps compare FHA against the full set
+          of practical mortgage options.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="FHA loan planning priorities">
+        {
+          fhaHighlights.map((highlight) => (
+            <article>
+              <span>{highlight.label}</span>
+              <strong>{highlight.title}</strong>
+              <p>{highlight.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="process-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">How It Works</p>
+        <h2 id="process-heading">How FHA loan guidance works before an offer.</h2>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          processSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+          <h2 id="local-heading">
+            FHA guidance across Madison, Decatur, Athens, Albertville, Arab, and the wider
+            Tennessee Valley.
+          </h2>
+        </div>
+        <p>
+          Around Madison, Decatur, Athens, Albertville, Arab, and the wider
+          Tennessee Valley, FHA often becomes part of the conversation when a
+          buyer needs more room around credit history, cash to close, or a
+          first purchase. The local review should stay practical: payment
+          comfort, property condition, seller credits, appraisal timing, and
+          whether FHA is stronger than USDA, conventional, or assistance-backed
+          options.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused FHA Guide</p>
+        <h2 id="related-heading">Need the requirement details before choosing FHA?</h2>
+        <p>
+          This focused guide answers the narrower FHA requirement questions
+          buyers often ask before they decide whether FHA fits the property and
+          buyer profile.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where FHA buyers can verify the basics.</h2>
+        <p>
+          FHA guidance should be practical, but buyers should also know where
+          the official program information lives. These resources support the
+          FHA topics Levi reviews with buyers.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">FHA loan questions in Huntsville.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Talk through FHA before the home search gets serious.</h2>
+          </div>
+          <div class="hero-actions" aria-label="FHA loan next steps">
+            <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+              Book a buyer consultation
+            </a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

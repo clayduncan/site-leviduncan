@@ -1,0 +1,499 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const mistakeGroups = [
+  {
+    label: 'Budget',
+    title: 'Shopping from the approval limit instead of the comfort number',
+    description:
+      'The highest approval amount is not automatically the right payment. First-time buyers should decide what monthly payment still leaves room for utilities, savings, maintenance, and normal life.',
+  },
+  {
+    label: 'Credit',
+    title: 'Opening new debt before the loan is clear to close',
+    description:
+      'Auto loans, furniture financing, store cards, buy-now-pay-later accounts, and co-signed debt can change debt ratios, credit scores, and automated underwriting results late in the file.',
+  },
+  {
+    label: 'Cash',
+    title: 'Moving money without a clean paper trail',
+    description:
+      'Large deposits, cash deposits, transfers, and gift funds may need documentation. Clean statements and sourced funds help avoid last-minute underwriting conditions.',
+  },
+  {
+    label: 'Property',
+    title: 'Choosing a home before checking loan fit',
+    description:
+      'FHA, USDA, conventional, and assistance programs can each treat property condition, location, repairs, appraisal, and closing timeline differently.',
+  },
+];
+
+const underwritingRisks = [
+  {
+    title: 'Changing jobs without a plan',
+    description:
+      'A job change can be fine, but switching pay type, moving from W-2 to 1099, taking unpaid leave, or changing industries can affect how income is documented.',
+  },
+  {
+    title: 'Paying off accounts without guidance',
+    description:
+      'Paying collections, closing old cards, or moving balances can sometimes change score models or available credit in ways buyers do not expect.',
+  },
+  {
+    title: 'Forgetting student-loan treatment',
+    description:
+      'Student-loan payments may be calculated differently across FHA, USDA, VA, and conventional programs. The visible payment is not always the underwriting payment.',
+  },
+  {
+    title: 'Letting documents go stale',
+    description:
+      'Pay stubs, bank statements, employment verification, credit reports, and preapproval letters can age out before closing if the timeline stretches.',
+  },
+];
+
+const offerMistakes = [
+  {
+    title: 'Writing before the program is chosen',
+    description:
+      'The contract usually identifies the loan type. Switching after acceptance can require approval, amendment, or negotiation.',
+  },
+  {
+    title: 'Ignoring property-condition red flags',
+    description:
+      'Older North Alabama homes may raise roof, paint, handrail, electrical, termite, well, septic, or appraisal repair questions depending on the loan.',
+  },
+  {
+    title: 'Assuming seller concessions solve every cash issue',
+    description:
+      'Concessions are limited by program rules and actual allowable costs. They cannot create unrestricted cash back to the buyer.',
+  },
+  {
+    title: 'Underestimating timing pressure',
+    description:
+      'Inspection windows, appraisal queues, insurance quotes, title work, Closing Disclosure timing, and final loan conditions all compete for attention.',
+  },
+];
+
+const closingMistakes = [
+  {
+    title: 'Waiting too long on insurance',
+    description:
+      'North Alabama insurance pricing and wind or hail deductibles can affect the monthly payment. Proof of insurance is also needed before closing.',
+  },
+  {
+    title: 'Treating the WDIR as a minor detail',
+    description:
+      'A wood-destroying insect report can matter on Alabama transactions, especially when active infestation or visible damage leads to treatment or structural questions.',
+  },
+  {
+    title: 'Trusting emailed wire instructions',
+    description:
+      'Wire fraud risk is real. Buyers should confirm instructions by phone using a trusted number they already had, not a number from a last-minute email.',
+  },
+  {
+    title: 'Skipping the final walk-through',
+    description:
+      'The walk-through helps confirm agreed repairs, property condition, included items, and move-out status before documents are signed.',
+  },
+];
+
+const recoverySteps = [
+  {
+    title: 'Pause before changing money, debt, or employment',
+    description:
+      'Ask Levi before opening credit, changing jobs, paying off accounts, moving funds, or accepting gift money during the mortgage process.',
+  },
+  {
+    title: 'Keep the buyer file simple',
+    description:
+      'Use fewer bank accounts where practical, keep full statements, avoid cash deposits, and preserve documentation for any transfer or gift.',
+  },
+  {
+    title: 'Match home search to loan reality',
+    description:
+      'Talk through FHA, USDA, conventional, and First Step implications before writing on a home that may create property, location, or assistance issues.',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'First-Time Homebuyer Checklist in North Alabama',
+    description:
+      'Use the checklist to put the full buying process in order from preparation through post-closing tasks.',
+    url: '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/',
+  },
+  {
+    title: 'FHA vs USDA Loans in North Alabama',
+    description:
+      'Compare FHA and USDA when property location, cash to close, credit, and monthly payment are shaping the first offer.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+  },
+  {
+    title: 'First Step Eligibility in Alabama',
+    description:
+      'Review whether Alabama First Step assistance fits before relying on it for cash to close.',
+    url: '/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'CFPB Buying a House guide',
+    description:
+      'Consumer guidance on preparing for a mortgage, comparing loan options, and reviewing official mortgage documents.',
+    url: 'https://www.consumerfinance.gov/owning-a-home/',
+  },
+  {
+    title: 'CFPB Home Loan Toolkit',
+    description:
+      'Official Know Before You Owe booklet covering loan estimates, closing costs, rate comparisons, and closing documents.',
+    url: 'https://files.consumerfinance.gov/f/201503_cfpb_your-home-loan-toolkit-web.pdf',
+  },
+  {
+    title: 'FBI Internet Crime Complaint Center',
+    description:
+      'Federal reporting resource for internet crime, business email compromise, and real estate wire fraud.',
+    url: 'https://www.ic3.gov/',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What is the biggest mistake first-time homebuyers make before applying?',
+    answer:
+      'The biggest mistake is shopping before they know the payment, cash to close, credit profile, documents, and loan program that actually fit. A preapproval should come before serious offer conversations.',
+  },
+  {
+    question: 'Can new debt hurt a first-time homebuyer before closing?',
+    answer:
+      'Yes. New debt can affect credit score, debt-to-income ratio, automated underwriting, and final loan approval. Buyers should ask before opening credit or financing major purchases during the process.',
+  },
+  {
+    question: 'Why are large deposits a problem for first-time buyers?',
+    answer:
+      'Large deposits may need to be sourced and documented. Cash deposits are especially difficult because lenders need to verify that funds are acceptable and not undisclosed borrowed money.',
+  },
+  {
+    question: 'Can choosing the wrong property create mortgage problems?',
+    answer:
+      'Yes. Property condition, location, well and septic status, appraisal requirements, insurance, and loan program rules can all affect whether a property works for FHA, USDA, conventional, or assistance options.',
+  },
+  {
+    question: 'What should buyers do if they already made one of these mistakes?',
+    answer:
+      'They should tell Levi quickly rather than trying to fix it alone. Many issues can be documented or worked around, but silence usually makes the underwriting timeline harder.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'First-Time Homebuyer Mistakes to Avoid in North Alabama',
+    description:
+      'Risk-prevention guidance for North Alabama first-time homebuyers avoiding credit, cash, property, offer, closing, and wire-fraud mistakes.',
+    serviceType: 'First-time homebuyer risk-prevention guidance',
+    audience: ['first-time homebuyers', 'homebuyers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'First-Time Homebuyer Mistakes to Avoid in North Alabama',
+    description:
+      'Answer-first guide to common first-time homebuyer mistakes involving payment comfort, credit, cash, property fit, offer timing, closing, and wire fraud.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'First-Time Home Buyer', path: '/huntsville/mortgage-guidance/first-time-home-buyer/' },
+    { name: 'Mistakes to Avoid', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Homebuyer Mistakes | North Alabama | Levi Duncan"
+  description="Avoid common first-time homebuyer mistakes in North Alabama with guidance on credit, cash, offers, closing, and wire fraud."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="mistakes-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">First-Time Homebuyer Mistakes</p>
+      <h1 id="mistakes-heading">First-time homebuyer mistakes to avoid in North Alabama.</h1>
+      <p class="hero-lede">
+        First-time homebuyer mistakes usually happen when a buyer shops too
+        early, changes credit or cash without guidance, chooses a property
+        before checking loan fit, or waits too long on closing details. Levi
+        Duncan helps buyers avoid preventable issues before they slow the
+        approval or closing timeline.
+      </p>
+      <div class="hero-actions" aria-label="First-time homebuyer mistake prevention actions">
+        <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+          Talk through your buyer plan
+        </a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/first-time-home-buyer/">
+          Back to first-time buyer guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining first-time homebuyer mistakes to avoid"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>Credit, cash, property fit, and closing mistake prevention</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">What should first-time buyers avoid first?</h2>
+        </div>
+        <p>
+          First-time buyers should avoid new debt, undocumented deposits, job or
+          income changes, unclear gift funds, property choices that do not fit
+          the loan program, and last-minute closing decisions before talking
+          through the mortgage impact.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          mistakeGroups.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="underwriting-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Underwriting Risk</p>
+        <h2 id="underwriting-heading">Which small decisions can become loan problems?</h2>
+        <p>
+          Mortgage approval is not locked just because a buyer has a letter.
+          Credit, income, assets, employment, and documents can still be checked
+          again before closing. Small decisions can create new conditions if
+          they change the file.
+        </p>
+        <div class="hero-actions" aria-label="Buyer file review actions">
+          <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+            Review your buyer file
+          </a>
+          <a
+            class="button button-secondary"
+            href="/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/"
+          >
+            Use the checklist
+          </a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="Underwriting mistakes to avoid">
+        {
+          underwritingRisks.map((item) => (
+            <article>
+              <span>Avoid</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="offer-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Offer Mistakes</p>
+        <h2 id="offer-heading">What mistakes happen before a contract is signed?</h2>
+        <p>
+          A first-time buyer can lose time by writing an offer before the loan
+          type, property condition, concession strategy, and closing timeline
+          have been matched to the actual home.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          offerMistakes.map((item, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="closing-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Closing Week</p>
+        <h2 id="closing-heading">Which closing mistakes are easiest to prevent?</h2>
+        <p>
+          The last stretch can feel procedural, but it is where insurance,
+          termite reports, final conditions, disclosure timing, walkthroughs,
+          and wire instructions need careful attention.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          closingMistakes.map((item) => (
+            <article class="feature-card">
+              <span>Closing</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="recover-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Better Next Step</p>
+        <h2 id="recover-heading">What should buyers do instead?</h2>
+        <p>
+          The goal is not to make first-time buyers nervous. The goal is to
+          reduce preventable surprises by keeping the buyer file, loan program,
+          property choice, and closing path aligned.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="Better first-time homebuyer steps">
+        {
+          recoverySteps.map((item) => (
+            <article>
+              <span>Do this</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Related Guides</p>
+        <h2 id="related-heading">Which guides help prevent these mistakes?</h2>
+        <p>
+          These pages help buyers move from risk awareness to a practical plan
+          for preparation, program selection, and down payment assistance.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where buyers can verify consumer protections.</h2>
+        <p>
+          These official resources help buyers review mortgage documents,
+          licensing, and wire-fraud reporting before major decisions are made.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">First-time homebuyer mistake questions.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Talk through the buyer plan before a preventable mistake slows the file.</h2>
+          </div>
+          <div class="hero-actions" aria-label="First-time homebuyer mistake prevention next steps">
+            <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+              Book Levi's 101 Homebuyer Review
+            </a>
+            <a class="button button-secondary" href="/events/">View Homebuyer Master Class events</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

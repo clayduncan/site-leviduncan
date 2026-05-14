@@ -1,0 +1,364 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const eligibilityCards = [
+  {
+    label: 'Buyer',
+    title: 'Credit and DTI still matter',
+    description:
+      'AHFA requires borrowers to meet creditworthiness standards. The research packet and AHFA program material point buyers to a 640 credit floor and a 45% maximum DTI for this program path.',
+  },
+  {
+    label: 'Income',
+    title: 'Income limits are location-based',
+    description:
+      'First Step uses federally established income limits that vary by area, household size, and target or non-target status. Buyers should verify current limits before relying on eligibility.',
+  },
+  {
+    label: 'Property',
+    title: 'The home must be owner-occupied',
+    description:
+      'AHFA says borrowers must live in the property. It cannot be used for business, commercial, rental, seasonal, recreational, or vacation purposes.',
+  },
+  {
+    label: 'Program',
+    title: 'First Step must go through a participating lender',
+    description:
+      'AHFA does not lend directly. Buyers apply through an AHFA-participating lender, and Princeton Mortgage is the lender relationship Levi uses for the application path.',
+  },
+];
+
+const structureCards = [
+  {
+    title: 'Below-market first mortgage',
+    description:
+      'First Step is a Mortgage Revenue Bond program built around a below-market, 30-year fixed mortgage rate when funds and current allocations are available.',
+  },
+  {
+    title: 'Optional down payment assistance',
+    description:
+      'Eligible borrowers may receive assistance up to $10,000 or 4% of the sales price, whichever is lower, when program requirements are met.',
+  },
+  {
+    title: '10-year second mortgage',
+    description:
+      'AHFA says the assistance is not a grant. It is a 10-year amortizing second mortgage with a monthly payment, paired with the First Step first mortgage.',
+  },
+  {
+    title: 'Possible recapture tax exposure',
+    description:
+      'Because First Step uses mortgage revenue bonds, buyers need to understand the possible federal recapture-tax rules if they sell within nine years.',
+  },
+];
+
+const buyerChecks = [
+  {
+    title: 'Check first-time buyer or target-area status',
+    description:
+      'In non-target areas, First Step generally uses a three-year first-time buyer rule. In target areas, repeat buyers may be eligible. Veterans may have an exemption.',
+  },
+  {
+    title: 'Check income and sales-price limits',
+    description:
+      'The buyer and property must fit AHFA’s current income and sales-price limits. These limits can change, so they should be verified close to application.',
+  },
+  {
+    title: 'Check the underlying loan type',
+    description:
+      'First Step can be available with FHA, VA, USDA, and Freddie Mac HFA Advantage conventional loans when the full borrower, property, and program scenario qualifies.',
+  },
+  {
+    title: 'Check repayment before choosing assistance',
+    description:
+      'The down payment assistance has repayment terms. Buyers should understand the second mortgage, monthly payment, payoff, refinance, and sale implications.',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'AHFA First Step Mortgage Revenue Bonds',
+    description:
+      'Official AHFA program page for First Step benefits, assistance structure, borrower qualifications, and program links.',
+    url: 'https://www.ahfa.com/programs/homeownership/available-programs/first-step-mortgage-revenue-bonds',
+  },
+  {
+    title: 'AHFA First Step FAQ',
+    description:
+      'AHFA FAQ covering second mortgage structure, repayment, recapture tax, property restrictions, and program availability.',
+    url: 'https://www.ahfa.com/Content/Uploads/ahfa.com/files/First%20Step/First%20Step%20FAQs_revised042524_2.pdf',
+  },
+  {
+    title: 'AHFA Am I Eligible?',
+    description:
+      'AHFA eligibility page for current credit, income, occupancy, homebuyer education, and program-readiness requirements.',
+    url: 'https://www.ahfa.com/programs/homeownership/am-i-eligible',
+  },
+  {
+    title: 'AHFA participating lenders',
+    description:
+      'AHFA explains that buyers apply through participating lenders rather than applying directly to AHFA.',
+    url: 'https://www.ahfa.com/programs/homeownership/how-do-i-apply',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Who is eligible for First Step in Alabama?',
+    answer:
+      'First Step eligibility depends on the borrower, property, income limits, sales-price limits, target-area status, creditworthiness, occupancy, and the underlying loan type. Buyers should verify current AHFA limits and talk with Levi before relying on the program.',
+  },
+  {
+    question: 'Is First Step only for first-time homebuyers?',
+    answer:
+      'In non-target areas, First Step generally uses a first-time buyer rule based on no ownership of a principal residence in the prior three years. Target areas may allow repeat buyers, and veterans may have an exemption under program rules.',
+  },
+  {
+    question: 'Is First Step down payment assistance a grant?',
+    answer:
+      'No. AHFA says the First Step down payment assistance is a 10-year amortizing second mortgage with a monthly payment. It is paired with the First Step first mortgage and is not a standalone grant.',
+  },
+  {
+    question: 'Can First Step work with FHA or USDA?',
+    answer:
+      'Yes, AHFA says First Step loans are available with FHA, VA, USDA, and Freddie Mac HFA Advantage conventional loans when the borrower, property, lender, and program requirements are met.',
+  },
+  {
+    question: 'What is recapture tax on First Step?',
+    answer:
+      'First Step is tied to mortgage revenue bond financing, so a federal recapture tax may apply if the home is sold within nine years and certain income and gain conditions are met. Buyers should review AHFA disclosures and consult a tax advisor.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'First Step Eligibility in Alabama',
+    description:
+      'Focused Alabama First Step eligibility guidance for buyers reviewing income limits, sales-price limits, first-time buyer rules, repayment structure, and recapture-tax considerations.',
+    serviceType: 'Down payment assistance eligibility guidance',
+    audience: ['first-time homebuyers', 'homebuyers', 'down payment assistance borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'First Step Eligibility in Alabama',
+    description:
+      'Alabama First Step Mortgage Revenue Bond eligibility guidance for buyers comparing assistance, income limits, sales-price limits, owner occupancy, and repayment structure.',
+    loanType: 'Alabama First Step mortgage revenue bond loan',
+    audience: ['first-time homebuyers', 'homebuyers', 'down payment assistance borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'First Step Eligibility in Alabama',
+    description:
+      'Answer-first guide to Alabama First Step eligibility, repayment, and recapture-tax considerations.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'Down Payment Assistance', path: '/huntsville/mortgage-guidance/down-payment-assistance/' },
+    { name: 'First Step Eligibility in Alabama', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="First Step Eligibility | Alabama | Levi Duncan"
+  description="Review Alabama First Step eligibility, income limits, sales-price limits, repayment terms, and recapture-tax considerations with Levi Duncan."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="first-step-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">First Step Eligibility</p>
+      <h1 id="first-step-heading">First Step eligibility in Alabama.</h1>
+      <p class="hero-lede">
+        First Step eligibility in Alabama depends on the buyer, property,
+        income limits, sales-price limits, target-area status, loan type,
+        occupancy, and repayment structure. Levi Duncan helps buyers review the
+        program before assuming down payment assistance will fit the purchase.
+      </p>
+      <div class="hero-actions" aria-label="First Step eligibility actions">
+        <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+          Check First Step fit with Levi
+        </a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/down-payment-assistance/">
+          Back to DPA guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining First Step eligibility in Alabama"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>First Step eligibility, repayment, and buyer readiness</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">Who may fit Alabama First Step?</h2>
+        </div>
+        <p>
+          First Step may fit an Alabama buyer who can qualify for an eligible
+          first mortgage, will occupy the home as a primary residence, meets
+          current AHFA income and sales-price limits, and understands that the
+          assistance is a repayable second mortgage rather than a grant.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          eligibilityCards.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="structure-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Program Structure</p>
+        <h2 id="structure-heading">What should buyers understand before choosing First Step?</h2>
+        <p>
+          First Step is not just a down payment line item. It combines a
+          first-mortgage structure, optional assistance, owner-occupancy rules,
+          and possible tax considerations that should be reviewed before an
+          offer creates pressure.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          structureCards.map((item, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="local-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Buyer Checks</p>
+        <h2 id="local-heading">What should North Alabama buyers check first?</h2>
+        <p>
+          First Step can be useful when upfront cash is the barrier, but the
+          eligibility check has to be specific. North Alabama buyers should
+          verify income limits, sales-price limits, owner-occupancy rules,
+          loan-type fit, and repayment structure before assuming assistance
+          will work on a Madison, Decatur, Athens, Albertville, Arab, or wider
+          Tennessee Valley purchase.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="First Step eligibility checks">
+        {
+          buyerChecks.map((item) => (
+            <article>
+              <span>Check</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where buyers can verify First Step eligibility.</h2>
+        <p>
+          AHFA program details can change as allocations, rates, income limits,
+          and sales-price limits are updated. Buyers should verify current
+          details through AHFA and a participating lender before applying.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">First Step eligibility questions in Alabama.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Check First Step eligibility before counting on assistance.</h2>
+          </div>
+          <div class="hero-actions" aria-label="First Step eligibility next steps">
+            <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+              Book a buyer consultation
+            </a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

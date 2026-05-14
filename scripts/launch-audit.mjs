@@ -56,16 +56,33 @@ const missingInternalLinks = [];
 const noindexRoutes = [];
 const forbiddenMatches = [];
 
+const forbiddenTerms = [
+  'clayduncan.com',
+  'site-clayduncan',
+  'chat with clay',
+  'why join clay',
+  'realtor-ai-training',
+  '/join-us/',
+  '/blog/',
+  '/contact/',
+  '/huntsville/va-loans/',
+  '/huntsville/jumbo-loans/',
+  '/huntsville/medical-professional-mortgage/',
+  '/huntsville/complex-mortgage-guidance/',
+];
+
 for (const htmlFile of htmlFiles) {
-  const html = fs.readFileSync(htmlFile, 'utf8');
+  const html = fs.readFileSync(htmlFile, 'utf8').toLowerCase();
   const route = routeForFile(htmlFile);
 
   if (/name="robots" content="[^"]*noindex/.test(html)) {
     noindexRoutes.push(route);
   }
 
-  if (html.includes('loan-officer-recruiting')) {
-    forbiddenMatches.push(route);
+  for (const term of forbiddenTerms) {
+    if (html.includes(term)) {
+      forbiddenMatches.push(`${route} -> ${term}`);
+    }
   }
 
   for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/g)) {
@@ -91,29 +108,44 @@ const sitemap = fs.existsSync(sitemapPath)
   ? fs.readFileSync(sitemapPath, 'utf8')
   : '';
 const sitemapUrls = [
-  ...sitemap.matchAll(/<loc>https:\/\/www\.clayduncan\.com([^<]+)<\/loc>/g),
+  ...sitemap.matchAll(/<loc>https:\/\/www\.leviduncan\.com([^<]+)<\/loc>/g),
 ].map((match) => match[1]);
 
 const llmsPath = path.join(root, 'public/llms.txt');
 const llms = fs.existsSync(llmsPath) ? fs.readFileSync(llmsPath, 'utf8') : '';
 
+const expectedRoutes = [
+  '/',
+  '/about/',
+  '/events/',
+  '/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/',
+  '/huntsville/mortgage-guidance/down-payment-assistance/',
+  '/huntsville/mortgage-guidance/fha-loans/fha-credit-score-guidance-first-time-buyers/',
+  '/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/',
+  '/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/',
+  '/huntsville/mortgage-guidance/fha-loans/',
+  '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/',
+  '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/',
+  '/huntsville/mortgage-guidance/first-time-home-buyer/',
+  '/huntsville/mortgage-guidance/',
+  '/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/',
+  '/huntsville/mortgage-guidance/investment-property/',
+  '/huntsville/mortgage-guidance/usda-loans/usda-eligible-areas-north-alabama/',
+  '/huntsville/mortgage-guidance/usda-loans/usda-income-limits-north-alabama/',
+  '/huntsville/mortgage-guidance/usda-loans/',
+  '/reviews/',
+];
+
 assert(
-  htmlFiles.length === 15,
-  `Expected 15 built HTML files, found ${htmlFiles.length}.`,
+  htmlFiles.length === 20,
+  `Expected 20 built HTML files including 404, found ${htmlFiles.length}.`,
 );
-assert(sitemapUrls.includes('/join-us/'), 'Sitemap must include /join-us/.');
-assert(sitemapUrls.includes('/blog/'), 'Sitemap must include /blog/.');
-assert(
-  sitemapUrls.includes(
-    '/blog/how-realtors-can-use-ai-without-losing-the-human-side-of-real-estate/',
-  ),
-  'Sitemap must include the first live blog post.',
-);
+
+for (const route of expectedRoutes) {
+  assert(sitemapUrls.includes(route), `Sitemap must include ${route}.`);
+}
+
 assert(!sitemapUrls.includes('/404.html'), 'Sitemap must exclude /404.html.');
-assert(
-  !noindexRoutes.includes('/blog/'),
-  '/blog/ must be indexable now that the first post is live.',
-);
 assert(noindexRoutes.includes('/404.html'), '/404.html must be noindex.');
 assert(
   missingInternalLinks.length === 0,
@@ -121,21 +153,15 @@ assert(
 );
 assert(
   forbiddenMatches.length === 0,
-  `Found development-only loan-officer-recruiting text in built HTML:\n${forbiddenMatches.join('\n')}`,
+  `Found removed Clay route or identity references in built HTML:\n${forbiddenMatches.join('\n')}`,
 );
 assert(
-  llms.includes('https://www.clayduncan.com/join-us/'),
-  'llms.txt must include /join-us/.',
+  llms.includes('https://www.leviduncan.com/events/'),
+  'llms.txt must include the Homebuyer Master Class events page.',
 );
 assert(
-  llms.includes('https://www.clayduncan.com/blog/'),
-  'llms.txt must include /blog/.',
-);
-assert(
-  llms.includes(
-    'https://www.clayduncan.com/blog/how-realtors-can-use-ai-without-losing-the-human-side-of-real-estate/',
-  ),
-  'llms.txt must include the first live blog post.',
+  llms.includes('Mortgage Loan Originator'),
+  'llms.txt must use Levi regulated title.',
 );
 
 const result = {

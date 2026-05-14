@@ -1,0 +1,332 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../data/schema';
+import { site } from '../../../../data/site';
+
+const pagePath = '/huntsville/mortgage-guidance/down-payment-assistance/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const firstStepHighlights = [
+  {
+    label: 'Cash gap',
+    title: 'Start with the funds needed at closing',
+    description:
+      'The right DPA conversation starts by comparing down payment, closing costs, prepaid items, reserves, and how much cash the buyer wants to keep after closing.',
+  },
+  {
+    label: 'Tradeoff',
+    title: 'Assistance can change the whole structure',
+    description:
+      'Assistance may help with upfront money, but buyers still need to understand rate, payment, second-mortgage terms, repayment, and future flexibility.',
+  },
+  {
+    label: 'Fit',
+    title: 'The program should match the purchase plan',
+    description:
+      'DPA is most useful when the buyer, property, income, sales price, loan type, and timeline all work together instead of being checked after the offer.',
+  },
+];
+
+const processSteps = [
+  {
+    title: 'Find the actual cash gap',
+    description:
+      'Separate down payment from closing costs, prepaid taxes and insurance, inspections, reserves, moving money, and the amount the buyer wants left after closing.',
+  },
+  {
+    title: 'Compare assistance against the base loan',
+    description:
+      'Look at the payment, rate, second-mortgage terms, seller credits, gift funds, and whether assistance improves the whole plan or only solves one line item.',
+  },
+  {
+    title: 'Check program fit before the offer',
+    description:
+      'If First Step or another assistance option is likely, the buyer should understand income limits, property limits, participating lender requirements, and timing before writing.',
+  },
+  {
+    title: 'Choose the cleanest path forward',
+    description:
+      'Sometimes DPA is the right tool. Sometimes FHA, USDA, seller credits, gift funds, or a different price point creates a cleaner purchase plan.',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'AHFA First Step Mortgage Revenue Bonds',
+    description:
+      'Alabama Housing Finance Authority explains First Step, special low mortgage rates, and available down payment assistance.',
+    url: 'https://www.ahfa.com/homebuyers/programs-available/first-step-mortgage-revenue-bonds',
+  },
+  {
+    title: 'AHFA First Step FAQs',
+    description:
+      'AHFA’s First Step FAQ document gives buyers and lenders additional program details to verify before applying.',
+    url: 'https://www.ahfa.com/Content/Uploads/ahfa.com/files/First%20Step/First%20Step%20FAQs_revised042524_2.pdf',
+  },
+  {
+    title: 'NMLS Consumer Access',
+    description:
+      'Federal licensing lookup where buyers can verify Levi Duncan’s Mortgage Loan Originator registration.',
+    url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'First Step Eligibility in Alabama',
+    description:
+      'Review income limits, sales-price limits, first-time buyer rules, repayment structure, and recapture-tax considerations before relying on First Step.',
+    url: '/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What is Alabama First Step down payment assistance?',
+    answer:
+      'First Step is an Alabama Housing Finance Authority program that offers below-market 30-year fixed mortgage interest rates and down payment assistance for eligible Alabama homebuyers.',
+  },
+  {
+    question: 'How much assistance can First Step provide?',
+    answer:
+      'AHFA states that First Step borrowers may be eligible for down payment assistance up to $10,000 or 4% of the sales price, whichever is lower. Final eligibility depends on the borrower, property, loan type, and current program guidelines.',
+  },
+  {
+    question: 'Is First Step a grant?',
+    answer:
+      'The First Step down payment funds are secured by a 10-year second mortgage combined with the borrower’s 30-year fixed-rate First Step mortgage. Buyers should understand the repayment structure before choosing the program.',
+  },
+  {
+    question: 'Can First Step work with FHA, USDA, VA, or conventional loans?',
+    answer:
+      'AHFA says First Step loans are available with FHA, VA, USDA, and Freddie Mac HFA Advantage conventional loans when program and loan requirements are met.',
+  },
+  {
+    question: 'Who should ask Levi about First Step in Alabama?',
+    answer:
+      'A buyer who can afford a mortgage payment but needs help with the upfront cash for a down payment or closing should ask Levi about First Step before the home search gets serious.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'Alabama First Step Down Payment Assistance',
+    description:
+      'First Step down payment assistance guidance from Levi Duncan for Alabama homebuyers comparing AHFA assistance, mortgage options, eligibility, and cash to close.',
+    serviceType: 'Down payment assistance mortgage guidance',
+    audience: ['first-time homebuyers', 'homebuyers', 'down payment assistance borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'Alabama First Step Mortgage and Down Payment Assistance',
+    description:
+      'Alabama First Step mortgage and down payment assistance guidance for eligible buyers comparing AHFA program structure, loan fit, cash to close, and application readiness.',
+    loanType: 'Alabama First Step mortgage revenue bond loan',
+    audience: ['first-time homebuyers', 'homebuyers', 'down payment assistance borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'Down Payment Assistance', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="First Step DPA | Alabama | Levi Duncan"
+  description="Explore Alabama First Step down payment assistance with Levi Duncan, including benefits, eligibility, loan structure, and next steps."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="dpa-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">Alabama Down Payment Assistance</p>
+      <h1 id="dpa-heading">First Step down payment assistance in Alabama.</h1>
+      <p class="hero-lede">
+        Alabama First Step can help eligible homebuyers compare below-market
+        mortgage rates and down payment assistance before the home search
+        creates pressure. Levi Duncan, Mortgage Loan Originator with Princeton
+        Mortgage, helps buyers understand how First Step works, who it may fit,
+        and what to check before applying.
+      </p>
+      <div class="hero-actions" aria-label="First Step down payment assistance actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through your scenario</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Start a loan application</a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator for Alabama First Step down payment assistance"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>First Step guidance for Alabama homebuyers</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="benefits-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Cash Strategy</p>
+        <h2 id="benefits-heading">When is down payment assistance worth checking?</h2>
+        <p>
+          Down payment assistance is worth checking when the buyer's income and
+          payment look workable, but the upfront cash creates friction. This
+          page helps buyers think through the cash-to-close strategy; the
+          focused First Step eligibility guide handles the detailed program
+          rules.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="First Step benefits">
+        {
+          firstStepHighlights.map((highlight) => (
+            <article>
+              <span>{highlight.label}</span>
+              <strong>{highlight.title}</strong>
+              <p>{highlight.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="process-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">How It Works</p>
+        <h2 id="process-heading">How DPA guidance works before an offer.</h2>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          processSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+          <h2 id="local-heading">
+            DPA strategy across Madison, Decatur, Athens, Albertville, Arab, and the wider
+            Tennessee Valley.
+          </h2>
+        </div>
+        <p>
+          In North Alabama, the best assistance conversation is usually not
+          “Can I get free money?” It is “Which structure leaves me with the
+          strongest purchase plan?” Levi helps buyers compare First Step,
+          FHA, USDA, conventional options, seller credits, gift funds, payment
+          comfort, and cash left after closing across Madison County, Marshall
+          County, Morgan County, and nearby communities.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Focused First Step Guide</p>
+        <h2 id="related-heading">Need to check First Step eligibility more closely?</h2>
+        <p>
+          This focused guide helps buyers understand who may fit First Step,
+          what limits need to be checked, and how repayment works before they
+          count on assistance.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where First Step buyers can verify program details.</h2>
+        <p>
+          Down payment assistance details can change, so buyers should compare
+          Levi's guidance with AHFA's official program information before
+          deciding whether First Step fits.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">First Step down payment assistance questions.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Check First Step before assuming the down payment is out of reach.</h2>
+          </div>
+          <div class="hero-actions" aria-label="First Step assistance next steps">
+            <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+              Book a buyer consultation
+            </a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

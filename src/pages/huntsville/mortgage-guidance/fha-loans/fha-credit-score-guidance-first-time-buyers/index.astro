@@ -1,0 +1,481 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/fha-loans/fha-credit-score-guidance-first-time-buyers/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const creditReadiness = [
+  {
+    label: 'Starting point',
+    title: 'Score is only the opening question',
+    description:
+      'FHA credit review starts with the score, but the full file still matters: payment history, recent late payments, collections, debt load, savings, income stability, and automated underwriting.',
+  },
+  {
+    label: 'Thin history',
+    title: 'A limited file needs context',
+    description:
+      'A first-time buyer with a short credit history may need a cleaner explanation of rent, utilities, account age, authorized-user accounts, and whether the credit profile is deep enough.',
+  },
+  {
+    label: 'Past issues',
+    title: 'Old challenges are different from active risk',
+    description:
+      'Previous credit challenges may be workable when the pattern has improved. Recent missed payments, new collections, or unresolved disputes can create a different conversation.',
+  },
+  {
+    label: 'Timing',
+    title: 'The wrong move can hurt readiness',
+    description:
+      'Opening new accounts, running up balances, moving money without documentation, or paying collections without guidance can change the file right before application.',
+  },
+];
+
+const practicalSteps = [
+  {
+    title: 'Review the credit report before the search',
+    description:
+      'Look for score range, late-payment patterns, collection accounts, disputed accounts, student loans, authorized-user accounts, and debts that may affect the payment.',
+  },
+  {
+    title: 'Separate repair from readiness',
+    description:
+      'Not every buyer needs a long credit-repair project. The goal is to understand what needs attention now, what can wait, and what could cause underwriting friction.',
+  },
+  {
+    title: 'Protect cash while improving the file',
+    description:
+      'For FHA buyers, cash to close still matters. Paying every account at once can reduce savings, so the order of operations should be intentional.',
+  },
+  {
+    title: 'Match the credit path to the offer timeline',
+    description:
+      'A buyer shopping soon needs a different plan than a buyer preparing for six months. Credit guidance should match the actual home search timeline.',
+  },
+];
+
+const doDontItems = [
+  {
+    title: 'Do keep accounts stable',
+    description:
+      'Keep payments on time, avoid unnecessary new credit, and avoid major balance swings while preparing for an FHA application.',
+  },
+  {
+    title: 'Do document explanations',
+    description:
+      'If there were job changes, medical bills, temporary hardship, or old credit problems, prepare a clear timeline and supporting documents when needed.',
+  },
+  {
+    title: 'Do not assume one score decides everything',
+    description:
+      'A credit score matters, but FHA approval is not just a score lookup. The file is reviewed with income, debts, assets, property, and overall risk.',
+  },
+  {
+    title: 'Do not dispute accounts blindly',
+    description:
+      'Credit disputes can affect underwriting. Buyers should talk through the impact before disputing or removing dispute language close to application.',
+  },
+];
+
+const localContext = [
+  {
+    title: 'Entry-level price pressure',
+    description:
+      'In North Alabama starter-home searches, a small payment or score change can affect the available price range. Credit review should happen before buyers fall in love with a home.',
+  },
+  {
+    title: 'Assistance pairing',
+    description:
+      'If a buyer wants to pair FHA with Alabama assistance, credit, income, assets, and program rules all need to fit together instead of being reviewed separately.',
+  },
+  {
+    title: 'Offer confidence',
+    description:
+      'A cleaner credit plan helps the buyer and agent understand whether the offer should rely on FHA, compare USDA, or pause for more preparation.',
+  },
+];
+
+const relatedGuides = [
+  {
+    title: 'FHA Loans in North Alabama',
+    description:
+      'Return to the main FHA page for flexible credit, minimum down payment, property standards, and buyer next steps.',
+    url: '/huntsville/mortgage-guidance/fha-loans/',
+  },
+  {
+    title: 'FHA Loan Requirements in Alabama',
+    description:
+      'Review the broader FHA requirements for credit, down payment, DTI, loan limits, and property condition.',
+    url: '/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/',
+  },
+  {
+    title: 'First-Time Homebuyer Mistakes to Avoid',
+    description:
+      'Avoid credit, cash, property, timing, closing, and wire-fraud mistakes during the first purchase.',
+    url: '/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'HUD Single Family Handbook 4000.1',
+    description:
+      'HUD’s official FHA Single Family policy source for credit, underwriting, and borrower eligibility rules.',
+    url: 'https://www.hud.gov/hud-partners/single-family-handbook-4000-1',
+  },
+  {
+    title: 'FHA TOTAL Mortgage Scorecard',
+    description:
+      'HUD overview of the automated scorecard used to evaluate borrower credit history and application information.',
+    url: 'https://www.hud.gov/stat/sfh/FHA-Total',
+  },
+  {
+    title: 'HUD housing counseling',
+    description:
+      'HUD resources for buyers who want independent housing counseling or homebuyer education support.',
+    url: 'https://www.hud.gov/counseling',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What credit score do first-time buyers need for FHA?',
+    answer:
+      'HUD’s FHA framework includes different maximum financing tiers based on credit score, including a 580+ tier for 3.5% down and a 500-579 tier that requires more down payment. Lenders can use higher overlays, so buyers should review the actual file before assuming approval.',
+  },
+  {
+    question: 'Can FHA work after past credit challenges?',
+    answer:
+      'FHA may be more flexible than some other mortgage paths after prior credit challenges, but timing and pattern matter. Recent late payments, unresolved collections, disputes, bankruptcy, foreclosure, or thin credit can change the plan.',
+  },
+  {
+    question: 'Is a low score the only FHA credit issue?',
+    answer:
+      'No. FHA credit review can also look at payment history, account depth, disputed accounts, recent debts, collections, student loans, debt-to-income ratio, reserves, and whether the overall file receives acceptable underwriting findings.',
+  },
+  {
+    question: 'Should I pay collections before applying for FHA?',
+    answer:
+      'Not automatically. Paying or settling collections can affect cash reserves, documentation, and timing. Buyers should review the account type, balance, age, and underwriting impact before making large credit moves.',
+  },
+  {
+    question: 'Can a first-time buyer have no credit score and still discuss FHA?',
+    answer:
+      'Yes, a no-score buyer may still be worth reviewing, but the file needs a careful look at non-traditional credit, housing history, reserves, debt ratios, and lender requirements.',
+  },
+  {
+    question: 'When should I ask Levi about FHA credit readiness?',
+    answer:
+      'Ask before the serious home search starts. Early credit review gives a first-time buyer time to protect cash, avoid new mistakes, compare FHA with USDA or assistance options, and choose the right next step.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'FHA Credit Score Guidance for First-Time Buyers',
+    description:
+      'Focused FHA credit score guidance for first-time buyers in North Alabama reviewing lower starting scores, thin credit, prior credit challenges, lender overlays, and application timing.',
+    serviceType: 'FHA credit readiness guidance',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'FHA Credit Score Guidance for First-Time Buyers',
+    description:
+      'FHA mortgage credit-readiness guidance for first-time buyers comparing score, payment history, thin credit, prior credit challenges, and underwriting timing.',
+    loanType: 'FHA mortgage loan',
+    audience: ['first-time homebuyers', 'homebuyers', 'FHA loan borrowers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${pageUrl}#howto`,
+    name: 'How to Review FHA Credit Readiness Before Applying',
+    description:
+      'A practical sequence for first-time buyers reviewing FHA credit readiness before a North Alabama home search.',
+    step: practicalSteps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: step.description,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'FHA Credit Score Guidance for First-Time Buyers',
+    description:
+      'Answer-first guide to FHA credit scores, thin credit, prior credit challenges, lender overlays, and timing for first-time buyers in North Alabama.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'FHA Loans', path: '/huntsville/mortgage-guidance/fha-loans/' },
+    { name: 'FHA Credit Score Guidance for First-Time Buyers', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="FHA Credit Score Guidance | Levi Duncan"
+  description="FHA credit score guidance for first-time buyers comparing lower scores, thin credit, prior challenges, and timing before applying."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="credit-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">FHA Credit Score Guidance</p>
+      <h1 id="credit-heading">FHA credit score guidance for first-time buyers.</h1>
+      <p class="hero-lede">
+        FHA credit score guidance helps first-time buyers understand whether
+        their credit profile is ready for application or needs a better plan
+        first. Levi Duncan helps buyers across Madison, Decatur, Athens,
+        Albertville, Arab, and the wider Tennessee Valley compare lower
+        starting scores, thin credit, past credit challenges, and FHA timing
+        before the home search creates pressure.
+      </p>
+      <div class="hero-actions" aria-label="FHA credit score actions">
+        <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+          Review FHA credit readiness
+        </a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/fha-loans/">
+          Back to FHA loan guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining FHA credit score guidance for first-time buyers"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>FHA credit readiness for first-time buyers</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">How should first-time buyers think about FHA credit scores?</h2>
+        </div>
+        <p>
+          First-time buyers should treat the credit score as the starting point,
+          not the whole answer. FHA may offer a practical path for buyers with
+          previous credit challenges, thinner credit history, or a lower
+          starting score, but approval still depends on the full file, lender
+          requirements, down payment, debts, income, assets, and property fit.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          creditReadiness.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="steps-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Readiness Plan</p>
+        <h2 id="steps-heading">What should buyers review before applying with FHA?</h2>
+        <p>
+          The goal is not to make the buyer wait unnecessarily. The goal is to
+          know whether the file is ready now, whether a few targeted steps would
+          help, or whether another mortgage path should be compared first.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          practicalSteps.map((step, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="dos-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Do and Do Not</p>
+        <h2 id="dos-heading">What credit moves help or hurt before FHA application?</h2>
+        <p>
+          Many first-time buyers try to improve credit but accidentally create
+          new underwriting questions. Before making a large credit move, buyers
+          should understand how the change could affect score, cash, debt ratio,
+          and documentation.
+        </p>
+        <div class="hero-actions" aria-label="FHA credit next actions">
+          <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+            Book a buyer consultation
+          </a>
+          <a
+            class="button button-secondary"
+            href="/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/"
+          >
+            Review mistakes to avoid
+          </a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="FHA credit do and do not guidance">
+        {
+          doDontItems.map((item) => (
+            <article>
+              <span>Credit Move</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="local-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">North Alabama Context</p>
+        <h2 id="local-heading">Why does FHA credit readiness matter before shopping locally?</h2>
+        </div>
+        <p>
+          For first-time buyers in Madison, Decatur, Athens, Albertville, Arab,
+          and surrounding North Alabama communities, credit readiness affects
+          more than approval. It can change payment comfort, cash to close,
+          assistance options, offer strength, and whether FHA is stronger than
+          USDA or another loan path.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-three">
+        {
+          localContext.map((item) => (
+            <article class="feature-card">
+              <span>Local Fit</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="related-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Related Guides</p>
+        <h2 id="related-heading">What should buyers compare after credit readiness?</h2>
+        <p>
+          Once the credit picture is clearer, buyers can compare the broader
+          FHA requirements, first-time buyer risks, and whether another program
+          creates a better fit.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          relatedGuides.map((guide) => (
+            <a class="resource-card" href={guide.url}>
+              <span>Related Guide</span>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where buyers can verify FHA credit policy.</h2>
+        <p>
+          HUD is the source of truth for FHA policy. Princeton Mortgage is not
+          affiliated with, endorsed by, or sponsored by the Federal Housing
+          Administration or the U.S. Department of Housing and Urban Development.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">FHA credit score questions for first-time buyers.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Review FHA credit readiness before the home search creates pressure.</h2>
+          </div>
+          <div class="hero-actions" aria-label="FHA credit score next steps">
+            <a class="button button-primary" href={site.homebuyerConsultationUrl}>
+              Book a buyer consultation
+            </a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,464 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import {
+  createBreadcrumbJsonLd,
+  createFaqJsonLd,
+  createMortgageLoanJsonLd,
+  createMortgageServiceJsonLd,
+  organizationJsonLd,
+  personJsonLd,
+} from '../../../../../data/schema';
+import { site } from '../../../../../data/site';
+
+const pagePath =
+  '/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/';
+const pageUrl = new URL(pagePath, site.url).href;
+
+const requirementCards = [
+  {
+    label: 'Cash flow',
+    title: 'The property must support the payment',
+    description:
+      'Most residential DSCR programs compare gross monthly rent to PITIA: principal, interest, taxes, insurance, and association dues.',
+  },
+  {
+    label: 'Credit',
+    title: 'No income docs does not mean no underwriting',
+    description:
+      'DSCR loans may skip W-2s, pay stubs, tax returns, and personal DTI, but they still review credit, assets, reserves, property, and loan-to-value.',
+  },
+  {
+    label: 'Equity',
+    title: 'Down payment and LTV drive the deal',
+    description:
+      'Many DSCR purchases need roughly 20% to 25% down, with stronger terms usually tied to higher credit, lower LTV, and stronger coverage ratio.',
+  },
+  {
+    label: 'Purpose',
+    title: 'The loan is for investment property only',
+    description:
+      'DSCR is built for non-owner-occupied rental property. It should not be used for a primary residence or a second home the borrower plans to occupy.',
+  },
+];
+
+const dscrFormulaItems = [
+  {
+    title: 'Rent is the numerator',
+    description:
+      'Rent support may come from an executed lease, appraiser market-rent schedule, 2-4 unit rent analysis, or short-term-rental documentation when the program allows it.',
+  },
+  {
+    title: 'PITIA is the denominator',
+    description:
+      'Principal, interest, taxes, insurance, and association dues all matter. HOA dues or investor insurance can quickly lower the DSCR ratio.',
+  },
+  {
+    title: 'The ratio affects pricing and leverage',
+    description:
+      'A ratio around 1.00 means rent is close to covering the counted payment. Stronger ratios may unlock better pricing or higher LTV depending on lender rules.',
+  },
+];
+
+const investorChecks = [
+  {
+    title: 'Rental income method',
+    description:
+      'Confirm whether the lender uses lease rent, appraiser market rent, the lower of the two, STR projections, or a vacancy haircut.',
+  },
+  {
+    title: 'Reserves after closing',
+    description:
+      'Many programs require several months of PITIA reserves, with higher reserve needs for weaker ratios, cash-out, foreign national, or higher-risk files.',
+  },
+  {
+    title: 'Prepayment penalty structure',
+    description:
+      'DSCR loans commonly include prepayment penalties. Investors should compare 5/4/3/2/1, 3/2/1, flat, or no-prepay options before choosing a rate.',
+  },
+  {
+    title: 'Exit strategy',
+    description:
+      'A rental hold, BRRRR refinance, short-term rental strategy, or quick resale can each point to a different DSCR structure.',
+  },
+];
+
+const alabamaItems = [
+  {
+    title: 'Model taxes as investor-owned',
+    description:
+      'Alabama property taxes are low compared with many states, but non-homestead investor property can be taxed differently than owner-occupied property.',
+  },
+  {
+    title: 'Quote landlord insurance early',
+    description:
+      'Investor insurance is different from owner-occupied coverage. Wind, hail, roof age, and rental use can affect the premium and the DSCR denominator.',
+  },
+  {
+    title: 'Check short-term rental rules before underwriting STR income',
+    description:
+      'Huntsville, Madison, lake markets, HOAs, and deed restrictions can all affect whether short-term rental income is usable or realistic.',
+  },
+  {
+    title: 'Use counsel for entity and tax questions',
+    description:
+      'LLC formation, operating agreements, asset protection, tax elections, depreciation, and passive-loss treatment should be reviewed with an Alabama attorney or CPA.',
+  },
+];
+
+const propertyItems = [
+  {
+    title: '1-4 unit rentals',
+    description:
+      'Single-family rentals, townhomes, PUDs, and 2-4 unit residential properties are common DSCR property types when the appraisal and rent support fit.',
+  },
+  {
+    title: 'Condos and non-warrantable condos',
+    description:
+      'Condo eligibility is program-specific. Warrantable condos are cleaner; non-warrantable condos and condotels usually require a lender that accepts that risk.',
+  },
+  {
+    title: 'Short-term rentals',
+    description:
+      'STR-friendly programs may use 12 months of history, AirDNA, Rabbu, or other market projections, often with a haircut or higher pricing.',
+  },
+  {
+    title: 'Rural and acreage properties',
+    description:
+      'Limestone, Morgan, Marshall, Jackson, DeKalb, and other rural properties may face appraisal, acreage, outbuilding, and comparable-rent limitations.',
+  },
+];
+
+const officialResources = [
+  {
+    title: 'CFPB business-purpose exemption rule',
+    description:
+      'Federal Regulation Z section describing exempt transactions, including credit primarily for business, commercial, or agricultural purposes.',
+    url: 'https://www.ecfr.gov/current/title-12/chapter-X/part-1026/subpart-A/section-1026.3',
+  },
+  {
+    title: 'CFPB ATR/QM regulation',
+    description:
+      'Federal ability-to-repay and qualified-mortgage regulation used as the contrast point for consumer-purpose mortgage rules.',
+    url: 'https://www.consumerfinance.gov/rules-policy/regulations/1026/43/',
+  },
+  {
+    title: 'Fannie Mae rental income guidance',
+    description:
+      'Agency reference for rental income documentation and forms often used as comparison anchors in investor financing.',
+    url: 'https://selling-guide.fanniemae.com/sel/b3-3.8-01/rental-income',
+  },
+  {
+    title: 'Alabama Secretary of State LLC resources',
+    description:
+      'Official Alabama business entity resource for LLC formation context. Entity decisions should be reviewed with counsel.',
+    url: 'https://www.sos.alabama.gov/business-entities/llcs',
+  },
+];
+
+const faqs = [
+  {
+    question: 'What are DSCR loan requirements in Alabama?',
+    answer:
+      'DSCR requirements depend on the lender, but investors should expect review of property rent, PITIA, DSCR ratio, credit score, loan-to-value, reserves, property type, occupancy, title or entity structure, appraisal, and rent support.',
+  },
+  {
+    question: 'What DSCR ratio do lenders usually want?',
+    answer:
+      'Many DSCR programs prefer a ratio near 1.00 or higher, with stronger pricing often tied to ratios around 1.10, 1.20, or 1.25. Some lenders allow lower-ratio or no-ratio options with lower LTV, higher pricing, or stronger reserves.',
+  },
+  {
+    question: 'Can a DSCR loan close in an LLC?',
+    answer:
+      'Many DSCR programs allow the LLC to be the borrower and titleholder, often with personal guarantees from members. Entity formation, operating agreements, asset protection, and tax questions should be reviewed with an Alabama attorney and CPA.',
+  },
+  {
+    question: 'Do DSCR loans require tax returns or W-2s?',
+    answer:
+      'DSCR loans are typically qualified around rental-property cash flow instead of personal income, so W-2s, pay stubs, tax returns, and personal DTI are often not used. Credit, assets, reserves, property, and rent support still matter.',
+  },
+  {
+    question: 'Can short-term rental income be used for DSCR?',
+    answer:
+      'Some DSCR programs allow short-term rental income when documentation supports it, but rules vary. Investors should verify zoning, HOA restrictions, operating history, projection source, and any lender haircut before relying on STR income.',
+  },
+  {
+    question: 'Are DSCR loans cheaper than conventional investor loans?',
+    answer:
+      'Usually no. Conventional investor loans are often cheaper when the borrower qualifies. DSCR can be useful when speed, entity vesting, property cash flow, tax-return complexity, or financed-property limits make conventional financing less practical.',
+  },
+];
+
+const schema = [
+  personJsonLd,
+  organizationJsonLd,
+  createMortgageServiceJsonLd({
+    pageUrl,
+    name: 'DSCR Loan Requirements in Alabama',
+    description:
+      'Focused DSCR loan requirements guidance for Alabama rental investors reviewing cash flow, rent support, credit, reserves, LTV, LLC vesting, and property eligibility.',
+    serviceType: 'DSCR loan requirements guidance',
+    audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
+  }),
+  createMortgageLoanJsonLd({
+    pageUrl,
+    name: 'DSCR Loan Requirements in Alabama',
+    description:
+      'DSCR investor loan guidance for rental-property buyers comparing debt service coverage ratio, rent support, reserves, LTV, property type, and Alabama investor considerations.',
+    loanType: 'DSCR investor loan',
+    audience: ['real estate investors', 'rental property buyers', 'investment property buyers'],
+  }),
+  createFaqJsonLd(faqs),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${pageUrl}#article`,
+    headline: 'DSCR Loan Requirements in Alabama',
+    description:
+      'Answer-first guide to DSCR requirements, ratio math, property eligibility, LLC considerations, and Alabama investor checks.',
+    author: { '@id': `${site.url}/#person` },
+    publisher: { '@id': `${site.url}/#princeton-mortgage` },
+    mainEntityOfPage: pageUrl,
+    datePublished: '2026-05-08',
+    dateModified: '2026-05-08',
+  },
+  createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Mortgage Guidance in Huntsville', path: '/huntsville/mortgage-guidance/' },
+    { name: 'Investment Property', path: '/huntsville/mortgage-guidance/investment-property/' },
+    { name: 'DSCR Loan Requirements in Alabama', path: pagePath },
+  ]),
+];
+---
+
+<BaseLayout
+  title="DSCR Loan Requirements | Alabama | Levi Duncan"
+  description="Review DSCR loan requirements in Alabama, including ratio math, rent support, credit, reserves, LTV, LLCs, and STR risks."
+  schema={schema}
+>
+  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="dscr-requirements-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">DSCR Loan Requirements</p>
+      <h1 id="dscr-requirements-heading">DSCR loan requirements in Alabama.</h1>
+      <p class="hero-lede">
+        DSCR loan requirements in Alabama focus on whether the rental property
+        can support the proposed payment, while still reviewing credit, assets,
+        reserves, loan-to-value, property type, and investor purpose. Levi
+        Duncan helps rental-property buyers compare the DSCR structure before
+        they assume the deal works.
+      </p>
+      <div class="hero-actions" aria-label="DSCR loan requirement actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Talk through DSCR requirements</a>
+        <a class="button button-secondary" href="/huntsville/mortgage-guidance/investment-property/">
+          Back to investor loan guidance
+        </a>
+      </div>
+    </div>
+    <div class="hero-media va-hero-media">
+      <img
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Mortgage Loan Originator explaining DSCR loan requirements in Alabama"
+      />
+      <div class="va-visual-card va-visual-card-top">
+        <span>{site.tagline}</span>
+        <strong>DSCR ratio, rent support, reserves, and investor loan structure</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Direct Answer</p>
+          <h2 id="answer-heading">What does a DSCR loan require?</h2>
+        </div>
+        <p>
+          A DSCR loan usually requires enough rent support for the property to
+          cover the counted payment, plus acceptable credit, down payment or
+          equity, reserves, appraisal, property type, occupancy, and business
+          purpose. Program terms change by lender, so the exact matrix must be
+          checked before an offer or refinance decision.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          requirementCards.map((item) => (
+            <article class="feature-card">
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="formula-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Ratio Math</p>
+        <h2 id="formula-heading">How is DSCR calculated on a rental property?</h2>
+        <p>
+          For many 1-4 unit residential DSCR programs, the common formula is
+          gross monthly rent divided by PITIA. A commercial or small-balance
+          program may use a different net-operating-income formula, so the
+          lender method matters.
+        </p>
+      </div>
+      <div class="feature-grid">
+        {
+          dscrFormulaItems.map((item) => (
+            <article class="feature-card">
+              <span>Formula</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="checks-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Investor Checks</p>
+        <h2 id="checks-heading">What should investors check before relying on DSCR?</h2>
+        <p>
+          DSCR can be useful, but it is not automatically the lowest-cost option.
+          Investors should compare conventional investor financing, DSCR terms,
+          prepayment penalties, refinance timing, cash left after closing, and
+          the property’s real operating plan before choosing the loan path.
+        </p>
+        <div class="hero-actions" aria-label="DSCR investor review actions">
+          <a class="button button-primary" href={site.calendlyUrl}>Review a rental deal</a>
+          <a class="button button-secondary" href={site.applicationUrl}>Start an application</a>
+        </div>
+      </div>
+      <div class="local-context-panel" aria-label="DSCR investor checks">
+        {
+          investorChecks.map((item) => (
+            <article>
+              <span>Check</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="property-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Property Eligibility</p>
+        <h2 id="property-heading">Which properties can create DSCR issues?</h2>
+        <p>
+          A rental property can look strong on a pro forma and still run into
+          underwriting issues if the appraisal, rent schedule, property type,
+          zoning, HOA rules, acreage, or condition does not fit the lender’s
+          program.
+        </p>
+      </div>
+      <div class="feature-grid feature-grid-four">
+        {
+          propertyItems.map((item, index) => (
+            <article class="feature-card">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="alabama-heading">
+    <div class="split-section">
+      <div>
+        <p class="eyebrow">Alabama Context</p>
+        <h2 id="alabama-heading">What matters for Alabama rental investors?</h2>
+        <p>
+          For Alabama investor loans, the local details that often matter most
+          are realistic market rent, non-homestead property taxes, landlord
+          insurance, short-term rental rules, HOA restrictions, and whether an
+          LLC or personal title structure fits the investor’s legal and tax
+          plan. Those details can look different across Huntsville, Madison,
+          Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley.
+        </p>
+      </div>
+      <div class="local-context-panel" aria-label="Alabama DSCR investor considerations">
+        {
+          alabamaItems.map((item) => (
+            <article>
+              <span>Alabama</span>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band" aria-labelledby="resources-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading">
+        <p class="eyebrow">Official Sources</p>
+        <h2 id="resources-heading">Where investors can verify DSCR context.</h2>
+        <p>
+          DSCR is a non-QM investor product, so exact requirements come from the
+          lender’s current matrix. These official sources help frame the
+          business-purpose, rental-income, and LLC context around the guidance.
+        </p>
+      </div>
+      <div class="resource-grid">
+        {
+          officialResources.map((resource) => (
+            <a class="resource-card" href={resource.url}>
+              <span>Source</span>
+              <strong>{resource.title}</strong>
+              <p>{resource.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="faq-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-heading">DSCR loan requirement questions in Alabama.</h2>
+      </div>
+      <div class="faq-list">
+        {
+          faqs.map((faq) => (
+            <article>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="cta-band">
+        <div class="section-cta-row">
+          <div>
+            <p class="eyebrow">Next Step</p>
+            <h2>Check the DSCR structure before deciding the rental deal works.</h2>
+          </div>
+          <div class="hero-actions" aria-label="DSCR loan requirement next steps">
+            <a class="button button-primary" href={site.calendlyUrl}>Book an investor consultation</a>
+            <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -4,242 +4,137 @@ import { events, pastEvents, upcomingEvents } from '../data/events';
 import {
   createBreadcrumbJsonLd,
   createEventJsonLd,
+  createHomebuyerMasterClassLearningResourceJsonLd,
   organizationJsonLd,
-  professionalServiceJsonLd,
   personJsonLd,
 } from '../data/schema';
 import { site } from '../data/site';
 
-const pagePath = '/events/';
-const pageUrl = new URL(pagePath, site.url).href;
+const formatEventDate = (date: string) =>
+  new Intl.DateTimeFormat('en', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'America/Chicago',
+  }).format(new Date(date));
 
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  weekday: 'short',
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-});
+const eventAddress = (event: (typeof events)[number]) =>
+  event.address
+    ? `${event.venue}, ${event.address.streetAddress}, ${event.city}, ${event.state} ${event.address.postalCode}`
+    : `${event.venue}, ${event.city}, ${event.state}`;
 
-const formatDate = (date: string) =>
-  dateFormatter.format(new Date(`${date}T12:00:00`));
+const getRegistrationUrl = (event: (typeof events)[number]) =>
+  event.registrationUrl ?? site.calendlyUrl;
+
+const classTopics = [
+  {
+    label: 'Property Strategy',
+    title: 'How to shop with a plan',
+    description:
+      'Buyers learn how representation, offer terms, contingencies, timing, and local market context shape a stronger home search.',
+  },
+  {
+    label: 'Financing',
+    title: 'How approval really works',
+    description:
+      'The class explains credit, income, assets, loan options, payment comfort, cash to close, and common mistakes that can delay closing.',
+  },
+  {
+    label: 'Inspection',
+    title: 'How to understand the home',
+    description:
+      'A home inspection helps buyers understand roof, HVAC, plumbing, electrical, safety, and repair considerations before final decisions.',
+  },
+  {
+    label: 'Insurance',
+    title: 'How to protect the property',
+    description:
+      'Buyers hear how homeowners insurance, coverage quality, deductibles, special property risks, and lender timing fit into closing.',
+  },
+  {
+    label: 'Title & Legal',
+    title: 'How ownership becomes clear',
+    description:
+      'Title and closing topics include ownership rights, title search, title insurance, closing documents, and what happens before keys transfer.',
+  },
+];
 
 const schema = [
   personJsonLd,
   organizationJsonLd,
-  professionalServiceJsonLd,
+  ...events.map((event) => createEventJsonLd(event)),
+  createHomebuyerMasterClassLearningResourceJsonLd(events),
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    '@id': `${pageUrl}#webpage`,
-    url: pageUrl,
-    name: 'Clay Duncan Events',
+    '@id': `${site.url}/events/#webpage`,
+    url: `${site.url}/events/`,
+    name: 'Homebuyer Master Class',
     description:
-      'Upcoming and past AI training events from Clay Duncan for REALTORS®, teams, mortgage professionals, and homebuyers.',
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: events.map((event, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: { '@id': `${site.url}/events/#${event.date}` },
-      })),
-    },
+      'Homebuyer Master Class events for Huntsville-area first-time and experienced homebuyers.',
+    mainEntity: events.map((event) => ({ '@id': `${site.url}/events/#${event.id}` })),
     isPartOf: { '@id': `${site.url}/#website` },
-    about: [
-      { '@type': 'Thing', name: 'AI training for REALTORS®' },
-      { '@type': 'Thing', name: 'Princeton Mortgage AI training' },
-      { '@type': 'Thing', name: 'real estate AI education' },
-      { '@type': 'Place', name: 'Huntsville, Alabama' },
-      { '@type': 'Place', name: 'North Alabama' },
-    ],
   },
-  ...events.map((event) => createEventJsonLd(event)),
   createBreadcrumbJsonLd([
     { name: 'Home', path: '/' },
-    { name: 'Events', path: pagePath },
+    { name: 'Events', path: '/events/' },
   ]),
 ];
 ---
 
 <BaseLayout
-  title="Events | AI Training with Clay Duncan"
-  description="View upcoming and past Clay Duncan AI training events for REALTORS®, real estate teams, mortgage professionals, and homebuyers."
+  title="Homebuyer Master Class | Huntsville | Levi Duncan"
+  description="View Levi Duncan's Homebuyer Master Class events for Huntsville-area first-time and experienced homebuyers."
   schema={schema}
 >
   <section class="hero-section landing-hero va-landing-hero" aria-labelledby="events-heading">
     <div class="hero-copy">
       <p class="eyebrow">Events</p>
-      <h1 id="events-heading">AI training events built for real work.</h1>
+      <h1 id="events-heading">Homebuyer Master Class in Huntsville.</h1>
       <p class="hero-lede">
-        Clay Duncan teaches practical AI sessions for REALTORS®, real estate
-        offices, mortgage professionals, and homebuyers who want useful systems
-        without losing the human part of the work.
+        Homebuyer Master Class is a monthly Huntsville-area education series for
+        first-time and experienced buyers. Sessions bring together property
+        strategy, title and legal, home inspection, homeowners insurance, and
+        financing strategy so buyers can understand the full path before making
+        a move. The class helps buyers understand the major decisions before
+        they are under contract and gives them a high-level framework without
+        trying to turn the website into the full class.
       </p>
-      <div class="hero-actions" aria-label="Event page actions">
-        <a class="button button-primary" href={site.schedulingUrl}>Ask about hosting a session</a>
-        <a class="button button-secondary" href="/realtor-ai-training/">Explore AI training</a>
+      <div class="hero-actions">
+        <a class="button button-primary" href={site.calendlyUrl}>Book a call with Levi</a>
+        <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
       </div>
-      <dl class="proof-strip" aria-label="Clay Duncan event highlights">
-        <div>
-          <dt>{upcomingEvents.length}</dt>
-          <dd>upcoming public event listed</dd>
-        </div>
-        <div>
-          <dt>{pastEvents.length}</dt>
-          <dd>recent AI training recaps</dd>
-        </div>
-        <div>
-          <dt>Skool</dt>
-          <dd>future learning hub planned through Princeton</dd>
-        </div>
-      </dl>
     </div>
     <div class="hero-media va-hero-media">
       <img
-        src="/images/clay-duncan-wbackground-1400.jpg"
-        width="1400"
-        height="787"
-        alt="Clay Duncan, AI training instructor for REALTORS and mortgage professionals"
+        src={site.heroImage}
+        width="800"
+        height="800"
+        alt="Levi Duncan, Homebuyer Master Class financing strategy speaker in Huntsville"
       />
       <div class="va-visual-card va-visual-card-top">
-        <span>AI Training</span>
-        <strong>Live events, office sessions, webinars, and recaps</strong>
+        <span>{site.tagline}</span>
+        <strong>Homebuyer Master Class and buyer education events</strong>
       </div>
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="answer-heading">
+  <section class="section-band section-band-light" aria-labelledby="class-topics-heading">
     <div class="section-inner">
-      <div class="answer-panel">
-        <div>
-          <p class="eyebrow">Direct Answer</p>
-          <h2 id="answer-heading">What events does Clay Duncan teach?</h2>
-        </div>
-        <p>
-          Clay teaches AI training events for REALTORS®, real estate teams,
-          mortgage professionals, and homebuyers. His sessions focus on
-          practical workflows, clearer client communication, responsible AI use,
-          and systems people can use immediately after the class.
-        </p>
+      <div class="section-heading section-heading-wide class-topics-heading">
+        <p class="eyebrow">What It Covers</p>
+        <h2 id="class-topics-heading">A full view of the homebuying process.</h2>
       </div>
-    </div>
-  </section>
-
-  <section class="split-section" aria-labelledby="upcoming-heading">
-    <div>
-      <p class="eyebrow">Upcoming</p>
-      <h2 id="upcoming-heading">The next listed session is online on May 14.</h2>
-      <p>
-        Registration details for the REALTOR® webinar are still being finalized.
-        This page is structured so a registration link, location, or Skool
-        learning-community link can be added cleanly when those details are
-        ready.
-      </p>
-      <div class="signal-list" aria-label="Upcoming event actions">
-        <a href={site.schedulingUrl}>Ask about attending or hosting</a>
-        <a href="/realtor-ai-training/">Review the training focus</a>
-      </div>
-    </div>
-    <div class="event-stack" aria-label="Upcoming events">
-      {
-        upcomingEvents.map((event) => (
-          <article class="event-card event-card-featured" id={event.date}>
-            <p>{event.audience}</p>
-            <h3>{event.title}</h3>
-            <dl>
-              <div>
-                <dt>Date</dt>
-                <dd>{formatDate(event.date)}</dd>
-              </div>
-              <div>
-                <dt>Location</dt>
-                <dd>{event.location}</dd>
-              </div>
-            </dl>
-            <p>{event.summary}</p>
-            {event.registrationUrl ? (
-              <a href={event.registrationUrl}>Register for this event</a>
-            ) : (
-              <span class="event-status">Registration details coming soon</span>
-            )}
-          </article>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="section-band section-band-dark" aria-labelledby="training-platform-heading">
-    <div class="section-inner">
-      <div class="section-heading section-heading-row">
-        <div>
-          <p class="eyebrow">Princeton AI Training</p>
-          <h2 id="training-platform-heading">Events are part of a larger training platform.</h2>
-        </div>
-        <p>
-          Princeton Mortgage is building an AI training division centered around
-          Clay’s instruction. As that platform develops, this page can point to
-          future events, completed sessions, and the planned Skool learning
-          community without giving away proprietary workflows.
-        </p>
-      </div>
-      <div class="princeton-role-grid">
-        <article>
-          <span>Live Sessions</span>
-          <h3>Office and team training</h3>
-          <p>
-            Practical sessions for agents, brokerages, and partner groups that
-            want clearer AI adoption.
-          </p>
-        </article>
-        <article>
-          <span>Webinars</span>
-          <h3>Broader access</h3>
-          <p>
-            Online sessions can introduce core ideas while directing people to
-            the right next step.
-          </p>
-        </article>
-        <article>
-          <span>Skool</span>
-          <h3>Training hub coming</h3>
-          <p>
-            The future learning community can house featured classes, updates,
-            and deeper instruction.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-band section-band-light" aria-labelledby="past-events-heading">
-    <div class="section-inner">
-      <div class="section-heading section-heading-row">
-        <div>
-          <p class="eyebrow">Past Events</p>
-          <h2 id="past-events-heading">Recent training recaps show momentum.</h2>
-        </div>
-        <p>
-          These past sessions are pulled from Clay’s existing event history and
-          help visitors understand the kind of audiences, locations, and AI
-          topics already connected to his work.
-        </p>
-      </div>
-      <div class="event-grid" aria-label="Past AI training events">
+      <div class="feature-grid feature-grid-five">
         {
-          pastEvents.map((event) => (
-            <article class="event-card" id={event.date}>
-              <p>{event.audience}</p>
-              <h3>{event.title}</h3>
-              <dl>
-                <div>
-                  <dt>Date</dt>
-                  <dd>{formatDate(event.date)}</dd>
-                </div>
-                <div>
-                  <dt>Location</dt>
-                  <dd>{event.location}</dd>
-                </div>
-              </dl>
-              <p>{event.summary}</p>
+          classTopics.map((topic) => (
+            <article class="feature-card">
+              <span>{topic.label}</span>
+              <h3>{topic.title}</h3>
+              <p>{topic.description}</p>
             </article>
           ))
         }
@@ -247,26 +142,99 @@ const schema = [
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="host-heading">
-    <div class="section-inner event-host-panel">
-      <div>
-        <p class="eyebrow">Host a Session</p>
-        <h2 id="host-heading">Bring practical AI training to your office or group.</h2>
-      </div>
-      <aside>
+  <section class="section-band" aria-labelledby="upcoming-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide section-heading-stacked events-section-heading">
+        <p class="eyebrow">Upcoming</p>
+        <h2 id="upcoming-heading">Upcoming Home Buyer Master Class Events.</h2>
         <p>
-          If you want Clay to lead a session for your team, office, association,
-          or partner group, the next step is a simple conversation about
-          audience, topic, timing, and format.
+          Upcoming sessions are listed here as they are scheduled. Each
+          Homebuyer Master Class gives first-time and experienced buyers access
+          to local subject matter experts before the pressure of an offer.
         </p>
-        <div class="signal-list" aria-label="Session planning details">
-          <span>Audience</span>
-          <span>Topic</span>
-          <span>Timing</span>
-          <span>Format</span>
-        </div>
-        <a class="button button-primary" href={site.schedulingUrl}>Chat with Clay</a>
-      </aside>
+      </div>
+      <div class="event-grid">
+        {
+          upcomingEvents.length ? (
+            upcomingEvents.map((event) => (
+              <article class="event-card event-card-featured" id={event.id}>
+                <p>{event.audience}</p>
+                <h3>{event.name}</h3>
+                <dl>
+                  <div>
+                    <dt>Date</dt>
+                    <dd>
+                      {formatEventDate(event.date)}
+                      <a class="event-registration-link" href={getRegistrationUrl(event)}>
+                        Register for this class
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Location</dt>
+                    <dd>{eventAddress(event)}</dd>
+                  </div>
+                </dl>
+                <p>{event.description}</p>
+                <div class="expert-list expert-list-compact" aria-label={`${event.name} subject matter experts`}>
+                  <p>Subject Matter Experts</p>
+                  {event.speakers.map((speaker) => (
+                    <div>
+                      <strong>{speaker.topic}</strong>
+                      <span>{speaker.name} · {speaker.company}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))
+          ) : (
+            <article class="event-card">
+              <p>Next date</p>
+              <h3>Upcoming events will be posted here.</h3>
+              <p>Past Homebuyer Master Class sessions remain visible as local credibility signals.</p>
+            </article>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-light" aria-labelledby="past-heading">
+    <div class="section-inner">
+      <div class="section-heading section-heading-wide events-section-heading past-events-heading">
+        <p class="eyebrow">Past Events</p>
+        <h2 id="past-heading">Past Home Buyer Master Class Events.</h2>
+      </div>
+      <div class="event-stack">
+        {
+          pastEvents.map((event) => (
+            <article class="event-card" id={event.id}>
+              <p>{event.audience}</p>
+              <h3>{event.name}</h3>
+              <dl>
+                <div>
+                  <dt>Date</dt>
+                  <dd>{formatEventDate(event.date)}</dd>
+                </div>
+                <div>
+                  <dt>Location</dt>
+                  <dd>{eventAddress(event)}</dd>
+                </div>
+              </dl>
+              <p>{event.description}</p>
+              <div class="expert-list expert-list-compact" aria-label={`${event.name} subject matter experts`}>
+                <p>Subject Matter Experts</p>
+                {event.speakers.map((speaker) => (
+                  <div>
+                    <strong>{speaker.topic}</strong>
+                    <span>{speaker.name} · {speaker.company}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 </BaseLayout>

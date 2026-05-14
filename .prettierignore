@@ -2,3 +2,5 @@ dist
 .astro
 node_modules
 package-lock.json
+docs/research/
+public/duncan-logo-assets/
