@@ -1,34 +1,44 @@
-# Phase Three Architecture
+# Inherited Phase 3+ Architecture
 
-## Decisions
+## Purpose
 
-- Phase Three work runs on `codex/phase-3-aeo-architecture`.
-- MDX and sitemap were installed during the scaffold. They are accepted as early Phase Three groundwork and become active as blog and content pages ship.
-- The public brand is `Clay Duncan` because the domain is `clayduncan.com`.
-- Levi Duncan should not receive a page in this phase. The likely future structure is separate personal sites connected through a Team Duncan property.
-- Wix cutover and redirect mapping are deferred until a dedicated cutover task.
+This document records the architecture inherited from Clay Duncan's Phase 3+ Astro build and how it applies to Levi Duncan's live site.
 
-## Content System Priorities
+The original Clay scaffold contained Phase 3 notes that predated Levi's separate site. Levi's site is now live at `leviduncan.com`, so those original "future Levi" assumptions are retired.
 
-1. AEO homepage.
-2. Core page/schema helpers.
-3. High-priority Huntsville pages for down payment assistance, VA loans, USDA loans, FHA loans, and closing costs.
-4. Blog/category structure for AI education, Huntsville market intel, and mortgage insights.
-5. Calculators after the page architecture is stable.
+## Current Decisions
+
+- `leviduncan.com` is a live personal authority site for Levi Duncan.
+- The site deploys from GitHub `main` to Netlify.
+- The public brand/entity is Levi Duncan, Mortgage Loan Originator, NMLS #2721357.
+- Princeton Mortgage remains the brokerage/company affiliation, NMLS #113856.
+- Duncan Mortgage Group is a visual/team brand signal only on this site. Do not create a separate Duncan Mortgage Group schema entity here unless the team-site architecture is ready.
+- The site uses the same Astro architecture, layout patterns, schema helpers, style system, and brand tokens proven on Clay's site.
+- Future personal-site launches should follow `docs/launch/personal-site-launch-playbook.md`.
+
+## Static Site Priorities
+
+1. Keep the site static, fast, and content-first.
+2. Preserve Astro and TypeScript patterns already in the repo.
+3. Keep page data, compliance data, schema helpers, and site identity centralized under `src/data/`.
+4. Use the shared `BaseLayout.astro` for sitewide head, metadata, analytics, header, footer, and schema placement.
+5. Avoid unnecessary client-side JavaScript.
+
+## Current Content System
+
+The live site centers on:
+
+- Homepage and Person/entity clarity.
+- About page and credentials.
+- Mortgage guidance hub.
+- Five primary program pages: first-time homebuyer guidance, FHA loans, USDA loans, down payment assistance, and investment property.
+- Focused support guides under the relevant program pages.
+- Homebuyer Master Class events.
+- Reviews placeholder pending Levi's Google Business Profile.
 
 ## Image Conventions
 
-Use structured public image folders:
-
-- `public/images/people/`
-- `public/images/pages/`
-- `public/images/events/`
-- `public/images/social/`
-
-Name files descriptively with lowercase words and hyphens, including the subject and year when useful:
-
-- `clay-duncan-headshot-2026.jpg`
-- `ai-for-realtors-workshop-huntsville-2026.jpg`
+Use structured public image folders only when needed. Levi v1 intentionally uses the headshot as the primary image asset.
 
 Alt text should identify the person, place, or event in plain language. Prefer useful context over keyword stuffing.
 
@@ -38,12 +48,22 @@ Schema lives in `src/data/schema.ts` and should be composed from canonical site 
 
 Use page-level JSON-LD for:
 
-- Person
-- LocalBusiness
-- WebSite
-- BreadcrumbList
-- FAQPage
-- Article, once blog templates exist
-- LoanOrCredit or Service on product and service pages where appropriate
+- `Person`
+- `Organization`
+- `ProfessionalService`
+- `WebSite`
+- `ProfilePage`
+- `CollectionPage`
+- `Service`
+- `Event`
+- `LearningResource`
+- `BreadcrumbList`
+- `FAQPage` where FAQ content exists
 
-Every AEO page should clearly answer who Clay helps, what the page covers, where the service applies, and the next step.
+Every AEO page should clearly answer who Levi helps, what the page covers, where the service applies, and the next step.
+
+## Retired Assumptions
+
+- Levi is no longer a future site or future phase.
+- The original Phase 2 page-by-page sequence is retired for Levi.
+- Blog/contact/Clay program routes from the scaffold are intentionally removed from Levi's v1.

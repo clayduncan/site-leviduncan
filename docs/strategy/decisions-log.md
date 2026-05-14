@@ -12,7 +12,7 @@ This file records durable project decisions so future chats can quickly understa
 - clayduncan.com should continue to balance three pillars: AEO, SEO-rich content, and superior UI experience.
 - Landing pages are part of the main website, not separate mini-sites.
 - `/huntsville/va-loans/` is the first SEO/AEO landing-page baseline.
-- Confirmed the strategic ecosystem direction: `clayduncan.com` first, `leviaduncan.com` second, and a future shared Team Duncan property third.
+- Confirmed the strategic ecosystem direction: `clayduncan.com` first, `leviduncan.com` second, and a future shared Duncan Mortgage Group property third.
 - clayduncan.com is Clay Duncan's personal authority site, not the full Team Duncan site.
 - leviduncan.com should eventually use the same static Astro/Netlify playbook but carry distinct positioning rather than duplicate Clay's content.
 - The future team property should act as a routing and credibility hub, not a duplicate content warehouse.
@@ -43,8 +43,8 @@ This file records durable project decisions so future chats can quickly understa
 - Added Homebuyer Master Class as Levi's unique events signal and retained past events as local authority proof.
 - Kept reviews as an empty placeholder until Levi's Google Business Profile and verified review source are available.
 - Levi's booking links are split by intent: general booking uses `https://calendly.com/lduncan-princetonmortgage/book-levi`, homebuyer consultations use `https://calendly.com/lduncan-princetonmortgage/homebuyer-consultation`, and `https://bit.ly/AppWithLevi` points to `https://princeton.tidalwave.ai/signup/levi.duncan/D2OUK3FT86H9KK708470`.
-- Foundation/data PRs may make minimal page-template edits required to keep `main` deployable after data shape changes and page deletions. Scope: "make it compile," not "build the final page." Full page builds happen in their dedicated PRs.
-- Phase 2 page PRs fully replace the Phase 1 lightweight scaffolds rather than building on them incrementally. Each Phase 2 page is built clean against its own AEO/SEO checklist. Scaffolds existed only to keep `main` deployable through Phase 1.
+- Original Phase 2 page-by-page review gates are retired for Levi because the foundation branch expanded into the full v1 launch build before merge. Future Levi work should be treated as post-launch optimization, GBP/reviews integration, or new differentiated support content rather than continuation of the old Phase 2 sequence.
+- For any future Duncan Mortgage Group personal-brand site, use the reusable launch playbook in `docs/launch/personal-site-launch-playbook.md`: clone the proven Astro/Netlify architecture, define the new person's unique entity and topical ownership, keep `main` deployable, build a complete v1 behind one reviewed launch PR, then shift to post-launch optimization after production cutover.
 
 ## Future Decisions
 

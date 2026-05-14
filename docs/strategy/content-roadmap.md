@@ -2,73 +2,59 @@
 
 ## Purpose
 
-This file tracks priority pages, content pieces, and content production status for clayduncan.com.
+This file tracks Levi Duncan's live page set, post-launch content priorities, and rules for deciding whether a new page is worth adding.
 
-## Priority Landing Pages
+## Live Core Pages
 
-- `/huntsville/va-loans/` - built as first SEO/AEO landing page.
-- `/huntsville/jumbo-loans/` - built as Clay-owned specialty page for higher-priced and complex purchase scenarios.
-- `/huntsville/complex-mortgage-guidance/` - built as Clay-owned strategy page for nuanced income, assets, timing, and offer-readiness scenarios.
-- `/realtor-ai-training/` - built as Clay-owned differentiator page for REALTOR® AI education and training.
-- `/join-us/` - built as Clay-owned why-join and growth conversation page for mortgage professionals.
-- `/huntsville/closing-costs/`
-- `/huntsville/down-payment-assistance/` - high-priority topic, but likely Levi-owned in the future ecosystem.
-- `/huntsville/fha-loans/` - likely Levi-owned in the future ecosystem.
-- `/huntsville/usda-loans/` - likely Levi-owned in the future ecosystem.
-- `/huntsville/first-time-buyers/` - likely Levi-owned in the future ecosystem.
+- `/` - homepage and primary entity page.
+- `/about/` - Levi bio, credentials, NMLS trust, and personal values.
+- `/events/` - Homebuyer Master Class event collection.
+- `/reviews/` - review placeholder until Levi's Google Business Profile is verified and reviews exist.
+- `/huntsville/mortgage-guidance/` - mortgage guidance hub.
+- `/huntsville/mortgage-guidance/first-time-home-buyer/`
+- `/huntsville/mortgage-guidance/fha-loans/`
+- `/huntsville/mortgage-guidance/usda-loans/`
+- `/huntsville/mortgage-guidance/down-payment-assistance/`
+- `/huntsville/mortgage-guidance/investment-property/`
 
-Content ownership guidance:
+## Live Focused Support Guides
 
-- Build Clay's pages first where Clay's personal authority is strongest: VA, military, jumbo, complex purchase strategy, REALTOR® education, reviews, and about/contact trust.
-- Keep first-time buyer, down payment assistance, USDA, and FHA in the roadmap, but decide whether to publish them on clayduncan.com before Levi's site exists or hold them for Levi's differentiated site.
-- If Clay publishes interim pages for Levi-likely topics, keep them broad and avoid creating content that later competes with Levi's future canonical pages.
+- `/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/`
+- `/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/`
+- `/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/`
+- `/huntsville/mortgage-guidance/fha-loans/fha-credit-score-guidance-first-time-buyers/`
+- `/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/`
+- `/huntsville/mortgage-guidance/usda-loans/usda-eligible-areas-north-alabama/`
+- `/huntsville/mortgage-guidance/usda-loans/usda-income-limits-north-alabama/`
+- `/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/`
+- `/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/`
 
-## Priority Resource Pages
+## Post-Launch Priorities
 
-- Mortgage readiness checklist.
-- Questions to ask a lender before writing an offer.
-- VA loan document checklist.
-- Jumbo loan planning checklist.
-- Redstone Arsenal relocation mortgage guide.
-- Huntsville mortgage glossary.
-- Buyer path chooser, once the team ecosystem exists.
+1. Add Levi's Google Business Profile URL after verification.
+2. Replace the reviews stub with verified review content after reviews exist.
+3. Monitor Google Search Console for indexing, impressions, and unexpected query patterns.
+4. Revisit page titles/meta descriptions after real query data appears.
+5. Add new support guides only when they answer a materially different question from the current live pages.
 
-## Blog and Education Pillars
+## Future Support Page Criteria
 
-- Huntsville mortgage insights.
-- VA and military homebuyer education.
-- Jumbo and complex buyer strategy.
-- REALTOR® AI education.
-- Local housing and offer-readiness context.
-- Mortgage process explainers.
-- Loan officer growth and why-join leadership, used selectively so consumer clarity remains strong.
+Build a new support page only if it meets all of these:
 
-Future Levi blog pillars:
+- It answers a distinct buyer question.
+- It has enough substance to avoid repeating an existing guide.
+- It supports Levi's topical ownership.
+- It can link naturally to a parent program page and at least one CTA.
+- It can include FAQ content and schema without forcing filler.
+- It does not compete with Clay's canonical topics or the future team hub.
 
-- First-time buyer education.
-- Down payment assistance explainers.
-- USDA and FHA readiness.
-- Credit, budgeting, and early planning.
+Potential future page ideas should be validated against Search Console data before implementation.
 
-Future team-site content:
+## Content Ownership Guidance
 
-- Team story.
-- Who should I talk to?
-- Shared reviews and proof.
-- Local mortgage team credibility.
-- Clay vs. Levi path routing.
-
-## Content Status
-
-| Page or Asset            | Status      | Notes                                                             |
-| ------------------------ | ----------- | ----------------------------------------------------------------- |
-| VA loans landing page    | In progress | Built and visually reviewed as baseline pattern.                  |
-| Jumbo loans landing page | In progress | Built as Clay-owned higher-priced homebuying page.                |
-| Complex guidance page    | In progress | Built as Clay-owned strategy page for nuanced mortgage scenarios. |
-| REALTOR® AI training     | In progress | Built as Clay-owned AI education differentiator page.             |
-| Loan officer growth      | In progress | Built as Clay-owned why-join and growth conversation page.        |
-| Blog content collection  | Placeholder | Blog index remains noindex until real content ships.              |
-| Three-site strategy      | Documented  | Clay first, Levi second, future team hub third.                   |
+- Levi owns first-time buyer education, FHA, USDA, down payment assistance, buyer readiness, credit preparation, budgeting, and Homebuyer Master Class content.
+- Clay owns VA, Redstone Arsenal and military buyers, complex mortgage strategy, higher-priced home financing, REALTOR® AI training, and leadership credibility.
+- The future team property should route visitors to the correct personal authority site instead of rewriting the same content.
 
 ## Content Rules
 

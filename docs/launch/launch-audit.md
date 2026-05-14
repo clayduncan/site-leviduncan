@@ -1,134 +1,110 @@
-# Launch Audit
+# Levi Duncan Launch Audit
 
-Prepared: May 2, 2026
+Prepared: May 14, 2026
+
+## Production Status
+
+`leviduncan.com` is live in production.
+
+- Primary domain: `https://www.leviduncan.com/`
+- Apex behavior: `https://leviduncan.com/` redirects to `https://www.leviduncan.com/`
+- HTTPS: forced
+- SSL: provisioned through Netlify and auto-renewing
+- Hosting: Netlify deploys from GitHub `main`
+- Repository: `clayduncan/site-leviduncan`
 
 ## Current Public Page Set
 
-The Astro build currently outputs 12 HTML files:
-
-- `/`
-- `/404.html`
-- `/about/`
-- `/blog/`
-- `/contact/`
-- `/events/`
-- `/huntsville/complex-mortgage-guidance/`
-- `/huntsville/jumbo-loans/`
-- `/huntsville/va-loans/`
-- `/join-us/`
-- `/realtor-ai-training/`
-- `/reviews/`
-
-## Sitemap Status
-
-The generated sitemap includes only launch-indexable pages:
+The live sitemap contains 19 indexable pages:
 
 - `/`
 - `/about/`
-- `/contact/`
 - `/events/`
-- `/huntsville/complex-mortgage-guidance/`
-- `/huntsville/jumbo-loans/`
-- `/huntsville/va-loans/`
-- `/join-us/`
-- `/realtor-ai-training/`
+- `/huntsville/mortgage-guidance/`
+- `/huntsville/mortgage-guidance/down-payment-assistance/`
+- `/huntsville/mortgage-guidance/down-payment-assistance/first-step-eligibility-alabama/`
+- `/huntsville/mortgage-guidance/fha-loans/`
+- `/huntsville/mortgage-guidance/fha-loans/fha-credit-score-guidance-first-time-buyers/`
+- `/huntsville/mortgage-guidance/fha-loans/fha-loan-requirements-alabama/`
+- `/huntsville/mortgage-guidance/fha-loans/fha-vs-usda-loans-north-alabama/`
+- `/huntsville/mortgage-guidance/first-time-home-buyer/`
+- `/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-checklist-north-alabama/`
+- `/huntsville/mortgage-guidance/first-time-home-buyer/first-time-homebuyer-mistakes-north-alabama/`
+- `/huntsville/mortgage-guidance/investment-property/`
+- `/huntsville/mortgage-guidance/investment-property/dscr-loan-requirements-alabama/`
+- `/huntsville/mortgage-guidance/usda-loans/`
+- `/huntsville/mortgage-guidance/usda-loans/usda-eligible-areas-north-alabama/`
+- `/huntsville/mortgage-guidance/usda-loans/usda-income-limits-north-alabama/`
 - `/reviews/`
 
-`/blog/` is intentionally excluded from the sitemap until the first real post is published.
+`/404.html` exists and is intentionally not included in the sitemap.
 
-## Noindex Status
+## Search and Analytics
 
-The only pages with `noindex` are:
+- Google Search Console property: verified for `leviduncan.com`.
+- Sitemap submitted in Google Search Console.
+- Bing Webmaster Tools: imported from Google Search Console, sitemap submitted and processing.
+- GA4 property: Levi Duncan.
+- GA4 measurement ID: `G-3ZWEQF27L7`.
+- Clay's previous scaffold GA4 tag `G-1BR97EBZEN` was removed in commit `c7173c9`.
 
-- `/blog/`
-- `/404.html`
+## Schema and AEO Validation
 
-Reason: the blog hub exists, but the first public article is not live yet.
-The 404 route is intentionally noindex because it is not a search landing page.
+Schema validation passed across key page types:
 
-Remove `noindex` from `/blog/` after the first real post is published.
-Keep `/404.html` noindex.
+- Homepage
+- About
+- Mortgage guidance hub
+- Events
+- Program pages
+- Focused support pages
 
-## Legacy URL Cleanup Status
+Program pages include the intended combination of Service, FAQPage where applicable, and BreadcrumbList schema. Address-free ProfessionalService schema is intentional.
 
-Development-only URL cleanup:
+## Post-Launch Crawl Result
 
-- `/loan-officer-recruiting/` is not a source route.
-- `/loan-officer-recruiting/` is not in the sitemap.
-- `/loan-officer-recruiting/` is not present in built HTML.
-- `/loan-officer-recruiting/` is not preserved as a Netlify redirect because it was never a public Wix URL.
+Production audit completed May 14, 2026:
 
-Wix URL handling:
+- Sitemap index returned `200`.
+- Sitemap contained 19 pages.
+- All sitemap pages returned `200`.
+- No broken internal links found.
+- Every sitemap page had one H1.
+- Every sitemap page had a canonical URL.
+- Every sitemap page had a title under 60 characters.
+- Every sitemap page had a meta description.
+- Every sitemap page included schema.
+- Every sitemap page had exactly one Google tag script for Levi's GA4 property.
+- Clay's GA4 measurement ID appeared zero times.
+- `robots.txt` returned `200`, referenced `leviduncan.com`, and included the sitemap.
+- `llms.txt` returned `200`, referenced Levi Duncan, and did not reference `clayduncan.com`.
 
-- Current Wix URLs and search-discovered legacy URLs are documented in `docs/launch/redirect-map.md`.
-- Implemented Wix redirects are configured in `netlify.toml`.
-- Redirects take effect only after `clayduncan.com` points to Netlify.
+## Open Non-Blocking Items
 
-## Robots Status
+- Google Business Profile: Levi to create and verify.
+- GBP URL: add to `src/data/site.ts` after the profile is live.
+- Reviews: populate after verified reviews exist.
+- Knowledge Graph ID: add post-indexing if Google creates a stable entity ID.
 
-`public/robots.txt` allows normal crawling and points crawlers to:
+## Retired Build Plan
 
-- `https://clayduncan.com/sitemap-index.xml`
+The original Phase 2 page-by-page build sequence is retired. The Levi foundation branch became the complete v1 launch branch and was merged after deploy-preview review.
 
-Blocked paths:
+Future work should be scoped as:
 
-- `/apply/`
-- `/admin/`
-- `/api/`
+- post-launch optimization,
+- GBP/reviews integration,
+- analytics/search-console follow-up,
+- or new differentiated support content.
 
-Do not block old Wix URLs in robots.txt. Crawlers need to reach the old URLs after cutover so they can see the `301` redirects.
+For future personal-site launches, use `docs/launch/personal-site-launch-playbook.md` instead of the retired Levi Phase 2 sequence.
 
 ## Verification Commands
 
-Run before launch:
+Run before future launch-affecting changes:
 
 ```sh
 npm run format:check
 npm run build
 npm run audit:launch
 ```
-
-Expected current result:
-
-- Formatting passes.
-- Build passes.
-- Build outputs 12 HTML files.
-- Sitemap excludes `/blog/` until the first post is live.
-- Internal link crawl reports no missing local links.
-- `/404.html` exists and is `noindex, follow`.
-
-## Post-Cutover Search Cleanup
-
-After DNS points to Netlify:
-
-1. Submit `https://clayduncan.com/sitemap-index.xml` in Google Search Console.
-2. Inspect old Wix URLs and confirm Google sees `301` redirects.
-3. Use Google Search Console removals only for urgent stale search results.
-4. Monitor old Wix URLs until they move out of indexed results.
-
-## Staging Deploy
-
-Latest validated Netlify staging deploy:
-
-- Site: `clayduncan-staging`
-- URL: `https://clayduncan-staging.netlify.app`
-- Deploy ID: `69f72997bd2b2074c0d4ee19`
-- Deploy status: ready
-
-Validated on staging:
-
-- `/` returns `200`.
-- `/` includes the SEO/AEO homepage title, homepage path content, review stars, updated YouTube profile link, no header CTA button, and FAQ schema.
-- `/about/` returns `200`.
-- `/about/` includes the hero `Call Clay` telephone CTA.
-- `/join-us/` returns `200`.
-- `/join-us/` includes the hero `Call Clay` telephone CTA and strategy alignment language.
-- `/reviews/` returns `200`.
-- `/reviews/` includes gold review-star styling.
-- `/blog/` returns `200` with `noindex, follow`.
-- `/404.html` returns `200` with `noindex, follow`.
-- `/about-me` returns `301` to `/about/`.
-- `/event-details-registration/ai-for-realtors-r-101-introductory-course-7` returns `301` to `/events/`.
-- `/loan-officer-recruiting/` returns the branded `404` page and is not redirected.
-- The header no longer includes the sitewide `Chat with Clay` CTA button.
-- Built HTML does not contain `loan-officer-recruiting`.
