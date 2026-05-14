@@ -32,7 +32,7 @@ export const events: EventItem[] = [
       postalCode: '35801',
     },
     registrationUrl:
-      'https://calendly.com/lduncan-princetonmortgage/homebuyer-consultation',
+      'https://forms.lessannoyingcrm.com/view/4101446975277530905283651902729',
     audience: 'First-time and experienced homebuyers',
     description:
       'Monthly homebuyer education session covering property strategy, title and legal, home inspection, homeowners insurance, and financing strategy.',
