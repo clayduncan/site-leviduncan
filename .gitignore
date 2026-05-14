@@ -32,3 +32,7 @@ lerna-debug.log*
 
 # Loose screenshot artifacts at repo root (Codex visual review output)
 /*.png
+
+# Local launch research and unused asset drops
+docs/research/
+public/duncan-logo-assets/
