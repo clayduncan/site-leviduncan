@@ -561,6 +561,8 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 **For Duncan Mortgage Group ecosystem:** Use Astro, Next.js with full SSR, or a static WordPress + caching setup. The current Wix-based stack works for AEO when configured for static rendering; verify each site renders in raw HTML via `curl -A "GPTBot"`.
 
+**Post-DMG performance standard for Duncan-related sites (adopted 05-16-2026):** Self-host subset WOFF2 fonts and preload them in the document `<head>`; do not load Google Fonts from the CDN. Use the GA4 defer pattern that loads after a 3-second timeout or first user interaction. Inline critical CSS in the `<head>` using the Astro `global.css?inline` pattern when the site is static and CSS size is controlled. Keep `robots.txt` open to AI retrieval and training crawlers by default, with only private operational paths such as `/admin/` and `/api/` blocked. Publish an `llms.txt` file for each canonical authority hub with production URLs, clear entity framing, and the current brand language. Clay implementation reference: Pass 1 commit `88bd899`; Pass 2 commit `e0ea90a`. Levi implementation reference: Pass 1 commit `4c3327f`; Pass 2 commit `1b5e0e5`.
+
 **Image optimization:**
 
 - Descriptive filenames: `clay-duncan-mortgage-originator-huntsville.jpg` not `IMG_4582.jpg`
