@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import globalStyles from '../styles/global.css?inline';
 import { compliance } from '../data/compliance';
 import { profileLinks, site } from '../data/site';
 
@@ -42,9 +42,10 @@ const navItems = [
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="msvalidate.01" content="1C808764522F73EA7E2768040CAA3069" />
     <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-3ZWEQF27L7"
-    ></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -52,19 +53,42 @@ const navItems = [
       }
       gtag('js', new Date());
       gtag('config', 'G-3ZWEQF27L7');
+
+      function loadGA() {
+        if (window.gaLoaded) {
+          return;
+        }
+        window.gaLoaded = true;
+
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-3ZWEQF27L7';
+        document.head.appendChild(script);
+      }
+
+      setTimeout(loadGA, 3000);
+
+      ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function (eventName) {
+        window.addEventListener(eventName, loadGA, { once: true, passive: true });
+      });
     </script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="msvalidate.01" content="1C808764522F73EA7E2768040CAA3069" />
     <meta name="description" content={description} />
     {robots && <meta name="robots" content={robots} />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800;850&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700;8..60,800&display=swap"
+      rel="preload"
+      href="/fonts/inter/Inter-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4/SourceSerif4-800.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <title>{title}</title>
     <meta property="og:type" content="website" />
@@ -83,6 +107,7 @@ const navItems = [
       ))
     }
     <slot name="schema" />
+    <style set:html={globalStyles}></style>
   </head>
   <body>
     <header class="site-header" aria-label="Site header">
