@@ -563,6 +563,8 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 **Post-DMG performance standard for Duncan-related sites (adopted 05-16-2026):** Self-host subset WOFF2 fonts and preload them in the document `<head>`; do not load Google Fonts from the CDN. Use the GA4 defer pattern that loads after a 3-second timeout or first user interaction. Inline critical CSS in the `<head>` using the Astro `global.css?inline` pattern when the site is static and CSS size is controlled. Keep `robots.txt` open to AI retrieval and training crawlers by default, with only private operational paths such as `/admin/` and `/api/` blocked. Publish an `llms.txt` file for each canonical authority hub with production URLs, clear entity framing, and the current brand language. Clay implementation reference: Pass 1 commit `88bd899`; Pass 2 commit `e0ea90a`. Levi implementation reference: Pass 1 commit `4c3327f`; Pass 2 commit `1b5e0e5`.
 
+**Levi production Lighthouse result (measured 05-16-2026):** Mobile Lighthouse Performance tested at 99 across the 9 launch-priority pages: homepage, About, Mortgage Guidance hub, First-Time Home Buyer, FHA Loans, USDA Loans, Down Payment Assistance, Investment Property, and Events. The measured range was 99-99 after the self-hosted font, font preload, deferred GA4, and inline critical CSS changes. No page missed the 95+ target.
+
 **Image optimization:**
 
 - Descriptive filenames: `clay-duncan-mortgage-originator-huntsville.jpg` not `IMG_4582.jpg`
