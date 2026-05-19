@@ -49,8 +49,8 @@ export const events: EventItem[] = [
       },
       { name: 'Todd Howard', company: 'VIB Title', topic: 'Title and legal' },
       {
-        name: 'Christian Daschle',
-        company: 'England Home Inspection',
+        name: 'Nathan Ward',
+        company: 'Big Country Home Inspection',
         topic: 'Home inspection',
       },
       {
