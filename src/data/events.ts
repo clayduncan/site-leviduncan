@@ -21,6 +21,44 @@ export interface EventItem {
 
 export const events: EventItem[] = [
   {
+    id: 'homebuyer-masterclass-2026-05-28',
+    name: 'Homebuyer Master Class',
+    date: '2026-05-28T18:30:00-05:00',
+    venue: 'RE/MAX Unlimited',
+    city: 'Madison',
+    state: 'AL',
+    address: {
+      streetAddress: '8331 Madison Blvd Ste 600',
+      postalCode: '35758',
+    },
+    audience: 'First-time and experienced homebuyers',
+    description:
+      'Monthly homebuyer education session covering property strategy, title and legal, home inspection, homeowners insurance, and financing strategy.',
+    speakers: [
+      {
+        name: 'Joanie Blackwell',
+        company: 'RE/MAX Unlimited',
+        topic: 'Property strategy',
+      },
+      { name: 'Todd Howard', company: 'Vibe Title', topic: 'Title and legal' },
+      {
+        name: 'Nathan Ward',
+        company: 'Big Country Home Inspection',
+        topic: 'Home inspection',
+      },
+      {
+        name: 'David Farris',
+        company: 'Southeastern Assurance Group',
+        topic: 'Homeowners insurance',
+      },
+      {
+        name: 'Levi Duncan',
+        company: 'Princeton Mortgage',
+        topic: 'Financing strategy',
+      },
+    ],
+  },
+  {
     id: 'homebuyer-masterclass-2026-05-20',
     name: 'Homebuyer Master Class',
     date: '2026-05-20T18:30:00-05:00',
