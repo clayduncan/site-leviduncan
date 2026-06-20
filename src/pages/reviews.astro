@@ -1,11 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { reviews } from '../data/reviews';
-import { createBreadcrumbJsonLd, personJsonLd } from '../data/schema';
+import { reviewSources, reviewStats, reviews } from '../data/reviews';
+import {
+  createBreadcrumbJsonLd,
+  createReviewJsonLd,
+  personJsonLd,
+} from '../data/schema';
 import { site } from '../data/site';
+
+const testimonialTree = reviewSources['testimonial-tree'];
+const reviewSourceNames = [
+  ...new Set(reviews.map((review) => review.sourceName)),
+].join(' and ');
+const reviewCountLabel =
+  reviewStats.count === 1 ? '1 review' : `${reviewStats.count} reviews`;
+const formattedReviews = reviews.map((review) => ({
+  ...review,
+  formattedDate: new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${review.date}T00:00:00Z`)),
+  stars: '★★★★★'.slice(0, review.rating),
+}));
 
 const schema = [
   personJsonLd,
+  ...reviews.map((review) => createReviewJsonLd(review)),
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -13,11 +35,9 @@ const schema = [
     url: `${site.url}/reviews/`,
     name: 'Levi Duncan Reviews',
     description:
-      'Review page for Levi Duncan, Huntsville Mortgage Loan Originator with Princeton Mortgage.',
+      'Reviews for Levi Duncan, Huntsville Mortgage Loan Originator with Princeton Mortgage.',
     mainEntity: reviews.map((review) => ({
-      '@type': 'Review',
-      author: review.author,
-      reviewBody: review.text,
+      '@id': `${site.url}/reviews/#${review.id}`,
     })),
     isPartOf: { '@id': `${site.url}/#website` },
   },
@@ -30,28 +50,30 @@ const schema = [
 
 <BaseLayout
   title="Reviews | Huntsville | Levi Duncan"
-  description="Reviews for Levi Duncan are coming soon while his Google Business Profile is being set up."
+  description={`Read verified ${reviewSourceNames} reviews for Levi Duncan, Huntsville Mortgage Loan Originator with Princeton Mortgage.`}
   schema={schema}
 >
-  <section class="hero-section landing-hero va-landing-hero" aria-labelledby="reviews-heading">
+  <section class="hero-section landing-hero va-landing-hero reviews-hero" aria-labelledby="reviews-heading">
     <div class="hero-copy">
       <p class="eyebrow">Reviews</p>
       <h1 id="reviews-heading">Reviews</h1>
       <p class="hero-lede">
-        Reviews are coming soon while Levi's Google Business Profile is in
-        setup mode.
+        Levi Duncan's reviews are currently pulled from {testimonialTree.name},
+        where clients have rated him {reviewStats.averageRatingDisplay} out of
+        5 across {reviewCountLabel}. Read the reviews below, visit the source
+        profile, or leave a review through {testimonialTree.name}.
       </p>
-      <div class="reviews-comment">
-        <p>
-          Thank you so much to my current and past clients who have already
-          been working with me. I appreciate the trust, and I look forward to
-          proudly displaying your comments and reviews of my work once my
-          profile is complete.
-        </p>
-      </div>
-      <div class="hero-actions">
-        <a class="button button-primary" href={site.calendlyUrl}>Book a call with Levi</a>
-        <a class="button button-secondary" href={site.applicationUrl}>Apply with Levi</a>
+      <div class="hero-actions" aria-label="Review source actions">
+        <a class="button button-primary" href={testimonialTree.profileUrl}
+          >Read all reviews</a
+        >
+        {
+          testimonialTree.submissionUrl && (
+            <a class="button button-secondary" href={testimonialTree.submissionUrl}>
+              Leave a review
+            </a>
+          )
+        }
       </div>
     </div>
     <div class="hero-media va-hero-media">
@@ -61,25 +83,60 @@ const schema = [
         height="800"
         alt="Levi Duncan, Huntsville Mortgage Loan Originator review page headshot"
       />
-      <div class="va-visual-card va-visual-card-top">
-        <span>{site.tagline}</span>
-        <strong>Verified reviews coming after Google setup</strong>
+      <div class="rating-summary">
+        <strong>{reviewStats.averageRatingDisplay}</strong>
+        <span>{reviewStats.maxRating}-star average</span>
+        <p>{reviewCountLabel} on {testimonialTree.name}</p>
       </div>
     </div>
   </section>
 
-  <section class="section-band section-band-light" aria-labelledby="empty-heading">
+  <section class="section-band section-band-light" aria-labelledby="reviews-list-heading">
     <div class="section-inner">
-      <div class="answer-panel">
+      <div class="section-heading section-heading-wide">
         <div>
-          <p class="eyebrow">Current Status</p>
-          <h2 id="empty-heading">Google Business Profile setup is next.</h2>
+          <p class="eyebrow">Client Feedback</p>
+          <h2 id="reviews-list-heading">What clients say about working with Levi.</h2>
         </div>
         <p>
-          Levi's Google Business Profile URL and verified reviews will be added
-          as soon as his profile is complete.
+          These reviews are rendered directly on Levi's site and attributed to
+          their source platform. As Google reviews are added later, they can be
+          added to the same reviews data layer without changing this page
+          structure.
         </p>
       </div>
+      <div class="reviews-grid">
+        {
+          formattedReviews.map((review) => (
+            <article class="review-card" id={review.id}>
+              <div class="review-card__header">
+                <div>
+                  <h3>{review.author}</h3>
+                  <p>{review.formattedDate}</p>
+                </div>
+                <div>
+                  <span>{review.sourceName}</span>
+                  <div
+                    class="review-stars"
+                    aria-label={`${review.rating} out of ${reviewStats.maxRating} stars`}
+                  >
+                    {review.stars}
+                  </div>
+                </div>
+              </div>
+              <blockquote>{review.text}</blockquote>
+            </article>
+          ))
+        }
+      </div>
+      <p class="reviews-note">
+        Source: <a class="text-link" href={testimonialTree.profileUrl}
+          >{testimonialTree.name}</a
+        >. Visitors can also <a
+          class="text-link"
+          href={testimonialTree.submissionUrl}>leave Levi a review</a
+        > through {testimonialTree.name}.
+      </p>
     </div>
   </section>
 </BaseLayout>

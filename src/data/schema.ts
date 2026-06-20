@@ -1,6 +1,6 @@
 import { compliance } from './compliance';
 import type { EventItem } from './events';
-import type { Review } from './reviews';
+import { reviewStats, type Review } from './reviews';
 import { profileLinks, site } from './site';
 
 type SchemaObject = Record<string, unknown>;
@@ -101,6 +101,17 @@ export const personJsonLd = {
     value: site.nmlsId,
     url: compliance.individualNmls.url,
   },
+  ...(reviewStats.count > 0
+    ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: reviewStats.averageRating,
+          reviewCount: reviewStats.count,
+          bestRating: reviewStats.maxRating,
+          worstRating: 1,
+        },
+      }
+    : {}),
   areaServed: areaServedJsonLd,
   knowsAbout: [
     'first-time homebuyer education',
@@ -302,6 +313,8 @@ export function createReviewJsonLd(review: Review): SchemaObject {
   return {
     '@context': 'https://schema.org',
     '@type': 'Review',
+    '@id': `${site.url}/reviews/#${review.id}`,
+    url: review.sourceReviewUrl ?? review.sourceUrl,
     itemReviewed: {
       '@id': personId,
     },
@@ -319,7 +332,8 @@ export function createReviewJsonLd(review: Review): SchemaObject {
     reviewBody: review.text,
     publisher: {
       '@type': 'Organization',
-      name: review.source,
+      name: review.sourceName,
+      url: review.sourceUrl,
     },
   };
 }

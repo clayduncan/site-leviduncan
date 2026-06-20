@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "audit:launch": "node scripts/launch-audit.mjs",
+    "sync:reviews": "node scripts/sync-testimonial-tree-reviews.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
