@@ -8,7 +8,7 @@ This file is the main strategy memory for leviduncan.com. Use it to preserve Lev
 
 leviduncan.com is Levi Duncan's personal authority site. It should establish Levi as a Huntsville, Alabama Mortgage Loan Originator with Princeton Mortgage, NMLS #2721357, focused on approachable homebuyer education, first-time buyers, FHA loans, USDA loans, down payment assistance, buyer readiness, and practical early mortgage guidance.
 
-The site is part of a larger Duncan Mortgage Group ecosystem:
+The site is part of a larger Team Duncan ecosystem:
 
 - `clayduncan.com` - Clay Duncan's personal authority site for VA, Redstone Arsenal and military buyers, complex mortgage strategy, higher-priced home financing, REALTOR® AI education, and leadership credibility.
 - `leviduncan.com` - Levi Duncan's personal authority site for first-time homebuyer guidance, government-backed program education, down payment assistance, buyer readiness, and Homebuyer Master Class authority.
@@ -40,7 +40,7 @@ Use the homebuyer consultation link for buyer-readiness and 101 review CTAs. Use
 
 ## Site Principles
 
-- Personal authority first: Levi is the primary entity; Duncan Mortgage Group is visual brand support, not a competing schema entity.
+- Personal authority first: Levi is the primary entity; Team Duncan is visual brand support, not a competing schema entity.
 - AEO clarity: pages should answer buyer questions directly and quickly.
 - SEO depth: pages should target specific localized search intent with useful, non-duplicative content.
 - Static-first build: keep the site fast, simple, and deployable on Netlify.
@@ -61,7 +61,7 @@ Use the homebuyer consultation link for buyer-readiness and 101 review CTAs. Use
 
 - Do not resurrect the retired Levi Phase 2 page-by-page sequence.
 - Do not publish duplicate support guides that restate existing page content.
-- Do not create a Duncan Mortgage Group schema entity on Levi's site unless the broader team site and entity architecture are ready.
+- Do not create a Team Duncan schema entity on Levi's site unless the broader team site and entity architecture are ready.
 - Do not add unnecessary frameworks or client-side complexity.
 - Do not index thin placeholder pages.
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this playbook when launching another Duncan Mortgage Group personal authority site from the proven Clay/Levi Astro and Netlify pattern.
+Use this playbook when launching another Team Duncan personal authority site from the proven Clay/Levi Astro and Netlify pattern.
 
 The Levi launch showed that the cleanest path is not a long Phase 2 sequence of separate page PRs once the full site can be reviewed in one deploy preview. Build the complete v1 on a launch branch, keep it deployable, review the live preview, merge once, then move to production cutover and post-launch optimization.
 

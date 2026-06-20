@@ -12,7 +12,7 @@ The original Clay scaffold contained Phase 3 notes that predated Levi's separate
 - The site deploys from GitHub `main` to Netlify.
 - The public brand/entity is Levi Duncan, Mortgage Loan Originator, NMLS #2721357.
 - Princeton Mortgage remains the brokerage/company affiliation, NMLS #113856.
-- Duncan Mortgage Group is a visual/team brand signal only on this site. Do not create a separate Duncan Mortgage Group schema entity here unless the team-site architecture is ready.
+- Team Duncan is a visual/team brand signal only on this site. Do not create a separate Team Duncan schema entity here unless the team-site architecture is ready.
 - The site uses the same Astro architecture, layout patterns, schema helpers, style system, and brand tokens proven on Clay's site.
 - Future personal-site launches should follow `docs/launch/personal-site-launch-playbook.md`.
 

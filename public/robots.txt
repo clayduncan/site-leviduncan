@@ -1,4 +1,4 @@
-# Duncan Mortgage Group ecosystem - AEO-permissive crawler policy
+# Team Duncan ecosystem - AEO-permissive crawler policy
 # Retrieval crawlers are allowed so answer engines can read the static HTML.
 
 User-agent: *

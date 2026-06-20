@@ -12,7 +12,7 @@ This file records durable project decisions so future chats can quickly understa
 - clayduncan.com should continue to balance three pillars: AEO, SEO-rich content, and superior UI experience.
 - Landing pages are part of the main website, not separate mini-sites.
 - `/huntsville/va-loans/` is the first SEO/AEO landing-page baseline.
-- Confirmed the strategic ecosystem direction: `clayduncan.com` first, `leviduncan.com` second, and a future shared Duncan Mortgage Group property third.
+- Confirmed the strategic ecosystem direction: `clayduncan.com` first, `leviduncan.com` second, and a future shared Team Duncan property third.
 - clayduncan.com is Clay Duncan's personal authority site, not the full Team Duncan site.
 - leviduncan.com should eventually use the same static Astro/Netlify playbook but carry distinct positioning rather than duplicate Clay's content.
 - The future team property should act as a routing and credibility hub, not a duplicate content warehouse.
@@ -20,7 +20,7 @@ This file records durable project decisions so future chats can quickly understa
 - Levi should primarily own beginner and accessibility paths: first-time homebuyers, down payment assistance, USDA, FHA, buyer readiness, budgeting, and early mortgage education.
 - The three sites should share AEO, SEO, UI, schema, and content-quality standards while maintaining distinct primary entities.
 - Consumer-facing architecture should start with the buyer's situation before the loan product.
-- `Team Duncan` remains an open brand/domain decision. `Duncan Mortgage Team` is the current strategic favorite because it is clearer and more searchable than `The Team Duncan`.
+- The exact team-brand/domain language remained open at this stage; see the 2026-06-20 entry for the later Team Duncan naming lock.
 - Generic `teamduncan.com` appears to be used by another real estate/property-management business, so avoid assuming that exact domain is available or strategically clean.
 - Approved the richer landing-page UI direction: editorial hero, strong proof strip, direct-answer section, local context, process/readiness section, FAQ, official source panel, and final CTA.
 - Approved `/huntsville/va-loans/` as the first visual baseline for premium service landing pages.
@@ -44,7 +44,14 @@ This file records durable project decisions so future chats can quickly understa
 - Kept reviews as an empty placeholder until Levi's Google Business Profile and verified review source are available.
 - Levi's booking links are split by intent: general booking uses `https://calendly.com/lduncan-princetonmortgage/book-levi`, homebuyer consultations use `https://calendly.com/lduncan-princetonmortgage/homebuyer-consultation`, and `https://bit.ly/AppWithLevi` points to `https://princeton.tidalwave.ai/signup/levi.duncan/D2OUK3FT86H9KK708470`.
 - Original Phase 2 page-by-page review gates are retired for Levi because the foundation branch expanded into the full v1 launch build before merge. Future Levi work should be treated as post-launch optimization, GBP/reviews integration, or new differentiated support content rather than continuation of the old Phase 2 sequence.
-- For any future Duncan Mortgage Group personal-brand site, use the reusable launch playbook in `docs/launch/personal-site-launch-playbook.md`: clone the proven Astro/Netlify architecture, define the new person's unique entity and topical ownership, keep `main` deployable, build a complete v1 behind one reviewed launch PR, then shift to post-launch optimization after production cutover.
+- For any future Team Duncan personal-brand site, use the reusable launch playbook in `docs/launch/personal-site-launch-playbook.md`: clone the proven Astro/Netlify architecture, define the new person's unique entity and topical ownership, keep `main` deployable, build a complete v1 behind one reviewed launch PR, then shift to post-launch optimization after production cutover.
+
+## 2026-06-20
+
+- Rebranded the shared visual/team brand language from the previous team name to `Team Duncan` across Levi's site and in-repo support docs.
+- Locked the visible brand lockup language as `Team Duncan` with the existing `POWERED BY PRINCETON MORTGAGE` secondary line.
+- Preserved the AEO architecture: Levi Duncan remains the primary Person entity, Princeton Mortgage remains the licensed Organization entity, and Team Duncan remains visual/marketing brand context only with no separate schema entity on leviduncan.com.
+- Kept `duncanmortgagegroup.com` URLs unchanged where they appear as owned team-site domains or social handles.
 
 ## Future Decisions
 

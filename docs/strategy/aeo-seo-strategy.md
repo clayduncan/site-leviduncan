@@ -1,4 +1,4 @@
-# AEO-Dominant Personal Authority Websites for Duncan Mortgage Group, Powered by Princeton Mortgage
+# AEO-Dominant Personal Authority Websites for Team Duncan, Powered by Princeton Mortgage
 
 **Anchored to Mortgage Origination, Real Estate Agent AI Training, and Homebuyer Education in Huntsville, Alabama**
 **Compiled: 05-05-2026 | Last Verified: 05-06-2026**
@@ -7,9 +7,9 @@
 
 ## A. EXECUTIVE SUMMARY
 
-Answer Engine Optimization (AEO) is the practice of structuring a website so that AI engines (ChatGPT, Perplexity, Claude, Gemini, Copilot, Meta AI) select it as a cited source when generating answers. For Clay Duncan, Levi Duncan, and Duncan Mortgage Group in Huntsville, Alabama, AEO is the highest-leverage marketing investment available in 2026 because (1) mortgage is a Your Money or Your Life (YMYL) category where E-E-A-T signals are amplified, (2) AI engines disproportionately cite entities with verifiable credentials such as NMLS registration, and (3) AI search referral conversion rates run roughly 3 to 4 times higher than traditional organic per HubSpot and Amsive case data (Strongly Supported).
+Answer Engine Optimization (AEO) is the practice of structuring a website so that AI engines (ChatGPT, Perplexity, Claude, Gemini, Copilot, Meta AI) select it as a cited source when generating answers. For Clay Duncan, Levi Duncan, and Team Duncan in Huntsville, Alabama, AEO is the highest-leverage marketing investment available in 2026 because (1) mortgage is a Your Money or Your Life (YMYL) category where E-E-A-T signals are amplified, (2) AI engines disproportionately cite entities with verifiable credentials such as NMLS registration, and (3) AI search referral conversion rates run roughly 3 to 4 times higher than traditional organic per HubSpot and Amsive case data (Strongly Supported).
 
-**Strategic frame: personal authority over brand authority.** The investment is concentrated on two personal authority sites, clayduncan.com and leviduncan.com, with duncanmortgagegroup.com serving as a relay that feeds authority signals into the personal sites rather than competing for citations of its own. Duncan Mortgage Group is a marketing brand operating under Princeton Mortgage's NMLS company license. Clay and Levi hold individual NMLS credentials. Princeton Mortgage's NMLS appears in the footer of every site. The team brand never carries its own NMLS identifier in schema or copy.
+**Strategic frame: personal authority over brand authority.** The investment is concentrated on two personal authority sites, clayduncan.com and leviduncan.com, with duncanmortgagegroup.com serving as a relay that feeds authority signals into the personal sites rather than competing for citations of its own. Team Duncan is a marketing brand operating under Princeton Mortgage's NMLS company license. Clay and Levi hold individual NMLS credentials. Princeton Mortgage's NMLS appears in the footer of every site. The team brand never carries its own NMLS identifier in schema or copy.
 
 **Core findings:**
 
@@ -32,7 +32,7 @@ Answer Engine Optimization (AEO) is the practice of structuring a website so tha
 3. Configure robots.txt to allow retrieval crawlers (OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User, Google-Extended, Bingbot); decide consciously on training crawlers.
 4. Build answer-first content: 40-60 word direct answers under question-formatted H2s on every personal-site page.
 5. Publish llms.txt at root of each site. Adoption is contested but cost is near zero.
-6. Establish Wikidata entries for Clay Duncan and Levi Duncan as individual entities, with Duncan Mortgage Group as a related entity, citing independent local media (Huntsville Business Journal, AL.com).
+6. Establish Wikidata entries for Clay Duncan and Levi Duncan as individual entities, with Team Duncan as a related entity, citing independent local media (Huntsville Business Journal, AL.com).
 7. Concentrate first 90 days on 25-50 pillar pages targeting Huntsville/Madison/Athens/Decatur mortgage queries on the personal sites; keep the roll-up lean.
 
 **Volatility outlook:** robots.txt directives, schema graph patterns, and SSR requirements are Stable (12+ months). llms.txt adoption, AI Overview citation patterns, and Perplexity stealth-crawler behavior are Evolving. Agentic AI fetchers (Google-Agent, ChatGPT Atlas, Perplexity Comet) are Experimental.
@@ -177,7 +177,7 @@ Smaller scale. Sources via its own crawler plus Bing partnership. Treat as ancil
 
 #### robots.txt for AI bots
 
-**Recommended directive set for Duncan Mortgage Group ecosystem (allow retrieval, allow training):** See Section I.1 for full template.
+**Recommended directive set for Team Duncan ecosystem (allow retrieval, allow training):** See Section I.1 for full template.
 
 **Rationale for allowing training crawlers in mortgage YMYL context:** Mortgage terminology and individual expertise (Clay's, Levi's) being baked into model weights creates compounding citation potential as new model versions release. The downside (uncompensated training use) is real but minor for personal-brand sites where the goal is recognition.
 
@@ -199,13 +199,13 @@ Smaller scale. Sources via its own crawler plus Bing partnership. Treat as ancil
 
 #### Strategic open question
 
-**Does blocking training crawlers reduce future citation potential?** For Duncan Mortgage Group ecosystem, **allow training** is the preferred default given the goal is entity recognition for personal brands competing against well-established lenders.
+**Does blocking training crawlers reduce future citation potential?** For Team Duncan ecosystem, **allow training** is the preferred default given the goal is entity recognition for personal brands competing against well-established lenders.
 
 ---
 
 ### D3. DOMAIN AND URL ARCHITECTURE
 
-**Domain choices for Duncan Mortgage Group ecosystem:**
+**Domain choices for Team Duncan ecosystem:**
 
 - `clayduncan.com` – Personal authority for Clay Duncan; specialty AI training for real estate agents.
 - `leviduncan.com` – Personal authority for Levi Duncan; specialty Homebuyer Masterclass.
@@ -236,13 +236,13 @@ Smaller scale. Sources via its own crawler plus Bing partnership. Treat as ancil
 
 #### D4.1 The Three-Site Relay Model (strategic frame)
 
-Duncan Mortgage Group ecosystem operates on a relay model where the roll-up site exists to feed authority signals into the personal sites, not to compete for citations of its own. This is a deliberate design decision driven by the goal of building personal authority over brand authority.
+Team Duncan ecosystem operates on a relay model where the roll-up site exists to feed authority signals into the personal sites, not to compete for citations of its own. This is a deliberate design decision driven by the goal of building personal authority over brand authority.
 
 **Roles:**
 
 - **clayduncan.com:** Canonical home for Clay's Person entity, Clay's specialty (AI training for real estate agents), and Clay's mortgage origination authority. Wins name-based queries ("Clay Duncan mortgage Huntsville"), specialty queries ("AI training real estate agents Huntsville"), and topic-deep queries on mortgage products Clay focuses on.
 - **leviduncan.com:** Canonical home for Levi's Person entity, Levi's specialty (Homebuyer Masterclass), and Levi's mortgage origination authority. Wins name-based queries for Levi, specialty queries on first-time homebuyer education, and topic-deep mortgage queries Levi focuses on.
-- **duncanmortgagegroup.com:** Relay site. Wins team-level branded queries ("Duncan Mortgage Group Huntsville reviews"), serves as a hub for prospects who arrive at the team brand and need routing to the right specialty, and aggregates lightweight summaries of the personal-site content with hotlinks back to canonical sources.
+- **duncanmortgagegroup.com:** Relay site. Wins team-level branded queries ("Team Duncan Huntsville reviews"), serves as a hub for prospects who arrive at the team brand and need routing to the right specialty, and aggregates lightweight summaries of the personal-site content with hotlinks back to canonical sources.
 
 **What the roll-up does NOT do:**
 
@@ -323,7 +323,7 @@ Each pillar is a comprehensive 2,500-3,500 word guide. Each cluster page is 800-
 
 **Must-haves:**
 
-- H1: "Duncan Mortgage Group, Powered by Princeton Mortgage" (the "powered by" appears subtly)
+- H1: "Team Duncan, Powered by Princeton Mortgage" (the "powered by" appears subtly)
 - Brief team intro (2-3 paragraphs) describing the team as a unit
 - Two team member modules, each with photo, role, NMLS ID, specialty headline, and "Read full bio" link to the personal site
 - "Next AI Training" CTA hotlinking to clayduncan.com
@@ -381,7 +381,7 @@ overlay minimums between 600 and 640 to reduce default risk.
 H2: FHA Loans
 
 FHA loans are great for first-time buyers! With low down payments and
-flexible credit requirements, an FHA loan from Duncan Mortgage Group
+flexible credit requirements, an FHA loan from Team Duncan
 could be your path to homeownership in beautiful Huntsville. Contact
 us today!
 ```
@@ -405,11 +405,11 @@ us today!
 
 ### D7. SCHEMA MARKUP STRATEGY
 
-#### Most valuable types for the Duncan Mortgage Group ecosystem
+#### Most valuable types for the Team Duncan ecosystem
 
 - `Person` (Clay Duncan, Levi Duncan) – canonical on respective personal sites
-- `Organization` (Duncan Mortgage Group as marketing brand; Princeton Mortgage as licensed parent)
-- `ProfessionalService` (Duncan Mortgage Group's services at the team level, no NMLS identifier)
+- `Organization` (Team Duncan as marketing brand; Princeton Mortgage as licensed parent)
+- `ProfessionalService` (Team Duncan's services at the team level, no NMLS identifier)
 - `LocalBusiness` properties (address, geo, areaServed) on the roll-up where applicable, but without claiming NMLS-licensed-entity status
 - `Service` (loan products on personal sites, agent training on Clay's site, Homebuyer Masterclass on Levi's)
 - `Article` and `FAQPage` (content pages)
@@ -462,7 +462,7 @@ Same pattern for Levi.
   },
   "memberOf": {
     "@type": "Organization",
-    "name": "Duncan Mortgage Group"
+    "name": "Team Duncan"
   },
   "identifier": {
     "@type": "PropertyValue",
@@ -559,7 +559,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 | Google-Extended                         | Yes            | SSR preferred but SPA acceptable |
 | Bingbot                                 | Yes            | SSR preferred                    |
 
-**For Duncan Mortgage Group ecosystem:** Use Astro, Next.js with full SSR, or a static WordPress + caching setup. The current Wix-based stack works for AEO when configured for static rendering; verify each site renders in raw HTML via `curl -A "GPTBot"`.
+**For Team Duncan ecosystem:** Use Astro, Next.js with full SSR, or a static WordPress + caching setup. The current Wix-based stack works for AEO when configured for static rendering; verify each site renders in raw HTML via `curl -A "GPTBot"`.
 
 **Image optimization:**
 
@@ -586,8 +586,8 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 **Wikipedia / Wikidata:**
 
-- Wikipedia: requires notability. Clay and Duncan Mortgage Group likely do not yet meet threshold. Do not attempt premature article.
-- **Wikidata:** No notability bar. Create entries with verifiable claims. **30-minute setup, indefinite persistence.** Highest-leverage off-site action available for free. Create one entry each for Clay Duncan, Levi Duncan, and Duncan Mortgage Group, with cross-references between them.
+- Wikipedia: requires notability. Clay and Team Duncan likely do not yet meet threshold. Do not attempt premature article.
+- **Wikidata:** No notability bar. Create entries with verifiable claims. **30-minute setup, indefinite persistence.** Highest-leverage off-site action available for free. Create one entry each for Clay Duncan, Levi Duncan, and Team Duncan, with cross-references between them.
 
 **Google Knowledge Graph:** Triggered by 3-5 independent authoritative sources + Wikidata entry + consistent NAP across web. Timeline 4-12 weeks once thresholds met.
 
@@ -617,7 +617,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 **Inverted citation:** Outbound links from your sites to authoritative sources (CFPB, HUD, FHFA, AAR, Alabama Housing Finance Authority) signal AI engines that you are well-grounded.
 
-**Monitoring:** Use Google Alerts for "Clay Duncan Princeton Mortgage," "Levi Duncan Princeton Mortgage," and "Duncan Mortgage Group Huntsville." Quarterly Wikidata audit.
+**Monitoring:** Use Google Alerts for "Clay Duncan Princeton Mortgage," "Levi Duncan Princeton Mortgage," and "Team Duncan Huntsville." Quarterly Wikidata audit.
 
 ---
 
@@ -692,7 +692,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 **Prompt injection risk:** Indirect prompt injection via your own site is possible but flagged by major engines.
 
-**Misattribution monitoring:** Quarterly check: ask AI engines about Clay Duncan, Levi Duncan, and Duncan Mortgage Group, and verify cited information accuracy.
+**Misattribution monitoring:** Quarterly check: ask AI engines about Clay Duncan, Levi Duncan, and Team Duncan, and verify cited information accuracy.
 
 **YMYL-specific risks:** Mortgage misinformation can trigger CFPB action. Always link to HUD/CFPB/FHFA primary sources.
 
@@ -712,7 +712,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 - Clay should own "Huntsville mortgage AI training for real estate agents" entity space.
 - Levi should own "first-time homebuyer education in Huntsville" via the Homebuyer Masterclass.
-- Duncan Mortgage Group should own the team-level branded query space.
+- Team Duncan should own the team-level branded query space.
 
 **Defensible moat:**
 
@@ -729,7 +729,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 | Query Class           | Example                                         | Preferred Answer Format                                              |
 | --------------------- | ----------------------------------------------- | -------------------------------------------------------------------- |
-| Navigational          | "Duncan Mortgage Group Huntsville"              | Branded homepage on duncanmortgagegroup.com with Organization schema |
+| Navigational          | "Team Duncan Huntsville"                        | Branded homepage on duncanmortgagegroup.com with Organization schema |
 | Informational         | "What is a conventional loan?"                  | 50-word definition + expansion on personal site                      |
 | Transactional         | "Apply for FHA loan Huntsville"                 | Service page with CTA + Application schema                           |
 | Comparative           | "FHA vs conventional in Alabama"                | Comparison table on personal site                                    |
@@ -779,7 +779,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 
 - clayduncan.com → Clay Duncan, mortgage authority and AI trainer (Person canonical)
 - leviduncan.com → Levi Duncan, mortgage authority and Homebuyer Masterclass instructor (Person canonical)
-- duncanmortgagegroup.com → Duncan Mortgage Group, marketing-brand team unit operating under Princeton Mortgage's NMLS license (Organization, no own NMLS identifier)
+- duncanmortgagegroup.com → Team Duncan, marketing-brand team unit operating under Princeton Mortgage's NMLS license (Organization, no own NMLS identifier)
 
 **Personal authority as primary goal:** The investment is in Clay's and Levi's individual entity authority. The team brand exists to support and route, not to compete with the personal entities.
 
@@ -892,7 +892,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 | 3   | Add NMLS sameAs to all Person schema                                  | High       | Hours   | Weeks           | Low  | NMLS profile complete      | Stable       | Free     |
 | 4   | robots.txt allowing retrieval crawlers                                | High       | Hours   | Weeks           | Low  | None                       | Stable       | Free     |
 | 5   | Verify NAP consistency across NMLS, GBP, LinkedIn, all 3 sites        | High       | Days    | Months          | Low  | Audit existing             | Stable       | Free     |
-| 6   | Create Wikidata entries for Clay, Levi, Duncan Mortgage Group         | High       | Days    | Months          | Low  | Independent media coverage | Evolving     | Free     |
+| 6   | Create Wikidata entries for Clay, Levi, Team Duncan                   | High       | Days    | Months          | Low  | Independent media coverage | Evolving     | Free     |
 | 7   | Author bio pages with Person schema on personal sites                 | High       | Days    | Weeks           | Low  | Photos, credentials        | Stable       | Free     |
 | 8   | Build 5-7 pillar guides per personal site                             | High       | Weeks   | Months          | Low  | Writing capacity           | Stable       | Low      |
 | 9   | Implement answer-first 40-60 word blocks under each H2                | High       | Weeks   | Weeks           | Low  | Editorial discipline       | Stable       | Free     |
@@ -947,7 +947,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 **Page count:** 8-12
 
 - Homepage (Organization schema, Princeton Mortgage as parentOrganization, Clay and Levi referenced by `@id` from personal sites)
-- Team about page (origin story, what makes Duncan Mortgage Group distinct, NOT duplicated from personal sites)
+- Team about page (origin story, what makes Team Duncan distinct, NOT duplicated from personal sites)
 - Two team member modules per page (or separate /team/clay/ and /team/levi/ pages with brief intros and "Read full bio" links to personal sites)
 - 1 services overview at team level
 - 1 contact page with team-level info
@@ -992,7 +992,7 @@ Acceptable for genuine variation (one page per Huntsville neighborhood with real
 - 6-10 FAQ cluster pages per personal site
 - Author bios complete with photos and credentials
 - Roll-up FAQ page with excerpt-and-link to personal sites
-- Create Wikidata entries (Clay first, then Levi, then Duncan Mortgage Group)
+- Create Wikidata entries (Clay first, then Levi, then Team Duncan)
 - Begin weekly 25-prompt panel tracking
 
 **Days 61-90 (Authority):**
@@ -1054,7 +1054,7 @@ Sample prompts (representative):
 - Princeton Mortgage Huntsville reviews
 - Clay Duncan mortgage Huntsville
 - Levi Duncan mortgage Huntsville
-- Duncan Mortgage Group reviews
+- Team Duncan reviews
 - AI training for real estate agents Huntsville
 - Homebuyer Masterclass Huntsville
 - Best mortgage team in Madison County
@@ -1082,7 +1082,7 @@ Paid options later: Sitebulb, Profound, AthenaHQ.
 ### I.1 Complete robots.txt (AEO-permissive, mortgage-anchored)
 
 ```
-# Duncan Mortgage Group ecosystem - AEO-permissive robots.txt
+# Team Duncan ecosystem - AEO-permissive robots.txt
 # Use on clayduncan.com, leviduncan.com, duncanmortgagegroup.com
 # Last updated: 05-06-2026
 
@@ -1138,14 +1138,14 @@ Sitemap: https://[domain].com/sitemap.xml
 > Clay Duncan is a Mortgage Loan Originator at Princeton Mortgage and
 > the founder of an AI training program for real estate agents.
 > NMLS #[Clay's NMLS ID]. Based in Huntsville, Alabama, serving
-> Madison County and North Alabama. Member of Duncan Mortgage Group,
+> Madison County and North Alabama. Member of Team Duncan,
 > a marketing brand operating under Princeton Mortgage's NMLS license.
 
 ## Identity
 - Name: Clay Duncan
 - Role: Mortgage Loan Originator, AI Trainer for Real Estate Agents
 - Employer: Princeton Mortgage (NMLS [Princeton's company NMLS])
-- Team: Duncan Mortgage Group, powered by Princeton Mortgage
+- Team: Team Duncan, powered by Princeton Mortgage
 - Individual License: NMLS #[Clay's ID] - verify at https://www.nmlsconsumeraccess.org/
 - Service Area: Huntsville, Madison, Athens, Decatur, Madison County, North Alabama
 
@@ -1155,7 +1155,7 @@ Sitemap: https://[domain].com/sitemap.xml
 - [First-Time Homebuyer Guide for Huntsville](https://clayduncan.com/first-time-homebuyer-huntsville)
 - [AI Training for Real Estate Agents](https://clayduncan.com/agent-ai-training)
 - [Connect with Levi Duncan (Homebuyer Masterclass)](https://leviduncan.com/)
-- [Duncan Mortgage Group team site](https://duncanmortgagegroup.com/)
+- [Team Duncan team site](https://duncanmortgagegroup.com/)
 
 ## Core Topics
 - Mortgage origination in North Alabama
@@ -1222,7 +1222,7 @@ This is the canonical Person definition for Clay. The roll-up references this `@
         "givenName": "Clay",
         "familyName": "Duncan",
         "jobTitle": "Mortgage Loan Originator and AI Trainer",
-        "description": "Mortgage Loan Originator at Princeton Mortgage and AI Trainer for real estate agents. Based in Huntsville, Alabama. Member of Duncan Mortgage Group.",
+        "description": "Mortgage Loan Originator at Princeton Mortgage and AI Trainer for real estate agents. Based in Huntsville, Alabama. Member of Team Duncan.",
         "disambiguatingDescription": "Mortgage Loan Originator at Princeton Mortgage, Huntsville Alabama, NMLS #[Clay's ID]",
         "url": "https://clayduncan.com/",
         "image": "https://clayduncan.com/images/clay-duncan-mortgage-originator-huntsville.jpg",
@@ -1318,7 +1318,7 @@ This is the canonical Person definition for Clay. The roll-up references this `@
 
 ### I.3.b JSON-LD graph for the roll-up (duncanmortgagegroup.com)
 
-The roll-up references the canonical Person definitions on the personal sites by `@id`. It does NOT redefine Clay or Levi. Note the absence of a NMLS identifier on the Organization, since Duncan Mortgage Group is a marketing brand operating under Princeton Mortgage's company license.
+The roll-up references the canonical Person definitions on the personal sites by `@id`. It does NOT redefine Clay or Levi. Note the absence of a NMLS identifier on the Organization, since Team Duncan is a marketing brand operating under Princeton Mortgage's company license.
 
 ```html
 <script type="application/ld+json">
@@ -1329,7 +1329,7 @@ The roll-up references the canonical Person definitions on the personal sites by
         "@type": "WebSite",
         "@id": "https://duncanmortgagegroup.com/#website",
         "url": "https://duncanmortgagegroup.com/",
-        "name": "Duncan Mortgage Group, Powered by Princeton Mortgage",
+        "name": "Team Duncan, Powered by Princeton Mortgage",
         "description": "Mortgage origination team in Huntsville, Alabama, led by Clay Duncan and Levi Duncan, operating under Princeton Mortgage's NMLS license.",
         "publisher": {
           "@id": "https://duncanmortgagegroup.com/#duncan-mortgage-group"
@@ -1339,8 +1339,8 @@ The roll-up references the canonical Person definitions on the personal sites by
       {
         "@type": ["Organization", "ProfessionalService"],
         "@id": "https://duncanmortgagegroup.com/#duncan-mortgage-group",
-        "name": "Duncan Mortgage Group",
-        "alternateName": "Duncan Mortgage Group, Powered by Princeton Mortgage",
+        "name": "Team Duncan",
+        "alternateName": "Team Duncan, Powered by Princeton Mortgage",
         "description": "Marketing-brand mortgage team in Huntsville, Alabama, operating under Princeton Mortgage's NMLS company license. Led by Clay Duncan and Levi Duncan.",
         "url": "https://duncanmortgagegroup.com/",
         "telephone": "+1-256-203-4500",
@@ -1434,7 +1434,7 @@ The roll-up's footer should display Princeton Mortgage's company NMLS as the lic
 - [ ] Image alt text descriptive (no "image1.jpg")
 - [ ] dateModified honest and current on updated content
 - [ ] NAP identical across NMLS, GBP, all 3 sites, LinkedIn, BBB
-- [ ] Wikidata entries exist for Clay, Levi, Duncan Mortgage Group, with citations
+- [ ] Wikidata entries exist for Clay, Levi, Team Duncan, with citations
 - [ ] GBP fully optimized (categories, services, photos, posts, Q&A)
 - [ ] Internal links from FAQ to pillar guides within each personal site
 - [ ] Hotlinks from roll-up to personal sites for specialty CTAs
@@ -1548,7 +1548,7 @@ The roll-up's footer should display Princeton Mortgage's company NMLS as the lic
 **Universal vs vertical-specific:**
 
 - **Universal:** SSR, schema graph, entity sameAs, answer-first writing, Wikidata
-- **Mortgage-specific:** NMLS as primary credential anchor; YMYL content review discipline; CFPB/HUD/FHFA outbound citations; the specific decision to keep marketing brand (Duncan Mortgage Group) without its own NMLS
+- **Mortgage-specific:** NMLS as primary credential anchor; YMYL content review discipline; CFPB/HUD/FHFA outbound citations; the specific decision to keep marketing brand (Team Duncan) without its own NMLS
 
 **Five highest-leverage tests to run first:**
 
