@@ -270,12 +270,9 @@ main {
 
 .site-footer-inner {
   display: grid;
-  grid-template-columns: minmax(18rem, 1fr) minmax(14rem, 0.7fr) minmax(
-      18rem,
-      1fr
-    );
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: flex-start;
-  gap: 1rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   padding: 1rem 0;
 }
 
@@ -283,29 +280,43 @@ main {
   margin: 0;
 }
 
-.footer-contact,
-.footer-links,
-.site-disclosure {
+.footer-column {
   display: grid;
   gap: 0.45rem;
+  justify-items: start;
+  text-align: left;
+}
+
+.footer-column p {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.footer-column strong {
+  color: var(--color-navy);
+  font-weight: 850;
 }
 
 .footer-branch-address {
   display: grid;
   gap: 0.1rem;
-  color: var(--color-muted);
   font-style: normal;
   line-height: 1.35;
 }
 
-.footer-links {
-  justify-items: center;
-  text-align: center;
+.footer-office,
+.footer-company p:not(:first-child),
+.footer-branch-address,
+.footer-person p:first-child span {
+  color: var(--color-muted);
 }
 
-.site-disclosure {
-  justify-items: end;
-  text-align: right;
+.footer-copyright {
+  grid-column: 1 / -1;
+  width: 100%;
+  border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 86%);
+  color: var(--color-muted);
+  padding-top: 0.75rem;
 }
 
 .hero-actions {
@@ -1847,9 +1858,7 @@ main {
   .site-team-brand,
   .site-nav,
   .social-links,
-  .footer-contact,
-  .footer-links,
-  .site-disclosure {
+  .footer-column {
     overflow-wrap: anywhere;
   }
 
@@ -1858,8 +1867,7 @@ main {
     max-width: 100%;
   }
 
-  .footer-links,
-  .site-disclosure {
+  .footer-column {
     justify-items: start;
     text-align: left;
   }
