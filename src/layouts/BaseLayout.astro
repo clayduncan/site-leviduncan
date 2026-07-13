@@ -143,25 +143,18 @@ const navItems = [
     </main>
     <footer class="site-footer">
       <div class="site-footer-inner">
-        <div class="footer-contact">
-          <address class="footer-branch-address">
-            <span>{site.branch.company}</span>
-            <span>{site.branch.street}</span>
-            <span>{branchAddressLine}</span>
-            <span>{branchNmlsLine}</span>
-          </address>
+        <div class="footer-column footer-person">
           <p>
-            {compliance.individualNmls.name}, {compliance.individualNmls.title},
+            <strong>{site.name}</strong>
+            <span>{compliance.individualNmls.title}</span>
             <a href={compliance.individualNmls.url} rel="noopener noreferrer" target="_blank">
               NMLS #{compliance.individualNmls.id}
             </a>
           </p>
           <p>
-            <a href={site.phoneHref}>{site.phoneDisplay}</a> &middot;
+            <a href={site.phoneHref}>{site.phoneDisplay}</a>
             <a href={site.emailHref}>{site.email}</a>
           </p>
-        </div>
-        <div class="footer-links">
           <nav class="social-links" aria-label="Social profiles">
             {
               profileLinks.map((link) => (
@@ -171,17 +164,24 @@ const navItems = [
               ))
             }
           </nav>
-          <p>&copy; {new Date().getFullYear()} {site.name}.</p>
         </div>
-        <div class="site-disclosure">
+        <div class="footer-column footer-office">
+          <address class="footer-branch-address">
+            <span>{site.branch.street}</span>
+            <span>{branchAddressLine}</span>
+            <span>{branchNmlsLine}</span>
+          </address>
+        </div>
+        <div class="footer-column footer-company">
           <p>
-            {compliance.companyNmls.name},
+            <strong>{compliance.companyNmls.name}</strong>
             <a href={compliance.companyNmls.url} rel="noopener noreferrer" target="_blank">
               NMLS #{compliance.companyNmls.id}
-            </a>.
+            </a>
           </p>
           <p>{compliance.equalHousing}</p>
         </div>
+        <p class="footer-copyright">&copy; {new Date().getFullYear()} {site.name}.</p>
       </div>
     </footer>
   </body>
