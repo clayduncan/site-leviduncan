@@ -53,6 +53,18 @@ This file records durable project decisions so future chats can quickly understa
 - Preserved the AEO architecture: Levi Duncan remains the primary Person entity, Princeton Mortgage remains the licensed Organization entity, and Team Duncan remains visual/marketing brand context only with no separate schema entity on leviduncan.com.
 - Kept `duncanmortgagegroup.com` URLs unchanged where they appear as owned team-site domains or social handles.
 
+## 2026-07-13
+
+- Reversed the prior address-free `ProfessionalService` schema decision because a licensed Princeton Mortgage Corporation Huntsville branch address now exists for Levi's site.
+- Retired the previous `missing field: address` skip flag. Missing address is no longer intentional for leviduncan.com and should not be reintroduced.
+- Added the licensed Huntsville branch NMLS: Branch NMLS #2857825.
+- Locked the canonical NAP string for Levi's site as:
+  `Princeton Mortgage Corporation`
+  `203 Longwood Drive`
+  `Huntsville, AL 35801`
+  `Branch NMLS #2857825`
+- This canonical NAP string must match Google Business Profile, Bing Places, Facebook, and LinkedIn exactly.
+
 ## Future Decisions
 
 Add new decisions here with dates, short rationale, and any affected files or pages.

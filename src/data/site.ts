@@ -28,6 +28,15 @@ export const site = {
     url: 'https://www.princetonmortgage.com/',
     nmlsId: '113856',
   },
+  branch: {
+    company: 'Princeton Mortgage Corporation',
+    street: '203 Longwood Drive',
+    city: 'Huntsville',
+    state: 'AL',
+    postalCode: '35801',
+    country: 'US',
+    nmls: '2857825',
+  },
   serviceArea:
     'Madison, Decatur, Athens, Albertville, Arab, and the wider Tennessee Valley — Madison County, Marshall County, and Morgan County across North Alabama',
   serviceAreaStatement:
@@ -60,3 +69,10 @@ export const site = {
 } as const;
 
 export const profileLinks = [...site.socialLinks, ...site.reviewLinks] as const;
+
+export const branchAddressLine = `${site.branch.city}, ${site.branch.state} ${site.branch.postalCode}`;
+export const branchNmlsLine = `Branch NMLS #${site.branch.nmls}`;
+export const branchNap = `${site.branch.company}
+${site.branch.street}
+${branchAddressLine}
+${branchNmlsLine}`;

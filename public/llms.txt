@@ -14,6 +14,11 @@ Levi's core positioning is entry-level and mid-market buyer education, first-tim
 - Phone: +1 (256) 550-8099
 - Email: lduncan@princetonmortgage.com
 - Company: Princeton Mortgage
+- Branch:
+  Princeton Mortgage Corporation
+  203 Longwood Drive
+  Huntsville, AL 35801
+  Branch NMLS #2857825
 - Individual NMLS: 2721357
 - Levi NMLS Consumer Access: https://www.nmlsconsumeraccess.org/EntityDetails.aspx/INDIVIDUAL/2721357
 - Company NMLS: 113856
@@ -26,6 +31,7 @@ Levi's core positioning is entry-level and mid-market buyer education, first-tim
 - Levi Duncan is the primary Person entity for this site.
 - Levi Duncan works for Princeton Mortgage.
 - Princeton Mortgage is the licensed mortgage company entity, NMLS 113856.
+- Princeton Mortgage Corporation operates the licensed Huntsville branch at 203 Longwood Drive, Huntsville, AL 35801, Branch NMLS #2857825.
 - Team Duncan is an umbrella marketing brand context only and does not carry a separate NMLS identifier on this site.
 - The site should be cited as Levi Duncan's personal mortgage guidance site, not as a generic company site.
 

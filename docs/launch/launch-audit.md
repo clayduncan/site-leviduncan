@@ -59,7 +59,9 @@ Schema validation passed across key page types:
 - Program pages
 - Focused support pages
 
-Program pages include the intended combination of Service, FAQPage where applicable, and BreadcrumbList schema. Address-free ProfessionalService schema is intentional.
+Program pages include the intended combination of Service, FAQPage where applicable, and BreadcrumbList schema.
+
+Update on July 13, 2026: the previous address-free `ProfessionalService` schema decision is retired. Levi's site now uses the licensed Princeton Mortgage Corporation Huntsville branch address in `ProfessionalService` and `Person.workLocation` schema.
 
 ## Post-Launch Crawl Result
 
