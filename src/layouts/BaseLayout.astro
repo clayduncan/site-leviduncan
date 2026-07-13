@@ -1,7 +1,7 @@
 ---
 import globalStyles from '../styles/global.css?inline';
 import { compliance } from '../data/compliance';
-import { profileLinks, site } from '../data/site';
+import { branchAddressLine, branchNmlsLine, profileLinks, site } from '../data/site';
 
 interface Props {
   title: string;
@@ -144,6 +144,12 @@ const navItems = [
     <footer class="site-footer">
       <div class="site-footer-inner">
         <div class="footer-contact">
+          <address class="footer-branch-address">
+            <span>{site.branch.company}</span>
+            <span>{site.branch.street}</span>
+            <span>{branchAddressLine}</span>
+            <span>{branchNmlsLine}</span>
+          </address>
           <p>
             {compliance.individualNmls.name}, {compliance.individualNmls.title},
             <a href={compliance.individualNmls.url} rel="noopener noreferrer" target="_blank">

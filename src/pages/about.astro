@@ -7,9 +7,12 @@ import {
   personJsonLd,
   professionalServiceJsonLd,
 } from '../data/schema';
-import { site } from '../data/site';
+import { branchAddressLine, branchNmlsLine, site } from '../data/site';
 
 const pageUrl = new URL('/about/', site.url).href;
+const branchDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.branch.company} ${site.branch.street} ${branchAddressLine}`,
+)}`;
 
 const schema = [
   personJsonLd,
@@ -139,6 +142,32 @@ const schema = [
           <h3>Homebuyer focus</h3>
           <p>Levi focuses on first-time buyers, FHA, USDA, down payment assistance, and investment property.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-band section-band-white" aria-labelledby="office-heading">
+    <div class="section-inner">
+      <div class="answer-panel">
+        <div>
+          <p class="eyebrow">Office</p>
+          <h2 id="office-heading">Where does Levi Duncan work?</h2>
+        </div>
+        <div class="bio-copy office-location-copy">
+          <p>
+            Levi Duncan works from the licensed Princeton Mortgage Corporation
+            Huntsville branch.
+          </p>
+          <address>
+            <span>{site.branch.company}</span>
+            <span>{site.branch.street}</span>
+            <span>{branchAddressLine}</span>
+            <span>{branchNmlsLine}</span>
+          </address>
+          <p>
+            <a class="text-link" href={branchDirectionsUrl}>Get directions</a>
+          </p>
+        </div>
       </div>
     </div>
   </section>

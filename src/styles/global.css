@@ -290,6 +290,14 @@ main {
   gap: 0.45rem;
 }
 
+.footer-branch-address {
+  display: grid;
+  gap: 0.1rem;
+  color: var(--color-muted);
+  font-style: normal;
+  line-height: 1.35;
+}
+
 .footer-links {
   justify-items: center;
   text-align: center;
@@ -825,6 +833,16 @@ main {
   color: var(--color-blue);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
+}
+
+.office-location-copy address {
+  display: grid;
+  gap: 0.15rem;
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  font-style: normal;
+  line-height: 1.45;
 }
 
 .section-heading-row {

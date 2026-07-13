@@ -27,6 +27,15 @@ export const areaServedJsonLd = [
   })),
 ] as const;
 
+export const branchPostalAddressJsonLd = {
+  '@type': 'PostalAddress',
+  streetAddress: site.branch.street,
+  addressLocality: site.branch.city,
+  addressRegion: site.branch.state,
+  postalCode: site.branch.postalCode,
+  addressCountry: site.branch.country,
+} as const;
+
 export const mortgageServices = [
   {
     name: 'First-Time Home Buyer Guidance',
@@ -95,6 +104,11 @@ export const personJsonLd = {
   worksFor: {
     '@id': organizationId,
   },
+  workLocation: {
+    '@type': 'Place',
+    name: site.branch.company,
+    address: branchPostalAddressJsonLd,
+  },
   identifier: {
     '@type': 'PropertyValue',
     propertyID: 'NMLS',
@@ -153,9 +167,10 @@ export const professionalServiceJsonLd = {
   url: site.url,
   image: defaultSchemaImage,
   description:
-    'Address-free mortgage origination services from Levi Duncan for Madison, Decatur, Athens, Albertville, Arab, Madison County, Marshall County, Morgan County, and the wider Tennessee Valley.',
+    'Mortgage origination services from Levi Duncan at the Princeton Mortgage Corporation Huntsville branch for Madison, Decatur, Athens, Albertville, Arab, Madison County, Marshall County, Morgan County, and the wider Tennessee Valley.',
   telephone: site.phone,
   email: site.email,
+  address: branchPostalAddressJsonLd,
   priceRange: '$$',
   areaServed: areaServedJsonLd,
   provider: {

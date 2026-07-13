@@ -13,6 +13,11 @@ export const compliance = {
     id: site.company.nmlsId,
     url: 'https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/113856',
   },
+  branchNmls: {
+    name: site.branch.company,
+    id: site.branch.nmls,
+    url: null,
+  },
   companyLegalAddress: {
     streetAddress: '439 Grand Avenue',
     addressLocality: 'Ewing',
