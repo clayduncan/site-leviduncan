@@ -10,8 +10,12 @@ import {
 import { branchAddressLine, branchNmlsLine, site } from '../data/site';
 
 const pageUrl = new URL('/about/', site.url).href;
-const branchDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${site.branch.company} ${site.branch.street} ${branchAddressLine}`,
+const branchDirectionsQuery = `${site.branch.company}, ${site.branch.street}, ${branchAddressLine}`;
+const appleMapsDirectionsUrl = `https://maps.apple.com/?daddr=${encodeURIComponent(
+  branchDirectionsQuery,
+)}&dirflg=d`;
+const googleMapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+  branchDirectionsQuery,
 )}`;
 
 const schema = [
@@ -164,9 +168,23 @@ const schema = [
             <span>{branchAddressLine}</span>
             <span>{branchNmlsLine}</span>
           </address>
-          <p>
-            <a class="text-link" href={branchDirectionsUrl}>Get directions</a>
-          </p>
+          <div class="office-directions">
+            <p>Get directions to this location</p>
+            <div class="office-directions-actions">
+              <a
+                class="button button-secondary"
+                href={appleMapsDirectionsUrl}
+                rel="noopener noreferrer"
+                target="_blank">Apple Maps</a
+              >
+              <a
+                class="button button-secondary"
+                href={googleMapsDirectionsUrl}
+                rel="noopener noreferrer"
+                target="_blank">Google Maps</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
