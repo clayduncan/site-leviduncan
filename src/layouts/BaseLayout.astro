@@ -1,5 +1,6 @@
 ---
 import globalStyles from '../styles/global.css?inline';
+import faceliftStyles from '../styles/princeton-facelift.css?inline';
 import { compliance } from '../data/compliance';
 import { branchAddressLine, branchNmlsLine, profileLinks, site } from '../data/site';
 
@@ -108,33 +109,52 @@ const navItems = [
     }
     <slot name="schema" />
     <style set:html={globalStyles}></style>
+    <style set:html={faceliftStyles}></style>
   </head>
   <body>
     <header class="site-header" aria-label="Site header">
       <div class="site-header-inner">
         <a class="site-logo" href="/" aria-label={`${site.name} home`}>
-          <img src="/favicon.svg" width="40" height="40" alt="" aria-hidden="true" />
+          <img
+            src="/brand-assets/duncan-d-mark.svg"
+            width="64"
+            height="64"
+            alt=""
+            aria-hidden="true"
+          />
           <span>
             <strong>{site.name}</strong>
             <small>{site.tagline}</small>
           </span>
         </a>
-        <div class="site-team-brand" aria-label="Team Duncan powered by Princeton Mortgage">
-          <strong>TEAM DUNCAN</strong>
-          <small>powered by Princeton Mortgage</small>
-        </div>
         <nav class="site-nav" aria-label="Primary navigation">
           {
             navItems.map((item) => (
               <a
                 href={item.href}
-                class:list={[item.active && 'is-active']}
+                class:list={[item.active && 'nav-active']}
                 aria-current={item.active ? 'page' : undefined}
               >
                 {item.label}
               </a>
             ))
           }
+          <details class="nav-mobile">
+            <summary>Menu</summary>
+            <div class="nav-mobile-menu">
+              {
+                navItems.map((item) => (
+                  <a
+                    href={item.href}
+                    class:list={[item.active && 'nav-active']}
+                    aria-current={item.active ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                ))
+              }
+            </div>
+          </details>
         </nav>
       </div>
     </header>
