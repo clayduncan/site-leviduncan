@@ -213,6 +213,18 @@ const navItems = [
             </a>
           </p>
           <p>{compliance.equalHousing}</p>
+          <p>{site.name} | NMLS #{compliance.individualNmls.id}</p>
+          <p>
+            {compliance.individualNmls.title} with {site.branch.company} | NMLS #{compliance.companyNmls.id}
+          </p>
+          {
+            compliance.licenses.map((license) => (
+              <p>
+                {license.state}: {site.branch.company} | {license.licenseType} No.{' '}
+                {license.licenseNumber} | Regulated by the {license.regulator}
+              </p>
+            ))
+          }
         </div>
         <p class="footer-copyright">&copy; {new Date().getFullYear()} {site.name}.</p>
       </div>
