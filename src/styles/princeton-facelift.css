@@ -533,7 +533,7 @@ blockquote,
 }
 
 .section-band-dark .eyebrow,
-.footer-team-brand {
+.site-footer h2 {
   color: var(--color-lime) !important;
 }
 
@@ -543,20 +543,11 @@ blockquote,
   padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
-.footer-copyright {
+.footer-bottom {
   border-top-color: rgb(255 255 255 / 18%);
 }
 
-.site-footer .footer-column strong,
-.site-footer .footer-office,
-.site-footer .footer-company p,
-.site-footer .footer-branch-address,
-.site-footer .footer-person p:first-child span,
-.site-footer .footer-copyright {
-  color: var(--color-sky);
-}
-
-.site-footer .footer-column a,
+.site-footer a,
 .site-footer .social-links a {
   color: var(--color-white);
 }

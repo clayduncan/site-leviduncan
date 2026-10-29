@@ -2,7 +2,7 @@
 import globalStyles from '../styles/global.css?inline';
 import faceliftStyles from '../styles/princeton-facelift.css?inline';
 import { compliance } from '../data/compliance';
-import { branchAddressLine, branchNmlsLine, profileLinks, site } from '../data/site';
+import { profileLinks, site } from '../data/site';
 
 interface Props {
   title: string;
@@ -173,28 +173,26 @@ const navItems = [
     </main>
     <footer class="site-footer">
       <div class="site-footer-inner">
-        <div class="footer-column footer-person">
+        <div class="footer-contact">
+          <h2>{site.name}</h2>
+          <p>{compliance.individualNmls.title}</p>
           <p>
-            <strong>{site.name}</strong>
-            <span>{compliance.individualNmls.title}</span>
             <a href={compliance.individualNmls.url} rel="noopener noreferrer" target="_blank">
               NMLS #{compliance.individualNmls.id}
             </a>
           </p>
           <p>
             <a href={site.phoneHref}>{site.phoneDisplay}</a>
-            <a href={site.emailHref}>{site.email}</a>
           </p>
+          <p><a href={site.emailHref}>{site.email}</a></p>
         </div>
-        <div class="footer-column footer-office">
+        <div class="footer-office">
+          <h2>Office Address</h2>
+          <p>{site.branch.street}</p>
           <p>
-            <strong>Office Address</strong>
+            {site.branch.city}, {site.branch.state} {site.branch.postalCode}
           </p>
-          <address class="footer-branch-address">
-            <span>{site.branch.street}</span>
-            <span>{branchAddressLine}</span>
-            <span>{branchNmlsLine}</span>
-          </address>
+          <p>Branch NMLS #{compliance.branchNmls.id}</p>
           <nav class="social-links" aria-label="Social profiles">
             {
               profileLinks.map((link) => (
@@ -205,20 +203,17 @@ const navItems = [
             }
           </nav>
         </div>
-        <div class="footer-column footer-company">
-          <p>
-            <strong>{compliance.companyNmls.name}</strong>
-          </p>
-          <p class="footer-disclosure">
-            {compliance.individualNmls.title} with {site.branch.company} | <a
-              href={compliance.companyNmls.url}
-              rel="noopener noreferrer"
-              target="_blank"
-            >NMLS #{compliance.companyNmls.id}</a>
+        <div class="site-disclosure">
+          <h2>Team Duncan</h2>
+          <p class="footer-team-brand">
+            powered by Princeton Mortgage
+            <a href={compliance.companyNmls.url} rel="noopener noreferrer" target="_blank">
+              #{compliance.companyNmls.id}
+            </a>
           </p>
           {
             compliance.licenses.map((license) => (
-              <p class="footer-disclosure">
+              <p>
                 {license.state}: {license.licenseType} No.{' '}
                 {license.licenseNumber} | Regulated by the {license.regulator} |{' '}
                 <a
@@ -233,7 +228,7 @@ const navItems = [
             ))
           }
         </div>
-        <div class="footer-copyright">
+        <div class="footer-bottom">
           <p>{compliance.equalHousing}</p>
           <p>&copy; {new Date().getFullYear()} {site.name}.</p>
         </div>
