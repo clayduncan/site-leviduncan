@@ -262,8 +262,6 @@ main {
 }
 
 .site-footer {
-  border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 82%);
-  color: var(--color-navy);
   font-family: var(--font-sans);
   font-size: 0.875rem;
 }
@@ -273,56 +271,57 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: flex-start;
   gap: clamp(1.5rem, 4vw, 3rem);
-  padding: 1rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 82%);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
 }
 
 .site-footer p {
   margin: 0;
 }
 
-.footer-column {
+.footer-contact,
+.footer-office,
+.site-disclosure {
   display: grid;
   gap: 0.45rem;
   justify-items: start;
   text-align: left;
 }
 
-.footer-column p {
-  display: grid;
-  gap: 0.2rem;
-}
-
-.footer-column .footer-disclosure {
-  display: block;
-}
-
-.footer-column strong {
+.footer-contact h2,
+.footer-office h2,
+.site-disclosure h2 {
+  margin: 0 0 0.15rem;
   color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
   font-weight: 850;
+  line-height: 1.1;
 }
 
-.footer-branch-address {
-  display: grid;
-  gap: 0.1rem;
-  font-style: normal;
-  line-height: 1.35;
-}
-
-.footer-office,
-.footer-company p:not(:first-child),
-.footer-branch-address,
-.footer-person p:first-child span {
-  color: var(--color-muted);
-}
-
-.footer-copyright {
+.footer-bottom {
+  grid-column: 1 / -1;
+  border-top: 0.5px solid color-mix(in srgb, var(--color-navy), transparent 82%);
+  padding-top: 1rem;
   display: grid;
   gap: 0.45rem;
-  grid-column: 1 / -1;
   width: 100%;
-  border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 86%);
-  color: var(--color-muted);
-  padding-top: 0.75rem;
+}
+
+.footer-office .social-links {
+  margin-top: 0.75rem;
+  gap: 0.5rem 0.75rem;
+}
+
+.footer-office .social-links a {
+  font-size: 0.8rem;
+}
+
+.footer-team-brand {
+  font-weight: 400;
+  white-space: nowrap;
 }
 
 .hero-actions {
@@ -1883,7 +1882,9 @@ main {
   .site-team-brand,
   .site-nav,
   .social-links,
-  .footer-column {
+  .footer-contact,
+  .footer-office,
+  .site-disclosure {
     overflow-wrap: anywhere;
   }
 
@@ -1894,11 +1895,6 @@ main {
 
   .office-directions-actions {
     grid-template-columns: 1fr;
-  }
-
-  .footer-column {
-    justify-items: start;
-    text-align: left;
   }
 
   .hero-section,
@@ -1973,5 +1969,11 @@ main {
   .blog-featured-card,
   .blog-empty-state {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .footer-team-brand {
+    white-space: normal;
   }
 }
