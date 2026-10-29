@@ -221,7 +221,15 @@ const navItems = [
             compliance.licenses.map((license) => (
               <p>
                 {license.state}: {site.branch.company} | {license.licenseType} No.{' '}
-                {license.licenseNumber} | Regulated by the {license.regulator}
+                {license.licenseNumber} | Regulated by the {license.regulator} |{' '}
+                <a
+                  href={license.licenseUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Alabama Huntsville branch license (PDF)"
+                >
+                  View License
+                </a>
               </p>
             ))
           }

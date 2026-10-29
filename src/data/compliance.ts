@@ -35,6 +35,7 @@ export const compliance = {
       licenseType: 'Consumer Credit License',
       regulator: 'Alabama State Banking Department',
       licenseNumber: '22854',
+      licenseUrl: '/licenses/princeton-alabama-huntsville-license.pdf',
     },
   ],
 } as const;
