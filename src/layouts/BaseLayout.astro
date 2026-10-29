@@ -185,15 +185,6 @@ const navItems = [
             <a href={site.phoneHref}>{site.phoneDisplay}</a>
             <a href={site.emailHref}>{site.email}</a>
           </p>
-          <nav class="social-links" aria-label="Social profiles">
-            {
-              profileLinks.map((link) => (
-                <a href={link.url} rel="me noopener noreferrer" target="_blank">
-                  {link.label}
-                </a>
-              ))
-            }
-          </nav>
         </div>
         <div class="footer-column footer-office">
           <p>
@@ -204,29 +195,48 @@ const navItems = [
             <span>{branchAddressLine}</span>
             <span>{branchNmlsLine}</span>
           </address>
+          <nav class="social-links" aria-label="Social profiles">
+            {
+              profileLinks.map((link) => (
+                <a href={link.url} rel="me noopener noreferrer" target="_blank">
+                  {link.label}
+                </a>
+              ))
+            }
+          </nav>
         </div>
         <div class="footer-column footer-company">
           <p>
             <strong>{compliance.companyNmls.name}</strong>
-            <a href={compliance.companyNmls.url} rel="noopener noreferrer" target="_blank">
-              NMLS #{compliance.companyNmls.id}
-            </a>
           </p>
-          <p>{compliance.equalHousing}</p>
-          <p>{site.name} | NMLS #{compliance.individualNmls.id}</p>
-          <p>
-            {compliance.individualNmls.title} with {site.branch.company} | NMLS #{compliance.companyNmls.id}
+          <p class="footer-disclosure">
+            {compliance.individualNmls.title} with {site.branch.company} | <a
+              href={compliance.companyNmls.url}
+              rel="noopener noreferrer"
+              target="_blank"
+            >NMLS #{compliance.companyNmls.id}</a>
           </p>
           {
             compliance.licenses.map((license) => (
-              <p>
-                {license.state}: {site.branch.company} | {license.licenseType} No.{' '}
-                {license.licenseNumber} | Regulated by the {license.regulator}
+              <p class="footer-disclosure">
+                {license.state}: {license.licenseType} No.{' '}
+                {license.licenseNumber} | Regulated by the {license.regulator} |{' '}
+                <a
+                  href={license.licenseUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Alabama Huntsville branch license (PDF)"
+                >
+                  View License
+                </a>
               </p>
             ))
           }
         </div>
-        <p class="footer-copyright">&copy; {new Date().getFullYear()} {site.name}.</p>
+        <div class="footer-copyright">
+          <p>{compliance.equalHousing}</p>
+          <p>&copy; {new Date().getFullYear()} {site.name}.</p>
+        </div>
       </div>
     </footer>
   </body>

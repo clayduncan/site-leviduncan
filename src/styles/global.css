@@ -292,6 +292,10 @@ main {
   gap: 0.2rem;
 }
 
+.footer-column .footer-disclosure {
+  display: block;
+}
+
 .footer-column strong {
   color: var(--color-navy);
   font-weight: 850;
@@ -312,6 +316,8 @@ main {
 }
 
 .footer-copyright {
+  display: grid;
+  gap: 0.45rem;
   grid-column: 1 / -1;
   width: 100%;
   border-top: 1px solid color-mix(in srgb, var(--color-navy), transparent 86%);
