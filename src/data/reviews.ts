@@ -34,6 +34,45 @@ export const reviewSources: Record<ReviewSourceKey, ReviewSource> = {
 
 export const reviews: Review[] = [
   {
+    id: 'testimonial-tree-4518847',
+    source: 'testimonial-tree',
+    sourceName: 'Testimonial Tree',
+    sourceUrl:
+      'https://directory.testimonialtree.com/profiles/23CEBF28-684F-41DF-8019-2F5B07249B60',
+    sourceReviewUrl:
+      'https://directory.testimonialtree.com/profiles/23CEBF28-684F-41DF-8019-2F5B07249B60/testimonials/4518847',
+    author: 'Michael Dueck',
+    rating: 5,
+    date: '2026-10-09',
+    text: 'Levi has been an immensely helpful, mindful, and professional agent. Knowledgable in his field and insightful to individual borrower needs, he found the perfect fit for my situation’s needs. When put under a time crunch due to circumstances beyond his control, he completed his side promptly, and provided guidance to me, and assistance to all other parties involved.\n\nSimilarly, Bradley was a sharp, thorough, and remarkably quick processor, giving me a clear and concise list of all required documents, and less than 3 hour turnaround on all tasks I needed from him. Courteous and prompt, he made my first loan experience much more manageable and understandable.\n\nWith such a professional, helpful, and well-spoken staff, Princeton Mortgage will be the preferred option for any and all future transactions I take on.',
+  },
+  {
+    id: 'testimonial-tree-4506184',
+    source: 'testimonial-tree',
+    sourceName: 'Testimonial Tree',
+    sourceUrl:
+      'https://directory.testimonialtree.com/profiles/23CEBF28-684F-41DF-8019-2F5B07249B60',
+    sourceReviewUrl:
+      'https://directory.testimonialtree.com/profiles/23CEBF28-684F-41DF-8019-2F5B07249B60/testimonials/4506184',
+    author: 'Billy Joel Strobel',
+    rating: 5,
+    date: '2026-09-30',
+    text: "Levi did an awesome job. Any questions I had were answered promptly, clearly, and with much kindness. I'm very appreciative of his diligence and communication style. Great job, Levi!",
+  },
+  {
+    id: 'testimonial-tree-4477459',
+    source: 'testimonial-tree',
+    sourceName: 'Testimonial Tree',
+    sourceUrl:
+      'https://directory.testimonialtree.com/profiles/23CEBF28-684F-41DF-8019-2F5B07249B60',
+    sourceReviewUrl:
+      'https://directory.testimonialtree.com/profiles/23CEBF28-684F-41DF-8019-2F5B07249B60/testimonials/4477459',
+    author: 'Harley Kenney',
+    rating: 5,
+    date: '2026-09-02',
+    text: 'Working with Levi and Clay has been absolutely one of the easiest lenders to work with! They are at the leading edge of the AI boom and using tools to make the process much easier and faster.  They have a great product and I recommend them to all my clients!',
+  },
+  {
     id: 'testimonial-tree-4306426',
     source: 'testimonial-tree',
     sourceName: 'Testimonial Tree',
@@ -75,7 +114,7 @@ export const reviews: Review[] = [
 ];
 
 export const reviewStats = {
-  count: 3,
+  count: 6,
   averageRating: 5,
   averageRatingDisplay: '5.0',
   maxRating: 5,
